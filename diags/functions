@@ -1,0 +1,145 @@
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# The following functions can be called from nodediag tests.
+#
+
+declare -r EXIT_OK=0
+declare -r EXIT_FAIL=1
+declare -r EXIT_NOTRUN=2
+
+# Usage: diag_init
+# Check that global variables are set
+diag_init()
+{
+  if [ -z "$prog" ]; then
+    echo "script did not set \$prog" >&2
+    exit $EXIT_NOTRUN
+  fi
+  if [ -z "$description" ]; then
+    echo "$prog: script did not set \$description" >&2
+    exit $EXIT_NOTRUN
+  fi
+}
+
+# Usage: diag_handle_args "$@"
+# Handle standard test arguments.
+diag_handle_args()
+{
+  local sopt=0
+
+  while getopts "?hdcs" opt; do
+    case ${opt} in
+      d) printf "%-16s %s\n" "$prog:" "$description"
+         exit $EXIT_NOTRUN
+         ;;
+      c) echo "#"
+         if ! diagconfig 2>/dev/null; then
+           echo "# $prog: no default available"
+         fi
+         exit $EXIT_NOTRUN
+         ;;
+      s) if [ "$sanity" != "1" ]; then
+           echo "$prog: not a --sanity test" >&2
+           exit $EXIT_NOTRUN
+         fi
+         ;;
+      *) echo "Usage: $prog [-dc]"
+         exit $EXIT_NOTRUN
+         ;;
+    esac
+  done
+}
+
+# Usage: diag_check_defined VARIABLE
+# If VARIABLE is not defined, exit with NOTRUN.
+diag_check_defined()
+{
+  if ! eval 'test -n "$'$1'"'; then
+    echo "$prog: $1 is not set" 
+    exit $EXIT_NOTRUN
+  fi
+}
+
+# Usage: diag_check_root
+# If user is not root, exit with NOTRUN.
+diag_check_root()
+{
+  if [ $(id -u) -ne 0 ]; then
+    echo "$prog: skipping this test as you are not root" >&2
+    exit $EXIT_NOTRUN
+  fi
+}
+
+# Usage: ...|diag_normalize_whitespace
+# Remove any hash delimited comments and convert any amount of whitespace
+# into one space.  Remove trailing spaces.
+diag_normalize_whitespace()
+{
+  sed -e 's/#.*//' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g'
+}
+
+# Usage: diag_test_dmi keyword wantval
+# Check if all values of keyword in dmitable match wantval.
+# Exit with OK or FAIL.
+diag_test_dmi()
+{
+  local keyword=$1
+  shift
+  local wantval=$(echo $* |diag_normalize_whitespace)
+  local gotval gotval_s
+
+  /usr/sbin/dmidecode -s $keyword | while read gotval; do
+    gotval_s=$(echo $gotval|diag_normalize_whitespace)
+    if [ "$gotval_s" != "$wantval" ]; then
+      echo "$prog: $keyword is $gotval_s, expected $wantval" >&2
+      exit $EXIT_FAIL
+    else
+      echo "$prog: $keyword is $gotval_s" >&2
+    fi
+  done
+  exit $?
+}
+
+# Usage: diag_dmi_stanza "<stanza title>"
+# Filters dmidecode output by stanza title.
+diag_dmi_stanza()
+{
+  /usr/sbin/dmidecode | awk '/'"$1"'$/,/^$/'
+}
+
+# Usage: diag_config_dmi keyword variable
+diag_config_dmi()
+{
+  local val
+  local rc=1
+
+  if [ $(id -u) -eq 0 ]; then
+    val=`/usr/sbin/dmidecode -s $1|tail -1|diag_normalize_whitespace`
+    echo "$2=\"$val\""
+    rc=0
+  fi
+  return $rc
+} 

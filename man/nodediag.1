@@ -1,0 +1,103 @@
+.TH nodediag 1 "2010-05-14" "nodediag-0.1" "nodediag"
+.SH NAME
+nodediag \- perform node diagnostics
+.SH SYNOPSIS
+.B nodediag
+.I "[OPTIONS]"
+.SH DESCRIPTION
+.B nodediag
+runs diagnostic test scripts from /etc/nodediag.d.
+If any fail, \fBnodediag\fR exits with a nonzero exit status.
+.SH OPTIONS
+.TP
+\fI-l\fR, \fI--list\fR
+List available tests with descriptions, if available.
+.TP
+\fI-f\fR, \fI--firstfail\fR
+Exit on first test failure.
+.TP
+\fI-q\fR, \fI--quiet\fR
+Don't show individual test results as they run.
+.TP
+\fI-v\fR, \fI--verbose\fR
+Pass through output from individual tests.
+.TP
+\fI-t\fR, \fI--test\fR TEST
+Run only TEST.
+This option may be specified multiple times to run multiple tests.
+.TP
+\fI-L\fR, \fI--logfile\fR LOGFILE
+Send verbose test output to LOGFILE.
+.TP
+\fI-p\fR, \fI--plain\fR
+Disable the pretty terminal colors.
+.TP
+\fI-c\fR, \fI--config\fR
+Generate a prototype /etc/sysconfig/nodediag file on stdout.
+.TP
+\fI-s\fR, \fI--sanity\fR
+Run only tests that tag themselves as sanity tests.
+The \fBnodediag\fR init script uses this option.
+.TP
+\fI-F\fR, \fI--forever\fR
+Repeat test loop until interrupted.
+.SH TESTS
+The following tests are supplied with \fBnodediag\fR.  These tests are
+configured by editing varible settings in /etc/sysconfig/nodediag.
+.TP
+\fIbios\fR
+Check bios release date with \fBdmidecode\fR.
+.TP
+\fIcpu\fR
+Check that all cpus are correct version with \fBdmidecode\fR.
+.TP
+\fIcpufreq\fR
+Check that all cpus are correct speed with \fBdmidecode\fR.
+.TP
+\fIecc\fR
+Check EDAC configuration in \fI/sys/devices/system/edac/mc\fR.
+.TP
+\fIethernet\fR
+Check ethernet link status with \fBethtool\fR.
+.TP
+\fIhdparm\fR
+Check that disk read performance meets threshold with \fBhdparm\fR.
+.TP
+\fIinfiniband\fR
+Check infiniband link status with \fBibstat\fR.
+.TP
+\fImemory\fR
+Check installed memory with \fBdmidecode\fR.
+.TP
+\fImemspeed\fR
+Check installed memory speed with \fBdmidecode\fR.
+.TP
+\fImemtype\fR
+Check installed memory type with \fBdmidecode\fR.
+.TP
+\fImotherprod\fR
+Check the motherboard model with \fBdmidecode\fR.
+.TP
+\fImotherver\fR
+Check the motherboard version with \fBdmidecode\fR.
+.TP
+\fImptsas\fR
+Check mptsas board count and firmware revs with \fB/sys/class/scsi_host\fR.
+.TP
+\fImpt2sas\fR
+Check mpt2sas board count and firmware revs with \fB/sys/class/scsi_host\fR.
+.TP
+\fInetwork\fR
+Check network adapter attributes with \fIsys/class/net\fR.
+.TP
+\fIswap\fR
+Check for expected amount of swap in \fI/proc/meminfo\fR.
+.TP
+\fItw\fR
+Check 3ware board count and firmware rev with \fBtw_cli\fR.
+.SH FILES
+/etc/nodediag.d
+.br
+/etc/sysconfig/nodediag
+.br
+/etc/sysconfig/nodediag.d

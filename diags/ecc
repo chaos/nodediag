@@ -1,0 +1,79 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# description: Check that edac ecc of the proper type is enabled.
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+declare -r prog=${0##*/}
+declare -r description="Check EDAC ECC type"
+declare -r sanity=1
+
+# Source nodediag config and function library
+. /etc/nodediag.d/functions || exit 2
+. /etc/sysconfig/nodediag 
+
+getecctype()
+{
+    local file
+
+    shopt -s nullglob
+    for file in /sys/devices/system/edac/mc/mc*/csrow*/edac_mode; do
+        cat $file
+    done
+    shopt -u nullglob
+}
+
+diagconfig ()
+{
+    local ecctype=`getecctype | tail -1`
+
+    [ -z "$ecctype" ] && return 1
+    echo "DIAG_ECC_TYPE=\"$ecctype\""
+}
+
+diag_init
+diag_handle_args "$@"
+diag_check_defined "DIAG_ECC_TYPE"
+
+eccenabled=0
+EXITVAL=0
+
+for ecctype in `getecctype`; do
+    eccenabled=1
+    if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
+        echo "$prog: $file: $ecctype, expected $DIAG_ECC_TYPE" >&2
+        EXITVAL=$EXIT_FAIL
+    else
+        echo "$prog: $file: $ecctype" >&2
+    fi
+done
+if [ $eccenabled -eq 0 ]; then    
+    echo "$prog: ECC is not enabled" >&2
+    EXITVAL=$EXIT_FAIL
+fi
+exit $EXITVAL

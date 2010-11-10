@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# init script for running nodediag scripts
+#
+# chkconfig: - 99 05
+# description: This script runs /usr/bin/nodediag
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+LOGFILE=/var/log/nodediag
+
+EXITRC=0
+
+# See how we were called.
+case "$1" in
+    start)
+        echo -n $"Starting nodediag: "
+        if /usr/bin/nodediag -s -q -L $LOGFILE; then
+          success; echo
+        else
+          failure; echo
+          echo "Check $LOGFILE for detailed test results"
+          EXITRC=1
+        fi
+        ;;
+    stop)
+        ;;
+    *)
+        echo "Usage: $0 {start}"
+        EXITRC=1
+        ;;
+esac
+
+exit $EXITRC

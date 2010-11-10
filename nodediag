@@ -1,0 +1,197 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# Run scripts in /etc/nodediag.d
+#
+# Each script must exit with 0=success, 1=failed, or 2=not run, and
+# must implement a -d option which emits a one line description of the test.
+#
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+declare -r RESULT_PRETTY=(
+    "[  \\033[0;32mOK\\033[0;39m  ]"
+    "[ \\033[0;31mFAIL\\033[0;39m ]"
+    "[\\033[0;33mNOTRUN\\033[0;39m]"
+)
+declare -r RESULT_PLAIN=(
+    "[  OK  ]"
+    "[ FAIL ]"
+    "[NOTRUN]"
+)
+
+declare -r OUT_QUIET=0
+declare -r OUT_NORMAL=1
+declare -r OUT_VERBOSE=2
+
+declare -r prog=${0##*/}
+declare -r long_opts="firstfail,test:,list,quiet,verbose,help,logfile:,plain,config,sanity,forever"
+declare -r short_opts="ft:dlqvhL:pcsF"
+declare -r getopt="/usr/bin/getopt -u"
+declare -r usagemsg="\
+USAGE: $prog [OPTIONS]
+   -L, --logfile FILE   Log verbose output to file name
+   -f, --firstfail      Exit on first failure
+   -l, --list           List diags with descriptions
+   -q, --quiet          Don't show output, just looking for exit code
+   -v, --verbose        Show output from tests
+   -t, --test           Run specific test script, default is to run all tests
+                        multiple -t options can be passed to run multiple tests
+   -p, --plain          Don't use pretty colors in output
+   -c, --config         Generate prototype sysconfig file on stdout
+   -s, --sanity         Only run quick sanity tests
+   -F, --forever        Repeat tests until interrupted
+   -h, --help           Display usage message"
+
+usage () {
+    echo -e "$usagemsg" >&2
+    exit 1
+}
+
+run_test () {
+    local script=$1
+    shift
+    local rc
+   
+    echo "Checking $script:"
+    ${script_dir}/${script} $* 2>&1; rc=$? 
+    [ $rc -le 2 ] || $rc = $EXIT_FAIL
+    echo "Result: ${RESULT_PLAIN[$rc]}"
+
+    return $rc
+}
+
+# List available tests
+list_tests()
+{
+    local dir=$1
+    local file
+
+    pushd $dir >/dev/null || return
+    shopt -s nullglob
+    for file in *; do
+        [ "$file" != "functions" ] && echo $file
+    done
+    shopt -u nullglob
+    popd >/dev/null
+}
+
+
+script_dir=/etc/nodediag.d
+outmode=$OUT_NORMAL
+first=0
+list=0
+logfile="/dev/null"
+diags=""
+plain=0
+config=0
+sopt=""
+forever=0
+
+GETOPT=`$getopt -o $short_opts -l $long_opts -n $prog -- $@`
+[ $? != 0 ] && usage
+eval set -- "$GETOPT"
+while true; do
+    case "$1" in
+        -L|--logfile)      logfile="$2"        ; shift 2  ;;
+        -t|--test)         diags+="$2 "        ; shift 2  ;;
+        -p|--plain)        plain=1             ; shift    ;;
+        -c|--config)       config=1            ; shift    ;;
+        -f|--first)        first=1             ; shift    ;;
+        -l|--list)         list=1              ; shift    ;;
+        -q|--quiet)        outmode=$OUT_QUIET  ; shift    ;;
+        -v|--verbose)      outmode=$OUT_VERBOSE; shift    ;;
+        -s|--sanity)       sopt="-s"           ; shift    ;;
+        -F|--forever)      forever=1           ; shift    ;;
+        -h|--help)         usage                          ;;
+        --)                shift               ; break    ;;
+        *)                 usage                          ;;
+    esac
+done
+[ $# -gt 0 ] && usage
+if [ $outmode == $OUT_VERBOSE ] && [ $logfile != "/dev/null" ]; then
+    echo "$prog: -v and -L cannot be used together" >&2
+    exit 1
+fi
+
+# Get exit values
+. /etc/nodediag.d/functions || exit 2
+
+# Construct the list of tests if it wasn't passed in with -t
+[ -n "${diags}" ] || diags=`list_tests $script_dir`
+
+# Just list tests and exit
+if [ $list -eq 1 ]; then
+    for script in $diags; do
+        if [ -x $script_dir/$script ]; then
+            $script_dir/$script -d
+        fi
+    done
+    exit 0
+fi
+
+# Generate config and exit
+if [ $config -eq 1 ]; then
+    for script in $diags; do
+        if [ -x $script_dir/$script ]; then
+            $script_dir/$script -c
+        fi
+    done
+    exit 0
+fi
+
+# Run the tests
+EXITVAL=0
+while true; do
+    for script in ${diags}; do
+        if [ ! -x $script_dir/$script ]; then
+            echo "$prog: $script is nonexistent or not executable" >&2
+            continue
+        fi
+        case $outmode in
+            $OUT_QUIET)
+                run_test $script $sopt >>$logfile; rc=$?
+                ;;
+            $OUT_NORMAL)
+                printf "%-60s" "Checking $script:"
+                run_test $script $sopt >>$logfile; rc=$?
+                if [ $plain -eq 1 ]; then
+                    echo "${RESULT_PLAIN[$rc]}"
+                else
+                    echo -e "${RESULT_PRETTY[$rc]}"
+                fi
+                ;;
+            $OUT_VERBOSE)
+                run_test $script $sopt; rc=$?
+                ;;
+        esac
+        [ $rc != $EXIT_FAIL ] || EXITVAL=1
+    done
+    if [ "$forever" != "1" ]; then
+        break
+    fi
+done
+
+exit $EXITVAL

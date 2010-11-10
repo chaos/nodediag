@@ -1,0 +1,91 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# description: Check that infiniband interfaces are linked properly
+# 
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+declare -r prog=${0##*/}
+declare -r description="Check infiniband config"
+declare -r sanity=1
+
+# Source nodediag config and function library
+. /etc/nodediag.d/functions || exit 2
+. /etc/sysconfig/nodediag 
+
+diag_init
+diag_handle_args "$@"
+diag_check_defined "DIAG_INFINIBAND_DEV"
+diag_check_root
+
+if ! [ -x /usr/sbin/ibstat ]; then
+    echo "$prog: ibstat is unavailable" >&2
+    exit $EXIT_NOTRUN
+fi
+
+EXITVAL=$EXIT_OK
+i=0
+for dev in "${DIAG_INFINIBAND_DEV[@]}"; do
+
+    # If link comes up late, configure retries here
+    retries=${DIAG_INFINIBAND_RETRIES:-"0"}
+    retrysec=${DIAG_INFINIBAND_RETRY_SEC:-"10"}
+    linkup=0
+    while [ $retries -ge 0 ] && [ $linkup -eq 0 ]; do
+        gotlink=`/usr/sbin/ibstat $dev | awk '/Physical state:/ { print $3 }'`
+        if [ "$gotlink" == "LinkUp" ]; then
+            echo "$prog: $dev state $gotlink" >&2
+            linkup=1
+        else
+            echo "$prog: $dev state $gotlink, expected LinkUp" >&2
+            retries=$(($retries - 1))
+            if [ $retries -ge 0 ]; then
+                echo "$prog: $dev will retry in $retrysec seconds" >&2
+                sleep $retrysec
+            fi
+        fi
+    done
+    if [ $linkup -eq 0 ]; then
+        EXITVAL=$EXIT_FAIL
+        i=$(($i + 1))
+        continue
+    fi
+
+    # now that link is up, check the speed
+    speed=${DIAG_INFINIBAND_RATE[$i]}
+    if [ -n "$speed" ]; then
+        gotspeed=`/usr/sbin/ibstat $dev | awk '/Rate:/ { print $2 }'`
+        if [ "$speed" == "$gotspeed" ]; then
+            echo "$prog: $dev rate $gotspeed" >&2
+        else
+            echo "$prog: $dev rate $gotspeed, expected $speed" >&2
+            EXITVAL=$EXIT_FAIL
+        fi
+    fi
+    i=$(($i + 1))
+done
+exit $EXITVAL

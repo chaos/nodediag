@@ -1,0 +1,68 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# description: Run hdparm read test on hard drives
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+declare -r prog=${0##*/}
+declare -r description="Check hard drive read performance"
+declare -r sanity=1
+
+# Source nodediag config and function library
+. /etc/nodediag.d/functions || exit 2
+. /etc/sysconfig/nodediag 
+
+diag_init
+diag_handle_args "$@"
+diag_check_defined "DIAG_HDPARM_DEV"
+diag_check_root
+
+EXITVAL=$EXIT_OK
+i=0
+for dev in ${DIAG_HDPARM_DEV[@]}; do
+    if [ ! -b $dev ]; then
+        echo "$prog: $dev is not a block device" >&2
+        EXITVAL=$EXIT_FAIL
+        i=$(($i + 1))
+        continue
+    else
+        echo "$prog: $dev is a block device" >&2
+    fi
+    if [ -n "${DIAG_HDPARM_MIN_MBSEC[$i]}" ]; then
+        speed=${DIAG_HDPARM_MIN_MBSEC[$i]}
+        gotspeed=`/sbin/hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
+        if [ $gotspeed -lt $speed ]; then
+            echo "$prog: $dev speed $gotspeed MB/s, expected $speed $MB/s" >&2
+            EXITVAL=$EXIT_FAIL
+        else
+            echo "$prog: $dev speed $gotspeed MB/s" >&2
+        fi
+    fi
+    i=$(($i + 1))
+done
+exit $EXITVAL

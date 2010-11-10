@@ -1,0 +1,91 @@
+# Simple nodediag tests source this file for configuration
+# Variables should be named DIAG_<test>_<variable>.
+# Tests requiring more complicated configuration can put their own file
+# in /etc/sysconfig/nodediag.d
+#
+# `dmidecode -s processor-frequency`
+# 2666 MHz
+DIAG_CPUFREQ_MHZ=""
+
+# `dmidecode -s processor-version`
+# Intel(R) Xeon(R) CPU W3520 @ 2.67GHz
+DIAG_CPU_VERSION=""
+
+# `dmidecode -s baseboard-product-name`
+# X8SAX
+DIAG_MOTHERPROD_NAME=""
+
+# `dmidecode -s baseboard-version`
+# 2.0
+DIAG_MOTHERVER_NUM=""
+
+# `dmidecode -s bios-release-date`
+# 08/05/2009
+DIAG_BIOS_DATE=""
+
+# cat /sys/devices/system/edac/mc/mc*/csrow*/edac_mode
+# S4ECD4ED
+DIAG_ECC_TYPE=""
+
+# dmidecode -t memory
+# 4096
+DIAG_MEMORY_TOTAL_MB=""
+
+# dmidecode -t memory
+# 333
+DIAG_MEMSPEED_MHZ=""
+
+# dmidecode -t memory
+# DDR2
+DIAG_MEMTYPE_NAME=""
+
+# awk '/SwapTotal:/ { print $2 }' /proc/meminfo
+# 6088624
+DIAG_SWAP_KB=""
+
+# ethtool <dev>
+# eth0
+DIAG_ETHERNET_DEV[0]=""
+# Optional link details:
+# 1000MB/s
+# Full
+DIAG_ETHERNET_SPEED[0]=""
+DIAG_ETHERNET_DUPLEX[0]=""
+
+# ibstat -l
+# ibstat <dev> [<port>]
+# mlx4_0 1
+# 40
+DIAG_INFINIBAND_DEV[0]=""
+DIAG_INFINIBAND_RATE[0]=""
+# optional LinkUp retries (default 0) and retry interval (default 10)
+# applies to all ib interfaces
+# 4
+# 30
+DIAG_INFINIBAND_RETRIES=""
+DIAG_INFINIBAND_RETRY_SEC=""
+
+# path to block devices for hdparm -t test
+# /dev/sda
+# 20
+DIAG_HDPARM_DEV[0]=""
+DIAG_HDPARM_MIN_MBSEC[0]=""
+
+# check firmware on LSI Logic SAS adapter
+DIAG_MPTSAS_NUM=0
+DIAG_MPTSAS_FW=""
+DIAG_MPTSAS_BIOS=""
+
+# check firmware/bios option rom on LSI Logic SAS2 adapter
+DIAG_MPT2SAS_NUM=0
+DIAG_MPT2SAS_FW=""
+DIAG_MPT2SAS_BIOS=""
+
+# check firmware on 3ware card
+DIAG_TW_NUM=0
+DIAG_TW_FW=""
+
+# see /sys/class/net/*/{speed,mode}
+DIAG_NETWORK_DEV[0]=""
+DIAG_NETWORK_SPEED[0]=""
+DIAG_NETWORK_MODE[0]=""

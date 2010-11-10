@@ -1,0 +1,108 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# description: Check that the correct number of mpt2sas boards are present
+#              and with the right firmware and bios versions
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+declare -r prog=${0##*/}
+declare -r description="Check mptsas cards"
+declare -r sanity=1
+
+# Source nodediag config and function library
+. /etc/nodediag.d/functions || exit 2
+. /etc/sysconfig/nodediag 
+
+list_adapt ()
+{
+    local host
+
+    shopt -s nullglob
+    for host in /sys/class/scsi_host/*; do
+        grep -q mptsas $host/proc_name && echo $host
+    done
+    shopt -u nullglob
+}
+
+nargs ()
+{
+    echo $#
+}
+
+diagconfig ()
+{
+    local hosts=`list_adapt`
+    local host=`list_adapt | tail -1`
+    local num=`nargs $hosts`
+
+    echo "DIAG_MPTSAS_NUM=\"$num\""
+    if [ $num -gt 0 ]; then
+        echo "DIAG_MPTSAS_FW=\"`cat $host/version_fw`\""
+        echo "DIAG_MPTSAS_BIOS=\"`cat $host/version_bios`\""
+    fi
+}
+
+diag_init
+diag_handle_args "$@"
+diag_check_defined "DIAG_MPTSAS_NUM"
+diag_check_root
+
+EXITVAL=$EXIT_OK
+hosts=`list_adapt`
+num=`nargs $hosts`
+if [ $num -ne $DIAG_MPTSAS_NUM ]; then
+    EXITVAL=$EXIT_FAIL
+    echo "$prog: $num cards, expected $DIAG_MPTSAS_NUM" >&2
+else
+    echo "$prog: $num cards" >&2
+fi
+if [ -n "$DIAG_MPTSAS_FW" ]; then
+    for host in $hosts; do
+        fw=`cat $host/version_fw`
+        if [ $fw != $DIAG_MPTSAS_FW ]; then
+            h=`basename $host`
+            EXITVAL=$EXIT_FAIL
+            echo "$prog: $h fw $fw, expected $DIAG_MPTSAS_FW" >&2
+        else
+            echo "$prog: $h fw $fw" >&2
+        fi
+    done
+fi
+if [ -n "$DIAG_MPTSAS_BIOS" ]; then
+    for host in $hosts; do
+        bios=`cat $host/version_bios`
+        if [ $bios != $DIAG_MPTSAS_BIOS ]; then
+            h=`basename $host`
+            EXITVAL=$EXIT_FAIL
+            echo "$prog: $h bios $bios, expected $DIAG_MPTSAS_BIOS" >&2
+        else
+            echo "$prog: $h bios $bios" >&2
+        fi
+    done
+fi
+exit $EXITVAL

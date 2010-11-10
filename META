@@ -1,0 +1,7 @@
+##
+# Metadata for RPM/TAR makefile targets
+##
+  Meta:		1
+  Name:		nodediag
+  Version:	1.0
+  Release:	1
