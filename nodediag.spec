@@ -57,7 +57,7 @@ fi
 
 %files
 %defattr(-,root,root,0755)
-%doc README
+%doc README DISCLAIMER COPYING
 %dir %{_sysconfdir}/sysconfig/nodediag.d
 %dir %{_sysconfdir}/nodediag.d
 %{_sysconfdir}/nodediag.d/*
