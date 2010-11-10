@@ -1,9 +1,7 @@
-Other packages that want to make use of nodediag should add test to directory:
-  %{_sysconfdir}/nodediag.d/
-configs should go into:
-  %{_sysconfdir}/sysconfig/nodediag.d/
+Other packages that want to make use of nodediag can add a test to
+/etc/nodediag.d.  Configs should go into /etc/sysconfig/nodediag.d/
 
-Use one of the tests in /etc/nodediags.d as a template.
+Use one of the tests in /etc/nodediag.d as a template.
 
 The test should define the following shell variables:
   $prog         name of the test
@@ -17,7 +15,7 @@ Tests normally include the following preamble:
   diag_init
   diag_handle_args "$@"
 
-Utility functions:
+These utility functions are available to tests:
   diag_init
       Ensures that prog and description are set.  Exits on error.
 
@@ -32,6 +30,8 @@ Utility functions:
 
   diag_check_root
       Call this if the test requires root privileges.  Exits if not root.
+
+See /etc/nodediag.d/functions for the implementation.
 
 The test script should exit one of these ways:
   exit $EXIT_OK      # test succeeded
