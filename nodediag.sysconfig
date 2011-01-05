@@ -72,17 +72,17 @@ DIAG_HDPARM_DEV[0]=""
 DIAG_HDPARM_MIN_MBSEC[0]=""
 
 # check firmware on LSI Logic SAS adapter
-DIAG_MPTSAS_NUM=0
+DIAG_MPTSAS_NUM=""
 DIAG_MPTSAS_FW=""
 DIAG_MPTSAS_BIOS=""
 
 # check firmware/bios option rom on LSI Logic SAS2 adapter
-DIAG_MPT2SAS_NUM=0
+DIAG_MPT2SAS_NUM=""
 DIAG_MPT2SAS_FW=""
 DIAG_MPT2SAS_BIOS=""
 
 # check firmware on 3ware card
-DIAG_TW_NUM=0
+DIAG_TW_NUM=""
 DIAG_TW_FW=""
 
 # see /sys/class/net/*/{speed,mode}
