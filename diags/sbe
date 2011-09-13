@@ -46,30 +46,19 @@ diagconfig ()
     fi
 }
 
-getsbecount ()
-{
-    local errors
-    local total=0
-
-    # one line per memory controller: "%s: %s: %s: %u Corrected Errors"
-    for errors in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
-        total=$(($total+$errors))
-    done
-    echo $total
-}
-
 diag_init
 diag_handle_args "$@"
 diag_check_defined "DIAG_SBE_COUNT"
 
 EXITVAL=0
 
-count=$(getsbecount)
-if [ $count -gt ${DIAG_SBE_COUNT} ]; then
-    echo "$prog: SBE count of $count is too many, allowed only ${DIAG_SBE_COUNT}" >&2
-    EXITVAL=$EXIT_FAIL
-else
-    echo "$prog: SBE count is $count" >&2
-fi
+# CE count of each reported FRU is compared against the threshold
+edac-util >&2
+for count in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
+    if [ $count -gt ${DIAG_SBE_COUNT} ]; then
+        echo "$prog: $count SBEs exceeds threshold \(${DIAG_SBE_COUNT}\)" >&2
+        EXITVAL=$EXIT_FAIL
+    fi
+done
 
 exit $EXITVAL
