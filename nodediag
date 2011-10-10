@@ -45,10 +45,11 @@ declare -r RESULT_PLAIN=(
 declare -r OUT_QUIET=0
 declare -r OUT_NORMAL=1
 declare -r OUT_VERBOSE=2
+declare -r OUT_FAILONLY=3
 
 declare -r prog=${0##*/}
-declare -r long_opts="firstfail,test:,list,quiet,verbose,help,logfile:,plain,config,sanity,forever"
-declare -r short_opts="ft:dlqvhL:pcsF"
+declare -r long_opts="firstfail,test:,list,quiet,verbose,failonly,help,logfile:,plain,config,sanity,forever"
+declare -r short_opts="ft:dlqvxhL:pcsF"
 declare -r getopt="/usr/bin/getopt -u"
 declare -r usagemsg="\
 USAGE: $prog [OPTIONS]
@@ -57,6 +58,7 @@ USAGE: $prog [OPTIONS]
    -l, --list           List diags with descriptions
    -q, --quiet          Don't show output, just looking for exit code
    -v, --verbose        Show output from tests
+   -x, --failonly       Show output only from failed tests
    -t, --test           Run specific test script, default is to run all tests
                         multiple -t options can be passed to run multiple tests
    -p, --plain          Don't use pretty colors in output
@@ -123,6 +125,7 @@ while true; do
         -l|--list)         list=1              ; shift    ;;
         -q|--quiet)        outmode=$OUT_QUIET  ; shift    ;;
         -v|--verbose)      outmode=$OUT_VERBOSE; shift    ;;
+        -x|--failonly)     outmode=$OUT_FAILONLY; shift    ;;
         -s|--sanity)       sopt="-s"           ; shift    ;;
         -F|--forever)      forever=1           ; shift    ;;
         -h|--help)         usage                          ;;
@@ -185,6 +188,17 @@ while true; do
                 ;;
             $OUT_VERBOSE)
                 run_test $script $sopt; rc=$?
+                ;;
+            $OUT_FAILONLY)
+                run_test $script $sopt >>$logfile; rc=$?
+                if [ $rc == $EXIT_FAIL ]; then
+                    printf "%-60s" "Checking $script:"
+                    if [ $plain -eq 1 ]; then
+                        echo "${RESULT_PLAIN[$rc]}"
+                    else
+                        echo -e "${RESULT_PRETTY[$rc]}"
+                    fi
+                fi
                 ;;
         esac
         [ $rc != $EXIT_FAIL ] || EXITVAL=1
