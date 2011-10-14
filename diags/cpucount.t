@@ -23,48 +23,30 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that edac ecc of the proper type is enabled.
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check EDAC ECC type"
+declare -r description="Check number of CPU cores"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
-getecctype()
+cpucount()
 {
-    local file
-
-    shopt -s nullglob
-    for file in /sys/devices/system/edac/mc/mc*/csrow*/edac_mode; do
-        cat $file
-    done
-    shopt -u nullglob
+    grep 'processor[[:space:]]:' /proc/cpuinfo|wc -l
 }
 
-diagconfig ()
+diagconfig()
 {
-    local ecctype=`getecctype | tail -1`
-
-    [ -z "$ecctype" ] && return 1
-    echo "DIAG_ECC_TYPE=\"$ecctype\""
+    echo "DIAG_CPUCOUNT=\"`cpucount`\""
 }
 
-diag_init
 diag_handle_args "$@"
-diag_check_defined "DIAG_ECC_TYPE"
+diag_check_defined "DIAG_CPUCOUNT"
 
-for ecctype in `getecctype`; do
-    if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
-        diag_fail "$ecctype, expected $DIAG_ECC_TYPE"
-    else
-        diag_ok "$ecctype"
-    fi
-done
-diag_fail "$prog: ECC is not enabled" 
+count=`cpucount`
+if [ "$count" != "$DIAG_CPUCOUNT" ]; then
+    diag_fail "cpucount $count, expected $DIAG_CPUCOUNT"
+else
+    diag_ok "cpucount $count"
+fi

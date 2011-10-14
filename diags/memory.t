@@ -23,39 +23,39 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Run hdparm read test on hard drives
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check hard drive read performance"
-declare -r sanity=0
+declare -r description="Check installed memory"
+declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
-diag_init
+# Note: skip flash devices (units of kB)
+totalmem()
+{
+    local total=0
+    local n
+    for n in `diag_dmi_stanza "Memory Device" | awk '/Size:.*MB/ { print $2 }'`; do
+        [ "$n" != "No" ] && total=$(($total + $n))
+    done
+    echo $total
+}
+
+diagconfig()
+{
+    totalmb=`totalmem`
+
+    [ $totalmb -eq 0 ] && return 1
+    echo "DIAG_MEMORY_TOTAL_MB=\"`totalmem`\""
+}
+
 diag_handle_args "$@"
-diag_check_defined "DIAG_HDPARM_DEV"
 diag_check_root
+diag_check_defined "DIAG_MEMORY_TOTAL_MB"
 
-i=0
-for dev in ${DIAG_HDPARM_DEV[@]}; do
-    if [ ! -b $dev ]; then
-        diag_fail "$dev is not a block device"
-    fi
-    diag_msg "$dev is a block device"
-    if [ -n "${DIAG_HDPARM_MIN_MBSEC[$i]}" ]; then
-        speed=${DIAG_HDPARM_MIN_MBSEC[$i]}
-        gotspeed=`/sbin/hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
-        if [ $gotspeed -lt $speed ]; then
-            diag_fail "$dev speed $gotspeed MB/s, expected $speed $MB/s"
-        fi
-        diag_msg "$dev speed $gotspeed MB/s"
-    fi
-    i=$(($i + 1))
-done
-diag_ok "$i devices checked"
+totalmb=`totalmem`
+if [ "$DIAG_MEMORY_TOTAL_MB" != "$totalmb" ]; then
+    diag_fail "total: $totalmb MB, expected $DIAG_MEMORY_TOTAL_MB MB"
+fi
+diag_ok "total: $totalmb MB"

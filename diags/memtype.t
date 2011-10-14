@@ -23,28 +23,39 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that all cpus are correct version
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check that all cpus are correct version"
+declare -r description="Check installed memory type"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag
+source /etc/nodediag.d/functions
 
-diagconfig ()
+# Note: skip flash devices
+getmemtype()
 {
-    diag_config_dmi processor-version "DIAG_CPU_VERSION"
+    local n
+
+    for n in `diag_dmi_stanza "Memory Device" | awk '/Type:/ { print $2 }'`; do
+        [ "$n" != "Unknown" ] && [ "$n" != "Flash" ] && echo "$n"
+    done
 }
 
-diag_init
+diagconfig()
+{
+    local memtype=`getmemtype|tail -1`
+
+    [ -n "$memtype" ] || return 1
+    echo "DIAG_MEMTYPE_NAME=\"$memtype\""
+}
+
 diag_handle_args "$@"
 diag_check_root
-diag_check_defined "DIAG_CPU_VERSION"
+diag_check_defined "DIAG_MEMTYPE_NAME"
 
-diag_test_dmi processor-version "${DIAG_CPU_VERSION}"
+for name in `getmemtype`; do
+    if [ "$name" != "$DIAG_MEMTYPE_NAME" ]; then
+        diag_fail "device $name, expected $DIAG_MEMTYPE_NAME"
+    fi
+done
+diag_ok "device $name"

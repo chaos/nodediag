@@ -23,19 +23,13 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that ethernet interfaces have expected speed and duplex
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
 declare -r description="Check ethernet config"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
 diagconfig ()
 {
@@ -58,12 +52,10 @@ diagconfig ()
 }
 
 
-diag_init
 diag_handle_args "$@"
 diag_check_defined "DIAG_ETHERNET_DEV"
 diag_check_root
 
-EXITVAL=$EXIT_OK
 i=0
 for dev in ${DIAG_ETHERNET_DEV[@]}; do
     gotlink=`ethtool $dev | awk '/Link detected:/ { print $3 }'`

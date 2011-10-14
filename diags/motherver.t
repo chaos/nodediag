@@ -23,38 +23,21 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check Single Bit Memory Error Count
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check Single Bit Memory Error Count" 
+declare -r description="Check the motherboard version"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
 diagconfig ()
 {
-    if edac-util -s >/dev/null; then
-        echo "DIAG_SBE_COUNT=\"500\""
-    else
-        return 1
-    fi
+    diag_config_dmi baseboard-version "DIAG_MOTHERVER_NUM"
 }
 
-diag_init
 diag_handle_args "$@"
-diag_check_defined "DIAG_SBE_COUNT"
+diag_check_root
+diag_check_defined "DIAG_MOTHERVER_NUM"
 
-# CE count of each reported FRU is compared against the threshold
-edac-util >&2
-for count in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
-    if [ $count -gt ${DIAG_SBE_COUNT} ]; then
-        diag_fail "$count SBEs exceeds threshold \(${DIAG_SBE_COUNT}\)"
-    fi
-done
-diag_ok "all counts under threshold"
+diag_test_dmi baseboard-version "${DIAG_MOTHERVER_NUM}"

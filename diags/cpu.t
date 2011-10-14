@@ -23,28 +23,21 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that all cpus are at the expected MHz
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check that all cpus are correct speed"
+declare -r description="Check that all cpus are correct version"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag
+source /etc/nodediag.d/functions
 
 diagconfig ()
 {
-    diag_config_dmi processor-frequency "DIAG_CPUFREQ_MHZ"
+    diag_config_dmi processor-version "DIAG_CPU_VERSION"
 }
 
-diag_init
 diag_handle_args "$@"
 diag_check_root
-diag_check_defined "DIAG_CPUFREQ_MHZ"
+diag_check_defined "DIAG_CPU_VERSION"
 
-diag_test_dmi processor-frequency "${DIAG_CPUFREQ_MHZ}"
+diag_test_dmi processor-version "${DIAG_CPU_VERSION}"

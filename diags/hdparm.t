@@ -23,28 +23,32 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check the motherboard model
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check the motherboard model"
-declare -r sanity=1
+declare -r description="Check hard drive read performance"
+declare -r sanity=0
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag
+source /etc/nodediag.d/functions
 
-diagconfig ()
-{
-    diag_config_dmi baseboard-product-name "DIAG_MOTHERPROD_NAME"
-}
-
-diag_init
 diag_handle_args "$@"
+diag_check_defined "DIAG_HDPARM_DEV"
 diag_check_root
-diag_check_defined "DIAG_MOTHERPROD_NAME"
 
-diag_test_dmi baseboard-product-name "${DIAG_MOTHERPROD_NAME}"
+i=0
+for dev in ${DIAG_HDPARM_DEV[@]}; do
+    if [ ! -b $dev ]; then
+        diag_fail "$dev is not a block device"
+    fi
+    diag_msg "$dev is a block device"
+    if [ -n "${DIAG_HDPARM_MIN_MBSEC[$i]}" ]; then
+        speed=${DIAG_HDPARM_MIN_MBSEC[$i]}
+        gotspeed=`/sbin/hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
+        if [ $gotspeed -lt $speed ]; then
+            diag_fail "$dev speed $gotspeed MB/s, expected $speed $MB/s"
+        fi
+        diag_msg "$dev speed $gotspeed MB/s"
+    fi
+    i=$(($i + 1))
+done
+diag_ok "$i devices checked"

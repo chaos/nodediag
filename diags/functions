@@ -26,6 +26,13 @@
 #
 # The following functions can be called from nodediag tests.
 #
+declare -r testname=`basename $0 | sed -e 's/\.t$//'`
+
+EXIT_OK=0   # deprecated
+EXIT_FAIL=1 # deprecated
+EXIT_NOTRUN=2 # deprecated
+
+diag_init() { return 0; } # deprecated
 
 # TAP standard output - nodediag assumes one unit test per file
 diag_plan()
@@ -34,41 +41,29 @@ diag_plan()
 }
 diag_msg()
 {
-  echo "# $prog: $*"
+  echo "# $testname: $*"
 }
 diag_ok()
 {
-  echo "ok 1 - $prog: $*"
+  echo "ok 1 - $testname: $*"
   exit 0
 }
 diag_fail()
 {
-  echo "not ok 1 - $prog: $*"
+  echo "not ok 1 - $testname: $*"
+  [ -n "$prog" ] && exit $EXIT_FAIL # deprecated
   exit 0
 }
 diag_skip()
 {
-  echo "ok 1 # skip $prog: $*"
+  echo "ok 1 # skip $testname: $*"
+  [ -n "$prog" ] && exit $EXIT_NOTRUN # deprecated
   exit 0
 }
 diag_todo()
 {
-  echo "not ok 1 # TODO $prog: $*"
+  echo "not ok 1 # TODO $testname: $*"
   exit 0
-}
-
-# Usage: diag_init
-# Check that global variables are set
-diag_init()
-{
-  if [ -z "$prog" ]; then
-    echo "script did not set \$prog" >&2
-    exit 1
-  fi
-  if [ -z "$description" ]; then
-    echo "$prog: script did not set \$description" >&2
-    exit 1
-  fi
 }
 
 # Usage: diag_handle_args "$@"
@@ -79,38 +74,41 @@ diag_handle_args()
 
   while getopts "?hdcs" opt; do
     case ${opt} in
-      d) printf "%-16s %s\n" "$prog:" "$description"
+      d) printf "%-16s %s\n" "$testname:" "$description"
          exit 0
          ;;
       c) echo "#"
          if ! diagconfig 2>/dev/null; then
-           echo "# $prog: no default available"
+           echo "# $testname: no default available"
          fi
          exit 0
          ;;
       s) [ "$sanity" = "1" ] || skipit=1
          ;;
-      *) echo "Usage: $prog [-dcs]"
+      *) echo "Usage: $testname [-dcs]"
          exit 0
          ;;
     esac
   done
   diag_plan
   [ $skipit -eq 0 ] || diag_skip "not a sanity test";
+  source /etc/sysconfig/nodediag
+  if [ -r /etc/sysconfig/nodediag.d/$testname ]; then
+    source /etc/sysconfig/nodediag.d/$testname
+  fi
 }
 
 # Usage: diag_check_defined VARIABLE
-# If VARIABLE is not defined, exit with NOTRUN.
+# If VARIABLE is not defined, exit with skip message
 diag_check_defined()
 {
   if ! eval 'test -n "$'$1'"'; then
     diag_skip "$1 is not set" 
-    exit 0
   fi
 }
 
 # Usage: diag_check_root
-# If user is not root, exit with NOTRUN.
+# If user is not root, exit with skip message.
 diag_check_root()
 {
   if [ $(id -u) -ne 0 ]; then

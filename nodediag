@@ -18,8 +18,6 @@ Usage: $prog [OPTIONS] [test [test]...]
    -q, --quiet          Show no output, result is exit code
    -v, --verbose        Include raw test output
    -x, --failonly       Show output only from failed tests
-   -t, --test           Run specific test script, default is to run all tests
-                        multiple -t options can be passed to run multiple tests
    -p, --plain          Don't use pretty colors in output
    -c, --config         Generate prototype sysconfig file on stdout
    -s, --sanity         Only run quick sanity tests
@@ -35,9 +33,14 @@ parse_cmdline ();
 # Determine what tests to run
 my @tests = get_tests ();
 
-# handle -l: List tests with descriptions and exit
+# Handle -l option
 if ($conf{list}) {
     foreach (@tests) { system ($_, "-d"); }
+    exit (0);
+}
+# Handle -c option
+if ($conf{config}) {
+    foreach (@tests) { system ($_, "-c"); }
     exit (0);
 }
 
@@ -55,16 +58,15 @@ sub get_tests
 
     if (@{$conf{tests}}) {
         foreach (@{$conf{tests}}) {
-            log_fatal ("$_ could not be found in $conf{testdir}\n")
-                unless -r "$conf{testdir}/$_";
-            push @files, $_;
+            log_fatal ("$_.t could not be found in $conf{testdir}\n")
+                unless -r "$conf{testdir}/$_" . ".t";
+            push @files, $_ . ".t";
         }
+        @files = map "$conf{testdir}/$_", @files;
     } else {
-        opendir DIR, $conf{testdir} or die "$conf{testdir}: $!";
-        @files = grep !/^(\.\.?)|(functions)|(tap-functions)$/, readdir DIR;
-        closedir (DIR);
+        @files = glob "$conf{testdir}/*.t";
     }
-    return map "$conf{testdir}/$_", @files;
+    return @files;
 }
 
 sub run_tests

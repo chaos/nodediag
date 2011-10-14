@@ -23,37 +23,21 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that the expected amount of swap is configured
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check for expected amount of swap"
+declare -r description="Check the motherboard model"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag
+source /etc/nodediag.d/functions
 
-swaptot()
+diagconfig ()
 {
-    awk '/SwapTotal:/ { print $2 }' /proc/meminfo
+    diag_config_dmi baseboard-product-name "DIAG_MOTHERPROD_NAME"
 }
 
-diagconfig()
-{
-    echo "DIAG_SWAP_KB=\"`swaptot`\""
-}
-
-diag_init
 diag_handle_args "$@"
-diag_check_defined "DIAG_SWAP_KB"
+diag_check_root
+diag_check_defined "DIAG_MOTHERPROD_NAME"
 
-EXITVAL=$EXIT_OK
-swapkb=`swaptot`
-if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
-    diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
-fi
-diag_ok "$prog: swaptotal $swapkb Kb"
+diag_test_dmi baseboard-product-name "${DIAG_MOTHERPROD_NAME}"

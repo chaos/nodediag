@@ -1,9 +1,10 @@
-.TH nodediag 1 "2010-05-14" "nodediag-0.1" "nodediag"
+.TH nodediag 1 "2011-10-14" "nodediag-1.2" "nodediag"
 .SH NAME
 nodediag \- perform node diagnostics
 .SH SYNOPSIS
 .B nodediag
 .I "[OPTIONS]"
+.I "[test [test...]]"
 .SH DESCRIPTION
 .B nodediag
 runs diagnostic test scripts from /etc/nodediag.d.
@@ -17,87 +18,76 @@ List available tests with descriptions, if available.
 Exit on first test failure.
 .TP
 \fI-q\fR, \fI--quiet\fR
-Don't show individual test results as they run.
+Show no output.
 .TP
 \fI-v\fR, \fI--verbose\fR
-Pass through output from individual tests.
-.TP
-\fI-t\fR, \fI--test\fR TEST
-Run only TEST.
-This option may be specified multiple times to run multiple tests.
-.TP
-\fI-L\fR, \fI--logfile\fR LOGFILE
-Send verbose test output to LOGFILE.
+Include raw test output.
 .TP
 \fI-p\fR, \fI--plain\fR
 Disable the pretty terminal colors.
+This option is automatically switched on if stdout is not a tty.
 .TP
 \fI-c\fR, \fI--config\fR
 Generate a prototype /etc/sysconfig/nodediag file on stdout.
 .TP
 \fI-s\fR, \fI--sanity\fR
-Run only tests that tag themselves as sanity tests.
-The \fBnodediag\fR init script uses this option.
+Only run quick sanity tests.
 .TP
 \fI-F\fR, \fI--forever\fR
 Repeat test loop until interrupted.
+.TP
+\fI-d\fR, \fI--testdir DIR\fR
+Use test directory other than /etc/nodediag.d.
 .SH TESTS
-The following tests are supplied with \fBnodediag\fR.  These tests are
+Some tests are supplied with \fBnodediag\fR, and are
 configured by editing varible settings in /etc/sysconfig/nodediag.
+Tests can also be supplied by other packages.
+For a list of installed tests, run \fInodediag -l\fR.
+.LP
+\fBnodediag\fR tests are standalone programs that format their output
+according to the TAP (Test Anything Protocol) standard described at
+http://testanything.org.  In addition, \fBnodediag\fR tests should
+handle the following command line options:
 .TP
-\fIbios\fR
-Check bios release date with \fBdmidecode\fR.
+\fI-d\fR
+Produce a one-line description of the test's purpose.
 .TP
-\fIcpu\fR
-Check that all cpus are correct version with \fBdmidecode\fR.
+\fI-c\fR
+Produce default output for the /etc/sysconfig/nodediag file for this test.
 .TP
-\fIcpufreq\fR
-Check that all cpus are correct speed with \fBdmidecode\fR.
-.TP
-\fIecc\fR
-Check EDAC configuration in \fI/sys/devices/system/edac/mc\fR.
-.TP
-\fIethernet\fR
-Check ethernet link status with \fBethtool\fR.
-.TP
-\fIhdparm\fR
-Check that disk read performance meets threshold with \fBhdparm\fR.
-.TP
-\fIinfiniband\fR
-Check infiniband link status with \fBibstat\fR.
-.TP
-\fImemory\fR
-Check installed memory with \fBdmidecode\fR.
-.TP
-\fImemspeed\fR
-Check installed memory speed with \fBdmidecode\fR.
-.TP
-\fImemtype\fR
-Check installed memory type with \fBdmidecode\fR.
-.TP
-\fImotherprod\fR
-Check the motherboard model with \fBdmidecode\fR.
-.TP
-\fImotherver\fR
-Check the motherboard version with \fBdmidecode\fR.
-.TP
-\fImptsas\fR
-Check mptsas board count and firmware revs with \fB/sys/class/scsi_host\fR.
-.TP
-\fImpt2sas\fR
-Check mpt2sas board count and firmware revs with \fB/sys/class/scsi_host\fR.
-.TP
-\fInetwork\fR
-Check network adapter attributes with \fIsys/class/net\fR.
-.TP
-\fIswap\fR
-Check for expected amount of swap in \fI/proc/meminfo\fR.
-.TP
-\fItw\fR
-Check 3ware board count and firmware rev with \fBtw_cli\fR.
+\fI-s\fR
+Run only a sanity (quick) version of the test.
+.LP
+Convenience functions in /etc/nodediag.d/functions can be used if desired.
+A simple test utilizing these functions might look like this:
+.IP
+.nf
+#!/bin/bash
+
+declare -r description="Check crash dump count"
+
+source /etc/nodediag.d/functions
+
+diagconfig () {
+  echo "DIAG_DUMPS_MAX=1"
+}
+diag_handle_args "$@"
+diag_check_defined DIAG_DUMPS_MAX
+
+[ -d /var/dumps ] || diag_skip "/var/dumps is missing"
+diag_msg "counting crash dumps"
+shopt -s nullglob; i=$(echo /var/dumps/*|wc -w); shopt -u nullglob
+if [ $i -gt $DIAG_DUMPS_MAX ]; then
+  diag_fail "$i dumps found, max is $DIAG_DUMPS_MAX"
+fi
+diag_ok "$i dumps found"
+.fi
+.LP
+Alternatively, tests can use the many TAP resources available to generate
+TAP output.  See http://testanything.org/wiki/index.php/TAP_Producers.
 .SH FILES
 /etc/nodediag.d
 .br
 /etc/sysconfig/nodediag
 .br
-/etc/sysconfig/nodediag.d
+/etc/sysconfig/nodediag.d/*

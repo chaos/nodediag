@@ -23,28 +23,41 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check the bios release date
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check bios release date"
+declare -r description="Check EDAC ECC type"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
+
+getecctype()
+{
+    local file
+
+    shopt -s nullglob
+    for file in /sys/devices/system/edac/mc/mc*/csrow*/edac_mode; do
+        cat $file
+    done
+    shopt -u nullglob
+}
 
 diagconfig ()
 {
-    diag_config_dmi bios-release-date "DIAG_BIOS_DATE"
+    local ecctype=`getecctype | tail -1`
+
+    [ -z "$ecctype" ] && return 1
+    echo "DIAG_ECC_TYPE=\"$ecctype\""
 }
 
-diag_init
 diag_handle_args "$@"
-diag_check_root
-diag_check_defined "DIAG_BIOS_DATE"
+diag_check_defined "DIAG_ECC_TYPE"
 
-diag_test_dmi bios-release-date "${DIAG_BIOS_DATE}"
+for ecctype in `getecctype`; do
+    if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
+        diag_fail "$ecctype, expected $DIAG_ECC_TYPE"
+    else
+        diag_ok "$ecctype"
+    fi
+done
+diag_fail "ECC is not enabled" 

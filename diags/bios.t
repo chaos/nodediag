@@ -23,46 +23,21 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that installed memory is of the expected speed
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check installed memory speed"
+declare -r description="Check bios release date"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
-# Note: skip flash devices (speed < 100mhz)
-getmemspeed()
+diagconfig ()
 {
-    local n
-
-    for n in `diag_dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'`; do
-        [ "$n" != "Unknown" ] && [ $n -gt 100 ] && echo "$n"
-    done
+    diag_config_dmi bios-release-date "DIAG_BIOS_DATE"
 }
 
-diagconfig()
-{
-    local speed=`getmemspeed | tail -1`
-   
-    [ -n "$speed" ] || return 1
-    echo "DIAG_MEMSPEED_MHZ=\"$speed\""
-}
-
-diag_init
 diag_handle_args "$@"
 diag_check_root
-diag_check_defined "DIAG_MEMSPEED_MHZ"
+diag_check_defined "DIAG_BIOS_DATE"
 
-for speed in `getmemspeed`; do
-    if [ "$speed" != "$DIAG_MEMSPEED_MHZ" ]; then
-        diag_fail "device $speed MHz, expected $DIAG_MEMSPEED_MHZ MHz"
-    fi
-done
-diag_ok "$prog: device $speed MHz" >&2
+diag_test_dmi bios-release-date "${DIAG_BIOS_DATE}"

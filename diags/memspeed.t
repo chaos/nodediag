@@ -23,47 +23,39 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that the correct amount of memory is installed
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check installed memory"
+declare -r description="Check installed memory speed"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
-# Note: skip flash devices (units of kB)
-totalmem()
+# Note: skip flash devices (speed < 100mhz)
+getmemspeed()
 {
-    local total=0
     local n
-    for n in `diag_dmi_stanza "Memory Device" | awk '/Size:.*MB/ { print $2 }'`; do
-        [ "$n" != "No" ] && total=$(($total + $n))
+
+    for n in `diag_dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'`; do
+        [ "$n" != "Unknown" ] && [ $n -gt 100 ] && echo "$n"
     done
-    echo $total
 }
 
 diagconfig()
 {
-    totalmb=`totalmem`
-
-    [ $totalmb -eq 0 ] && return 1
-    echo "DIAG_MEMORY_TOTAL_MB=\"`totalmem`\""
+    local speed=`getmemspeed | tail -1`
+   
+    [ -n "$speed" ] || return 1
+    echo "DIAG_MEMSPEED_MHZ=\"$speed\""
 }
 
-diag_init
 diag_handle_args "$@"
 diag_check_root
-diag_check_defined "DIAG_MEMORY_TOTAL_MB"
+diag_check_defined "DIAG_MEMSPEED_MHZ"
 
-EXITVAL=$EXIT_OK
-totalmb=`totalmem`
-if [ "$DIAG_MEMORY_TOTAL_MB" != "$totalmb" ]; then
-    diag_fail "total: $totalmb MB, expected $DIAG_MEMORY_TOTAL_MB MB"
-fi
-diag_ok "total: $totalmb MB"
+for speed in `getmemspeed`; do
+    if [ "$speed" != "$DIAG_MEMSPEED_MHZ" ]; then
+        diag_fail "device $speed MHz, expected $DIAG_MEMSPEED_MHZ MHz"
+    fi
+done
+diag_ok "device $speed MHz"

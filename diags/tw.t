@@ -23,30 +23,22 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that the correct number of mpt2sas boards are present
-#              and with the right firmware and bios versions
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check mpt2sas cards"
+declare -r description="Check 3ware cards"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
 list_adapt ()
 {
-    local host
+    tw_cli show | awk '/^c[0-9]*/ {print $1}'
+}
 
-    shopt -s nullglob
-    for host in /sys/class/scsi_host/*; do
-        grep -q mpt2sas $host/proc_name && echo $host
-    done
-    shopt -u nullglob
+get_fw ()
+{
+    tw_cli /$1 show firmware | sed -e 's/.*= //'
 }
 
 nargs ()
@@ -60,44 +52,30 @@ diagconfig ()
     local host=`list_adapt | tail -1`
     local num=`nargs $hosts`
 
-    echo "DIAG_MPT2SAS_NUM=\"$num\""
+    echo "DIAG_TW_NUM=\"$num\""
     if [ $num -gt 0 ]; then
-        echo "DIAG_MPT2SAS_FW=\"`cat $host/version_fw`\""
-        echo "DIAG_MPT2SAS_BIOS=\"`cat $host/version_bios`\""
+        echo "DIAG_TW_FW=\"`get_fw $host`\""
     fi
 }
 
-diag_init
 diag_handle_args "$@"
-diag_check_defined "DIAG_MPT2SAS_NUM"
+diag_check_defined "DIAG_TW_NUM"
 diag_check_root
 
 hosts=`list_adapt`
 num=`nargs $hosts`
-if [ $num -ne $DIAG_MPT2SAS_NUM ]; then
-    EXITVAL=$EXIT_FAIL
-    diag_fail "$num cards, expected $DIAG_MPT2SAS_NUM"
+if [ $num -ne $DIAG_TW_NUM ]; then
+    diag_fail "$num cards, expected $DIAG_TW_NUM"
 fi
 diag_msg "$num cards"
-if [ -n "$DIAG_MPT2SAS_FW" ]; then
+if [ -n "$DIAG_TW_FW" ]; then
     for host in $hosts; do
-        fw=`cat $host/version_fw`
-        if [ $fw != $DIAG_MPT2SAS_FW ]; then
+        fw=`get_fw $host`
+        if [ $fw != $DIAG_TW_FW ]; then
             h=`basename $host`
-            diag_fail "$h fw $fw, expected $DIAG_MPT2SAS_FW"
+            diag_fail "$h fw $fw, expected $DIAG_TW_FW"
         fi
         diag_msg "$h fw $fw"
     done
 fi
-if [ -n "$DIAG_MPT2SAS_BIOS" ]; then
-    for host in $hosts; do
-        bios=`cat $host/version_bios`
-        if [ $bios != $DIAG_MPT2SAS_BIOS ]; then
-            h=`basename $host`
-            diag_fail "$h bios $bios, expected $DIAG_MPT2SAS_BIOS"
-        fi
-        diag_msg "$h bios $bios"
-    done
-fi
 diag_ok "$num devices checked"
-

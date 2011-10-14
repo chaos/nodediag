@@ -23,37 +23,21 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that the expected number of CPU cores is found
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check number of CPU cores"
+declare -r description="Check that all cpus are correct speed"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag
+source /etc/nodediag.d/functions
 
-cpucount()
+diagconfig ()
 {
-    grep 'processor[[:space:]]:' /proc/cpuinfo|wc -l
+    diag_config_dmi processor-frequency "DIAG_CPUFREQ_MHZ"
 }
 
-diagconfig()
-{
-    echo "DIAG_CPUCOUNT=\"`cpucount`\""
-}
-
-diag_init
 diag_handle_args "$@"
-diag_check_defined "DIAG_CPUCOUNT"
+diag_check_root
+diag_check_defined "DIAG_CPUFREQ_MHZ"
 
-count=`cpucount`
-if [ "$count" != "$DIAG_CPUCOUNT" ]; then
-    diag_fail "$prog: cpucount $count, expected $DIAG_CPUCOUNT"
-else
-    diag_ok "$prog: cpucount $count"
-fi
+diag_test_dmi processor-frequency "${DIAG_CPUFREQ_MHZ}"

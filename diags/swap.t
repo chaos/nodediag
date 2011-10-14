@@ -23,46 +23,29 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# description: Check that installed memory is of the expected type
-#
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-declare -r prog=${0##*/}
-declare -r description="Check installed memory type"
+declare -r description="Check for expected amount of swap"
 declare -r sanity=1
 
-# Source nodediag config and function library
-. /etc/nodediag.d/functions || exit 2
-. /etc/sysconfig/nodediag 
+source /etc/nodediag.d/functions
 
-# Note: skip flash devices
-getmemtype()
+swaptot()
 {
-    local n
-
-    for n in `diag_dmi_stanza "Memory Device" | awk '/Type:/ { print $2 }'`; do
-        [ "$n" != "Unknown" ] && [ "$n" != "Flash" ] && echo "$n"
-    done
+    awk '/SwapTotal:/ { print $2 }' /proc/meminfo
 }
 
 diagconfig()
 {
-    local memtype=`getmemtype|tail -1`
-
-    [ -n "$memtype" ] || return 1
-    echo "DIAG_MEMTYPE_NAME=\"$memtype\""
+    echo "DIAG_SWAP_KB=\"`swaptot`\""
 }
 
-diag_init
 diag_handle_args "$@"
-diag_check_root
-diag_check_defined "DIAG_MEMTYPE_NAME"
+diag_check_defined "DIAG_SWAP_KB"
 
-for name in `getmemtype`; do
-    if [ "$name" != "$DIAG_MEMTYPE_NAME" ]; then
-        diag_fail "device $name, expected $DIAG_MEMTYPE_NAME"
-    fi
-done
-diag_ok "device $name"
+swapkb=`swaptot`
+if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
+    diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
+fi
+diag_ok "swaptotal $swapkb Kb"

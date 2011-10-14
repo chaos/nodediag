@@ -32,6 +32,8 @@ sub close_test {
     my $formatter = $self->formatter;
     my $name      = basename ($self->name);
 
+    $name =~ s/\.t$//; # drop the .t suffix from test name
+
     return if $formatter->really_quiet;
     return if $formatter->quiet && !$parser->has_problems;
 
