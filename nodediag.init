@@ -19,7 +19,7 @@ EXITRC=0
 case "$1" in
     start)
         echo -n $"Starting nodediag: "
-        if /usr/bin/nodediag -s -q -L $LOGFILE; then
+        if /usr/bin/nodediag -s -v >$LOGFILE; then
           success; echo
         else
           failure; echo

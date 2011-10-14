@@ -51,12 +51,9 @@ diag_init
 diag_handle_args "$@"
 diag_check_defined "DIAG_CPUCOUNT"
 
-EXITVAL=$EXIT_OK
 count=`cpucount`
 if [ "$count" != "$DIAG_CPUCOUNT" ]; then
-    echo "$prog: cpucount $count, expected $DIAG_CPUCOUNT" >&2
-    EXITVAL=$EXIT_FAIL
+    diag_fail "$prog: cpucount $count, expected $DIAG_CPUCOUNT"
 else
-    echo "$prog: cpucount $count" >&2
+    diag_ok "$prog: cpucount $count"
 fi
-exit $EXITVAL

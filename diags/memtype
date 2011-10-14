@@ -60,13 +60,9 @@ diag_handle_args "$@"
 diag_check_root
 diag_check_defined "DIAG_MEMTYPE_NAME"
 
-EXITVAL=$EXIT_OK
 for name in `getmemtype`; do
     if [ "$name" != "$DIAG_MEMTYPE_NAME" ]; then
-        echo "$prog: device $name, expected $DIAG_MEMTYPE_NAME" >&2
-        EXITVAL=$EXIT_FAIL
-    else
-        echo "$prog: device $name" >&2
+        diag_fail "device $name, expected $DIAG_MEMTYPE_NAME"
     fi
 done
-exit $EXITVAL
+diag_ok "device $name"

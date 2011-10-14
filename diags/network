@@ -66,36 +66,28 @@ diag_init
 diag_handle_args "$@"
 diag_check_defined "DIAG_NETWORK_DEV"
 
-EXITVAL=$EXIT_OK
 i=0
 for dev in ${DIAG_NETWORK_DEV[@]}; do
-    if [ -d /sys/class/net/$dev ]; then
-        echo "$prog: $dev exists" >&2
-    else
-        echo "$prog: $dev does not exst" >&2
-        EXITVAL=$EXIT_FAIL
-        continue
+    if [ ! -d /sys/class/net/$dev ]; then
+        diag_fail "$dev does not exst"
     fi
+    diag_msg "$dev exists"
     mtu=${DIAG_NETWORK_MTU[$i]}
     if [ -n "$mtu" ]; then
         gotmtu=`cat /sys/class/net/$dev/mtu`
-        if [ "$mtu" == "$gotmtu" ]; then
-            echo "$prog: $dev mtu $gotmtu" >&2
-        else
-            echo "$prog: $dev mtu $gotmtu, expected $mtu" >&2
-            EXITVAL=$EXIT_FAIL
+        if [ "$mtu" != "$gotmtu" ]; then
+            diag_fail "$dev mtu $gotmtu, expected $mtu"
         fi
+        diag_msg "$dev mtu $gotmtu"
     fi
     mode=${DIAG_NETWORK_MODE[$i]}
     if [ -n "$mode" ]; then
         gotmode=`cat /sys/class/net/$dev/mode`
-        if [ "$mode" == "$gotmode" ]; then
-            echo "$prog: $dev mode $gotmode" >&2
-        else
-            echo "$prog: $dev mode $gotmode, expected $mode" >&2
-            EXITVAL=$EXIT_FAIL
+        if [ "$mode" != "$gotmode" ]; then
+            diag_fail "$dev mode $gotmode, expected $mode"
         fi
+        diag_msg "$dev mode $gotmode"
     fi
     i=$(($i + 1))
 done
-exit $EXITVAL
+diag_ok "$i devices checked"

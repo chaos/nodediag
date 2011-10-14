@@ -60,20 +60,11 @@ diag_init
 diag_handle_args "$@"
 diag_check_defined "DIAG_ECC_TYPE"
 
-eccenabled=0
-EXITVAL=0
-
 for ecctype in `getecctype`; do
-    eccenabled=1
     if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
-        echo "$prog: $file: $ecctype, expected $DIAG_ECC_TYPE" >&2
-        EXITVAL=$EXIT_FAIL
+        diag_fail "$ecctype, expected $DIAG_ECC_TYPE"
     else
-        echo "$prog: $file: $ecctype" >&2
+        diag_ok "$ecctype"
     fi
 done
-if [ $eccenabled -eq 0 ]; then    
-    echo "$prog: ECC is not enabled" >&2
-    EXITVAL=$EXIT_FAIL
-fi
-exit $EXITVAL
+diag_fail "$prog: ECC is not enabled" 

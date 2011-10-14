@@ -54,9 +54,6 @@ diag_check_defined "DIAG_SWAP_KB"
 EXITVAL=$EXIT_OK
 swapkb=`swaptot`
 if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
-    echo "$prog: swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb" >&2
-    EXITVAL=$EXIT_FAIL
-else
-    echo "$prog: swaptotal $swapkb Kb" >&2
+    diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
 fi
-exit $EXITVAL
+diag_ok "$prog: swaptotal $swapkb Kb"

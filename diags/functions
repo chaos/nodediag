@@ -1,3 +1,4 @@
+#!/bin/bash
 ##############################################################################
 # Copyright (c) 2010, Lawrence Livermore National Security, LLC.
 # Produced at the Lawrence Livermore National Laboratory.
@@ -26,9 +27,35 @@
 # The following functions can be called from nodediag tests.
 #
 
-declare -r EXIT_OK=0
-declare -r EXIT_FAIL=1
-declare -r EXIT_NOTRUN=2
+# TAP standard output - nodediag assumes one unit test per file
+diag_plan()
+{
+  echo "1..1"
+}
+diag_msg()
+{
+  echo "# $prog: $*"
+}
+diag_ok()
+{
+  echo "ok 1 - $prog: $*"
+  exit 0
+}
+diag_fail()
+{
+  echo "not ok 1 - $prog: $*"
+  exit 0
+}
+diag_skip()
+{
+  echo "ok 1 # skip $prog: $*"
+  exit 0
+}
+diag_todo()
+{
+  echo "not ok 1 # TODO $prog: $*"
+  exit 0
+}
 
 # Usage: diag_init
 # Check that global variables are set
@@ -36,41 +63,40 @@ diag_init()
 {
   if [ -z "$prog" ]; then
     echo "script did not set \$prog" >&2
-    exit $EXIT_NOTRUN
+    exit 1
   fi
   if [ -z "$description" ]; then
     echo "$prog: script did not set \$description" >&2
-    exit $EXIT_NOTRUN
+    exit 1
   fi
 }
 
 # Usage: diag_handle_args "$@"
-# Handle standard test arguments.
+# Handle standard test arguments
 diag_handle_args()
 {
-  local sopt=0
+  local skipit=0
 
   while getopts "?hdcs" opt; do
     case ${opt} in
       d) printf "%-16s %s\n" "$prog:" "$description"
-         exit $EXIT_NOTRUN
+         exit 0
          ;;
       c) echo "#"
          if ! diagconfig 2>/dev/null; then
            echo "# $prog: no default available"
          fi
-         exit $EXIT_NOTRUN
+         exit 0
          ;;
-      s) if [ "$sanity" != "1" ]; then
-           echo "$prog: not a --sanity test" >&2
-           exit $EXIT_NOTRUN
-         fi
+      s) [ "$sanity" = "1" ] || skipit=1
          ;;
-      *) echo "Usage: $prog [-dc]"
-         exit $EXIT_NOTRUN
+      *) echo "Usage: $prog [-dcs]"
+         exit 0
          ;;
     esac
   done
+  diag_plan
+  [ $skipit -eq 0 ] || diag_skip "not a sanity test";
 }
 
 # Usage: diag_check_defined VARIABLE
@@ -78,8 +104,8 @@ diag_handle_args()
 diag_check_defined()
 {
   if ! eval 'test -n "$'$1'"'; then
-    echo "$prog: $1 is not set" 
-    exit $EXIT_NOTRUN
+    diag_skip "$1 is not set" 
+    exit 0
   fi
 }
 
@@ -88,8 +114,7 @@ diag_check_defined()
 diag_check_root()
 {
   if [ $(id -u) -ne 0 ]; then
-    echo "$prog: skipping this test as you are not root" >&2
-    exit $EXIT_NOTRUN
+    diag_skip "test requires root"
   fi
 }
 
@@ -109,18 +134,14 @@ diag_test_dmi()
   local keyword=$1
   shift
   local wantval=$(echo $* |diag_normalize_whitespace)
-  local gotval gotval_s
+  local val
 
-  /usr/sbin/dmidecode -s $keyword | while read gotval; do
-    gotval_s=$(echo $gotval|diag_normalize_whitespace)
-    if [ "$gotval_s" != "$wantval" ]; then
-      echo "$prog: $keyword is $gotval_s, expected $wantval" >&2
-      exit $EXIT_FAIL
-    else
-      echo "$prog: $keyword is $gotval_s" >&2
-    fi
-  done
-  exit $?
+  val=`/usr/sbin/dmidecode -s $keyword|tail -1|diag_normalize_whitespace`
+  if [ "$val" != "$wantval" ]; then
+    diag_fail "DMI $keyword is $val, expected $wantval"
+  else
+    diag_ok "DMI $keyword is $val"
+  fi
 }
 
 # Usage: diag_dmi_stanza "<stanza title>"

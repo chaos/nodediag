@@ -64,9 +64,6 @@ diag_check_defined "DIAG_MEMORY_TOTAL_MB"
 EXITVAL=$EXIT_OK
 totalmb=`totalmem`
 if [ "$DIAG_MEMORY_TOTAL_MB" != "$totalmb" ]; then
-    echo "$prog: total: $totalmb MB, expected $DIAG_MEMORY_TOTAL_MB MB" >&2
-    EXITVAL=$EXIT_FAIL
-else
-    echo "$prog: total: $totalmb MB" >&2
+    diag_fail "total: $totalmb MB, expected $DIAG_MEMORY_TOTAL_MB MB"
 fi
-exit $EXITVAL
+diag_ok "total: $totalmb MB"

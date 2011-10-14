@@ -70,25 +70,20 @@ diag_handle_args "$@"
 diag_check_defined "DIAG_TW_NUM"
 diag_check_root
 
-EXITVAL=$EXIT_OK
 hosts=`list_adapt`
 num=`nargs $hosts`
 if [ $num -ne $DIAG_TW_NUM ]; then
-    EXITVAL=$EXIT_FAIL
-    echo "$prog: $num cards, expected $DIAG_TW_NUM" >&2
-else
-    echo "$prog: $num cards" >&2
+    diag_fail "$num cards, expected $DIAG_TW_NUM"
 fi
+diag_msg "$num cards"
 if [ -n "$DIAG_TW_FW" ]; then
     for host in $hosts; do
         fw=`get_fw $host`
         if [ $fw != $DIAG_TW_FW ]; then
             h=`basename $host`
-            EXITVAL=$EXIT_FAIL
-            echo "$prog: $h fw $fw, expected $DIAG_TW_FW" >&2
-        else
-            echo "$prog: $h fw $fw" >&2
+            diag_fail "$h fw $fw, expected $DIAG_TW_FW"
         fi
+        diag_msg "$h fw $fw"
     done
 fi
-exit $EXITVAL
+diag_ok "$num devices checked"

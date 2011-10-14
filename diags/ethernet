@@ -67,32 +67,26 @@ EXITVAL=$EXIT_OK
 i=0
 for dev in ${DIAG_ETHERNET_DEV[@]}; do
     gotlink=`ethtool $dev | awk '/Link detected:/ { print $3 }'`
-    echo "$prog: $dev link $gotlink" >&2
     if [ "$gotlink" != "yes" ]; then
-        EXITVAL=$EXIT_FAIL
-        i=$(($i + 1))
-        continue
+        diag_fail "$dev link $gotlink"
     fi
+    diag_msg "$dev link $gotlink"
     speed=${DIAG_ETHERNET_SPEED[$i]}
     if [ -n "$speed" ]; then
         gotspeed=`ethtool $dev | awk '/Speed:/ { print $2 }'`
-        if [ "$speed" == "$gotspeed" ]; then
-            echo "$prog: $dev speed $gotspeed" >&2
-        else
-            echo "$prog: $dev speed $gotspeed, expected $speed" >&2
-            EXITVAL=$EXIT_FAIL
+        if [ "$speed" != "$gotspeed" ]; then
+            diag_fail "$dev speed $gotspeed, expected $speed"
         fi
+        diag_msg "$dev speed $gotspeed"
     fi
     duplex=${DIAG_ETHERNET_DUPLEX[$i]}
     if [ -n "$duplex" ]; then
         gotduplex=`ethtool $dev | awk '/Duplex:/ { print $2 }'`
-        if [ "$duplex" == "$gotduplex" ]; then
-            echo "$prog: $dev duplex $gotduplex" >&2
-        else
-            echo "$prog: $dev duplex $gotduplex, expected $duplex" >&2
-            EXITVAL=$EXIT_FAIL
+        if [ "$duplex" != "$gotduplex" ]; then
+            diag_fail "$dev duplex $gotduplex, expected $duplex"
         fi
+        diag_msg "$dev duplex $gotduplex"
     fi
     i=$(($i + 1))
 done
-exit $EXITVAL
+diag_ok "$i devices checked"

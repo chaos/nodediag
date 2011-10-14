@@ -1,63 +1,22 @@
-#!/bin/bash
-##############################################################################
-# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
-# Produced at the Lawrence Livermore National Laboratory.
-# Written by Jim Garlick <garlick@llnl.gov>.
-# LLNL-CODE-461827
-# All rights reserved.
-# 
-# This file is part of nodediag.
-# For details, see http://code.google.com/p/nodediag.
-# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
-#
-# This program is free software; you can redistribute it and/or modify it
-# under the terms of the GNU General Public License (as published by the
-# Free Software Foundation) version 2, dated June 1991.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# terms and conditions of the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software Foundation,
-# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-##############################################################################
-#
-# Run scripts in /etc/nodediag.d
-#
-# Each script must exit with 0=success, 1=failed, or 2=not run, and
-# must implement a -d option which emits a one line description of the test.
-#
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
+#!/usr/bin/env perl
 
-declare -r RESULT_PRETTY=(
-    "[  \\033[0;32mOK\\033[0;39m  ]"
-    "[ \\033[0;31mFAIL\\033[0;39m ]"
-    "[\\033[0;33mNOTRUN\\033[0;39m]"
-)
-declare -r RESULT_PLAIN=(
-    "[  OK  ]"
-    "[ FAIL ]"
-    "[NOTRUN]"
-)
+use strict;
+use lib './lib'; # for test
 
-declare -r OUT_QUIET=0
-declare -r OUT_NORMAL=1
-declare -r OUT_VERBOSE=2
-declare -r OUT_FAILONLY=3
+use File::Basename;
+use Getopt::Long qw(:config no_ignore_case bundling);
+use TAP::Harness;
+use TAP::Formatter::Nodediag;
 
-declare -r prog=${0##*/}
-declare -r long_opts="firstfail,test:,list,quiet,verbose,failonly,help,logfile:,plain,config,sanity,forever"
-declare -r short_opts="ft:dlqvxhL:pcsF"
-declare -r getopt="/usr/bin/getopt -u"
-declare -r usagemsg="\
-USAGE: $prog [OPTIONS]
-   -L, --logfile FILE   Log verbose output to file name
+my $prog = basename($0);
+
+my $usage = <<EOF;
+Usage: $prog [OPTIONS] [test [test]...]
+
    -f, --firstfail      Exit on first failure
    -l, --list           List diags with descriptions
-   -q, --quiet          Don't show output, just looking for exit code
-   -v, --verbose        Show output from tests
+   -q, --quiet          Show no output, result is exit code
+   -v, --verbose        Include raw test output
    -x, --failonly       Show output only from failed tests
    -t, --test           Run specific test script, default is to run all tests
                         multiple -t options can be passed to run multiple tests
@@ -65,147 +24,122 @@ USAGE: $prog [OPTIONS]
    -c, --config         Generate prototype sysconfig file on stdout
    -s, --sanity         Only run quick sanity tests
    -F, --forever        Repeat tests until interrupted
-   -h, --help           Display usage message"
+   -d, --testdir        Use test directory other than /etc/nodediag.d
+   -h, --help           Display usage message
+EOF
 
-usage () {
-    echo -e "$usagemsg" >&2
-    exit 1
+our %conf = ();
+
+parse_cmdline ();
+
+# Determine what tests to run
+my @tests = get_tests ();
+
+# handle -l: List tests with descriptions and exit
+if ($conf{list}) {
+    foreach (@tests) { system ($_, "-d"); }
+    exit (0);
 }
 
-run_test () {
-    local script=$1
-    shift
-    local rc
-   
-    echo "Checking $script:"
-    ${script_dir}/${script} $* 2>&1; rc=$? 
-    [ $rc -le 2 ] || $rc = $EXIT_FAIL
-    echo "Result: ${RESULT_PLAIN[$rc]}"
+# execute tests using the TAP framework
+my $rc;
+do {
+    $rc = run_tests (@tests);
+} while ($conf{forever});
 
-    return $rc
-}
+exit $rc;
 
-# List available tests
-list_tests()
+sub get_tests
 {
-    local dir=$1
-    local file
+    my @files;
 
-    pushd $dir >/dev/null || return
-    shopt -s nullglob
-    for file in *; do
-        [ "$file" != "functions" ] && echo $file
-    done
-    shopt -u nullglob
-    popd >/dev/null
+    if (@{$conf{tests}}) {
+        foreach (@{$conf{tests}}) {
+            log_fatal ("$_ could not be found in $conf{testdir}\n")
+                unless -r "$conf{testdir}/$_";
+            push @files, $_;
+        }
+    } else {
+        opendir DIR, $conf{testdir} or die "$conf{testdir}: $!";
+        @files = grep !/^(\.\.?)|(functions)|(tap-functions)$/, readdir DIR;
+        closedir (DIR);
+    }
+    return map "$conf{testdir}/$_", @files;
 }
 
+sub run_tests
+{
+    my $formatter = TAP::Formatter::Nodediag->new (
+        { color => (($conf{plain} || ! -t STDOUT) ? 0 : 1) },
+    );
 
-script_dir=/etc/nodediag.d
-outmode=$OUT_NORMAL
-first=0
-list=0
-logfile="/dev/null"
-diags=""
-plain=0
-config=0
-sopt=""
-forever=0
+    if ($conf{verbose}) {         # show result of each test and raw test output
+        $formatter->verbosity(1);
+    } elsif ($conf{failonly}) {   # show result of failures only
+        $formatter->verbosity(-1);
+    } elsif ($conf{quiet}) {      # show nothing
+        $formatter->verbosity(-2);
+    } else {
+        $formatter->verbosity(0); # show result of each test
+    }
+        
+    my $harness = TAP::Harness->new(
+        { formatter => $formatter },
+        { test_args => ['-s'] },
+    );
 
-GETOPT=`$getopt -o $short_opts -l $long_opts -n $prog -- $@`
-[ $? != 0 ] && usage
-eval set -- "$GETOPT"
-while true; do
-    case "$1" in
-        -L|--logfile)      logfile="$2"        ; shift 2  ;;
-        -t|--test)         diags+="$2 "        ; shift 2  ;;
-        -p|--plain)        plain=1             ; shift    ;;
-        -c|--config)       config=1            ; shift    ;;
-        -f|--first)        first=1             ; shift    ;;
-        -l|--list)         list=1              ; shift    ;;
-        -q|--quiet)        outmode=$OUT_QUIET  ; shift    ;;
-        -v|--verbose)      outmode=$OUT_VERBOSE; shift    ;;
-        -x|--failonly)     outmode=$OUT_FAILONLY; shift    ;;
-        -s|--sanity)       sopt="-s"           ; shift    ;;
-        -F|--forever)      forever=1           ; shift    ;;
-        -h|--help)         usage                          ;;
-        --)                shift               ; break    ;;
-        *)                 usage                          ;;
-    esac
-done
-[ $# -gt 0 ] && usage
-if [ $outmode == $OUT_VERBOSE ] && [ $logfile != "/dev/null" ]; then
-    echo "$prog: -v and -L cannot be used together" >&2
-    exit 1
-fi
+    $harness->merge(1);           # combine stdout/stderr of tests
 
-# Get exit values
-. /etc/nodediag.d/functions || exit 2
+    my @test_args = ();
+    push @test_args, ('-s') if $conf{sanity};
+    $harness->test_args(\@test_args);
+    my $aggregator = $harness->runtests( @_ );
+    return $aggregator->has_errors;
+}
 
-# Construct the list of tests if it wasn't passed in with -t
-[ -n "${diags}" ] || diags=`list_tests $script_dir`
+sub usage
+{
+    print STDERR "$usage";
+    exit 0;
+}
 
-# Just list tests and exit
-if [ $list -eq 1 ]; then
-    for script in $diags; do
-        if [ -x $script_dir/$script ]; then
-            $script_dir/$script -d
-        fi
-    done
-    exit 0
-fi
+sub parse_cmdline
+{
+    my $help = 0;
 
-# Generate config and exit
-if [ $config -eq 1 ]; then
-    for script in $diags; do
-        if [ -x $script_dir/$script ]; then
-            $script_dir/$script -c
-        fi
-    done
-    exit 0
-fi
+    $conf{firstfail} = 0;
+    $conf{list} = 0;
+    $conf{quiet} = 0;
+    $conf{verbose} = 0;
+    $conf{failonly} = 0;
+    $conf{plain} = 0;
+    $conf{config} = 0;
+    $conf{sanity} = 0;
+    $conf{forever} = 0;
+    $conf{testdir} = "/etc/nodediag.d";
 
-# Run the tests
-EXITVAL=0
-while true; do
-    for script in ${diags}; do
-        if [ ! -x $script_dir/$script ]; then
-            echo "$prog: $script is nonexistent or not executable" >&2
-            continue
-        fi
-        case $outmode in
-            $OUT_QUIET)
-                run_test $script $sopt >>$logfile; rc=$?
-                ;;
-            $OUT_NORMAL)
-                printf "%-60s" "Checking $script:"
-                run_test $script $sopt >>$logfile; rc=$?
-                if [ $plain -eq 1 ]; then
-                    echo "${RESULT_PLAIN[$rc]}"
-                else
-                    echo -e "${RESULT_PRETTY[$rc]}"
-                fi
-                ;;
-            $OUT_VERBOSE)
-                run_test $script $sopt; rc=$?
-                ;;
-            $OUT_FAILONLY)
-                run_test $script $sopt >>$logfile; rc=$?
-                if [ $rc == $EXIT_FAIL ]; then
-                    printf "%-60s" "Checking $script:"
-                    if [ $plain -eq 1 ]; then
-                        echo "${RESULT_PLAIN[$rc]}"
-                    else
-                        echo -e "${RESULT_PRETTY[$rc]}"
-                    fi
-                fi
-                ;;
-        esac
-        [ $rc != $EXIT_FAIL ] || EXITVAL=1
-    done
-    if [ "$forever" != "1" ]; then
-        break
-    fi
-done
+    my $rc = GetOptions (
+        "help|h!"         => \$help,
+        "firstfail|f!"    => \$conf{firstfail},
+        "list|l!"         => \$conf{list},
+        "quiet|q!"        => \$conf{quiet},
+        "verbose|v!"      => \$conf{verbose},
+        "failonly|x!"     => \$conf{failonly},
+        "plain|p!"        => \$conf{plain},
+        "config|c!"       => \$conf{config},
+        "sanity|s!"       => \$conf{sanity},
+        "forever|F!"      => \$conf{forever},
+        "testdir|d=s"     => \$conf{testdir},
+    );
 
-exit $EXITVAL
+    log_fatal ("use only one of -v or -q\n") if $conf{quiet} && $conf{verbose};
+    usage() if $help || !$rc;
+
+    @{$conf{tests}} = @ARGV;
+}
+
+sub log_msg     { print STDERR "$prog: ", @_; }
+sub log_error   { log_msg ("Error: ", @_) }
+sub log_fatal   { log_msg ("Fatal: ", @_); exit 1; }
+
+#  vi: ts=4 sw=4 expandtab

@@ -60,13 +60,9 @@ diag_handle_args "$@"
 diag_check_root
 diag_check_defined "DIAG_MEMSPEED_MHZ"
 
-EXITVAL=$EXIT_OK
 for speed in `getmemspeed`; do
     if [ "$speed" != "$DIAG_MEMSPEED_MHZ" ]; then
-        echo "$prog: device $speed MHz, expected $DIAG_MEMSPEED_MHZ MHz" >&2
-        EXITVAL=$EXIT_FAIL
-    else
-        echo "$prog: device $speed MHz" >&2
+        diag_fail "device $speed MHz, expected $DIAG_MEMSPEED_MHZ MHz"
     fi
 done
-exit $EXITVAL
+diag_ok "$prog: device $speed MHz" >&2

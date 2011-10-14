@@ -72,25 +72,20 @@ diag_handle_args "$@"
 diag_check_defined "DIAG_MPTSAS_NUM"
 diag_check_root
 
-EXITVAL=$EXIT_OK
 hosts=`list_adapt`
 num=`nargs $hosts`
 if [ $num -ne $DIAG_MPTSAS_NUM ]; then
-    EXITVAL=$EXIT_FAIL
-    echo "$prog: $num cards, expected $DIAG_MPTSAS_NUM" >&2
-else
-    echo "$prog: $num cards" >&2
+    diag_fail "$num cards, expected $DIAG_MPTSAS_NUM"
 fi
+diag_msg "$num cards"
 if [ -n "$DIAG_MPTSAS_FW" ]; then
     for host in $hosts; do
         fw=`cat $host/version_fw`
         if [ $fw != $DIAG_MPTSAS_FW ]; then
             h=`basename $host`
-            EXITVAL=$EXIT_FAIL
-            echo "$prog: $h fw $fw, expected $DIAG_MPTSAS_FW" >&2
-        else
-            echo "$prog: $h fw $fw" >&2
+            diag_fail "$h fw $fw, expected $DIAG_MPTSAS_FW"
         fi
+        diag_msg "$h fw $fw"
     done
 fi
 if [ -n "$DIAG_MPTSAS_BIOS" ]; then
@@ -98,11 +93,9 @@ if [ -n "$DIAG_MPTSAS_BIOS" ]; then
         bios=`cat $host/version_bios`
         if [ $bios != $DIAG_MPTSAS_BIOS ]; then
             h=`basename $host`
-            EXITVAL=$EXIT_FAIL
-            echo "$prog: $h bios $bios, expected $DIAG_MPTSAS_BIOS" >&2
-        else
-            echo "$prog: $h bios $bios" >&2
+            diag_fail "$h bios $bios, expected $DIAG_MPTSAS_BIOS"
         fi
+        diag_msg "$h bios $bios"
     done
 fi
-exit $EXITVAL
+diag_ok "$num devices checked"
