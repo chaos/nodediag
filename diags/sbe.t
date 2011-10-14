@@ -44,7 +44,6 @@ diag_handle_args "$@"
 diag_check_defined "DIAG_SBE_COUNT"
 
 # CE count of each reported FRU is compared against the threshold
-edac-util >&2
 for count in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
     if [ $count -gt ${DIAG_SBE_COUNT} ]; then
         diag_fail "$count SBEs exceeds threshold \(${DIAG_SBE_COUNT}\)"

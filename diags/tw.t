@@ -61,6 +61,7 @@ diagconfig ()
 diag_handle_args "$@"
 diag_check_defined "DIAG_TW_NUM"
 diag_check_root
+which tw_cli >/dev/null 2>&1 || diag_skip "tw_cli is not installed"
 
 hosts=`list_adapt`
 num=`nargs $hosts`

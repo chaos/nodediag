@@ -85,6 +85,15 @@ diag_ok "$i dumps found"
 .LP
 Alternatively, tests can use the many TAP resources available to generate
 TAP output.  See http://testanything.org/wiki/index.php/TAP_Producers.
+.LP
+Because the tests follow the TAP standard, they can be run under
+the perl \fBprove\fR command, e.g.
+.IP
+.nf
+prove /etc/nodediag.d
+prove --formatter TAP::Formatter::Nodediag /etc/nodediag.d
+.fi
+.LP
 .SH FILES
 /etc/nodediag.d
 .br

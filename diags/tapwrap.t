@@ -20,7 +20,7 @@ testold()
             echo ok $num "$t" "# skip"
             ;;
         $EXIT_FAIL)
-            echo fail $num "$t"
+            echo not ok $num "$t"
             ;;
         $EXIT_PASS)
             echo ok "$t"
