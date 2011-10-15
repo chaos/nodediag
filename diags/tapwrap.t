@@ -17,13 +17,13 @@ testold()
     done
     case ${PIPESTATUS[0]} in
         $EXIT_SKIP)
-            echo ok $num "$t" "# skip"
+            echo "ok $num # skip" "non-TAP test $t returned EXIT_SKIP"
             ;;
         $EXIT_FAIL)
-            echo not ok $num "$t"
+            echo "not ok $num" "- non-TAP test $t returned EXIT_FAIL"
             ;;
         $EXIT_PASS)
-            echo ok "$t"
+            echo "ok $num" "- non-TAP test $t returned EXIT_PASS"
             ;;
     esac
 }

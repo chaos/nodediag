@@ -28,16 +28,18 @@
 #
 declare -r testname=`basename $0 | sed -e 's/\.t$//'`
 
+# Until tests provided by other pkgs use TAP, leave 'is_legacy' code here.
+# $prog was required before, and is no longer used so check that.
+is_legacy() { [ -n "$prog" ]; }
 EXIT_OK=0   # deprecated
 EXIT_FAIL=1 # deprecated
 EXIT_NOTRUN=2 # deprecated
-
 diag_init() { return 0; } # deprecated
 
 # TAP standard output - nodediag assumes one unit test per file
 diag_plan()
 {
-  echo "1..1"
+  is_legacy || echo "1..1"
 }
 diag_msg()
 {
@@ -45,20 +47,33 @@ diag_msg()
 }
 diag_ok()
 {
-  echo "ok 1 - $testname: $*"
-  exit 0
+  if is_legacy; then
+    echo "$testname: $*"
+    exit $EXIT_OK
+  else
+    echo "ok 1 - $testname: $*"
+    exit 0
+  fi
 }
 diag_fail()
 {
-  echo "not ok 1 - $testname: $*"
-  [ -n "$prog" ] && exit $EXIT_FAIL # deprecated
-  exit 0
+  if is_legacy; then
+    echo "$testname: $*"
+    exit $EXIT_FAIL
+  else
+    echo "not ok 1 - $testname: $*"
+    exit 0
+  fi
 }
 diag_skip()
 {
-  echo "ok 1 # skip $testname: $*"
-  [ -n "$prog" ] && exit $EXIT_NOTRUN # deprecated
-  exit 0
+  if is_legacy; then
+    echo "$testname: $*"
+    exit $EXIT_NOTRUN
+  else
+    echo "ok 1 # skip $testname: $*"
+    exit 0
+  fi
 }
 diag_todo()
 {
