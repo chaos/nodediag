@@ -1,4 +1,28 @@
 #!/usr/bin/env perl
+##############################################################################
+# Copyright (c) 2011, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
 
 use strict;
 use lib './lib'; # for test
@@ -23,6 +47,7 @@ Usage: $prog [OPTIONS] [test [test]...]
    -s, --sanity         Only run quick sanity tests
    -F, --forever        Repeat tests until interrupted
    -d, --testdir        Use test directory other than /etc/nodediag.d
+   -j, --jobs N         Number of tests to run in parallel (default 4)
    -h, --help           Display usage message
 EOF
 
@@ -91,6 +116,7 @@ sub run_tests
     );
 
     $harness->merge(1);           # combine stdout/stderr of tests
+    $harness->jobs($conf{jobs});
 
     my @test_args = ();
     push @test_args, ('-s') if $conf{sanity};
@@ -119,6 +145,7 @@ sub parse_cmdline
     $conf{sanity} = 0;
     $conf{forever} = 0;
     $conf{testdir} = "/etc/nodediag.d";
+    $conf{jobs} = 4;
 
     my $rc = GetOptions (
         "help|h!"         => \$help,
@@ -132,6 +159,7 @@ sub parse_cmdline
         "sanity|s!"       => \$conf{sanity},
         "forever|F!"      => \$conf{forever},
         "testdir|d=s"     => \$conf{testdir},
+        "jobs|j=i"        => \$conf{jobs},
     );
 
     log_fatal ("use only one of -v or -q\n") if $conf{quiet} && $conf{verbose};
