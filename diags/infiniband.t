@@ -29,7 +29,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 declare -r description="Check infiniband config"
 declare -r sanity=1
 
-source /etc/nodediag.d/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
 
 diag_handle_args "$@"
 diag_check_defined "DIAG_INFINIBAND_DEV"

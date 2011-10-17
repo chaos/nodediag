@@ -165,6 +165,8 @@ sub parse_cmdline
     log_fatal ("use only one of -v or -q\n") if $conf{quiet} && $conf{verbose};
     usage() if $help || !$rc;
 
+    $ENV{NODEDIAGDIR} = $conf{testdir};
+
     @{$conf{tests}} = @ARGV;
 }
 

@@ -29,7 +29,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 declare -r description="Check mpt2sas cards"
 declare -r sanity=1
 
-source /etc/nodediag.d/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
 
 list_adapt ()
 {

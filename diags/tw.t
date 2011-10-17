@@ -29,7 +29,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 declare -r description="Check 3ware cards"
 declare -r sanity=1
 
-source /etc/nodediag.d/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
 
 list_adapt ()
 {

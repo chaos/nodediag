@@ -29,7 +29,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 declare -r description="Check hard drive read performance"
 declare -r sanity=0
 
-source /etc/nodediag.d/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
 
 diag_handle_args "$@"
 diag_check_defined "DIAG_HDPARM_DEV"

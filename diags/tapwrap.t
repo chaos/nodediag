@@ -24,7 +24,7 @@
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
 
-declare -r diagdir=/etc/nodediag.d
+declare -r diagdir=${NODEDIAGDIR:-/etc/nodediag.d}
 declare -r description="Run any non-TAP tests in $diagdir"
 testopts=""
 
