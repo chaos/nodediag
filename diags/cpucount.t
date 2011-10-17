@@ -50,3 +50,6 @@ if [ "$count" != "$DIAG_CPUCOUNT" ]; then
 else
     diag_ok "cpucount $count"
 fi
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

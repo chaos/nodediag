@@ -41,3 +41,6 @@ diag_check_root
 diag_check_defined "DIAG_CPU_VERSION"
 
 diag_test_dmi processor-version "${DIAG_CPU_VERSION}"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

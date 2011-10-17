@@ -49,3 +49,7 @@ if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
     diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
 fi
 diag_ok "swaptotal $swapkb Kb"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh
+

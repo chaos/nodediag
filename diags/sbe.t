@@ -50,3 +50,6 @@ for count in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
     fi
 done
 diag_ok "all counts under threshold"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

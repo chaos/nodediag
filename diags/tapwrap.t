@@ -105,3 +105,6 @@ for file in $oldfiles; do
     num=$(($num + 1))
 done
 exit 0
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

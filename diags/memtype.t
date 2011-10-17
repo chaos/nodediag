@@ -59,3 +59,7 @@ for name in `getmemtype`; do
     fi
 done
 diag_ok "device $name"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh
+

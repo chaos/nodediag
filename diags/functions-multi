@@ -1,0 +1,111 @@
+#!/bin/bash
+##############################################################################
+# Copyright (c) 2010, Lawrence Livermore National Security, LLC.
+# Produced at the Lawrence Livermore National Laboratory.
+# Written by Jim Garlick <garlick@llnl.gov>.
+# LLNL-CODE-461827
+# All rights reserved.
+# 
+# This file is part of nodediag.
+# For details, see http://code.google.com/p/nodediag.
+# Please also read the files DISCLAIMER and COPYING supplied with nodediag.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License (as published by the
+# Free Software Foundation) version 2, dated June 1991.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the IMPLIED WARRANTY OF
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# terms and conditions of the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##############################################################################
+#
+# The following functions can be called from nodediag tests.
+#
+declare -r diag_testname=`basename $0 | sed -e 's/\.t$//'`
+source /etc/sysconfig/nodediag
+if [ -r /etc/sysconfig/nodediag.d/$diag_testname ]; then
+    source /etc/sysconfig/nodediag.d/$diag_testname
+fi
+
+diag_testnum=1
+diag_maxnum=0
+diag_sanity=0
+
+diag_plan()
+{
+    diag_maxnum=$1
+    echo "1..$diag_maxnum"
+}
+
+diag_plan_skip()
+{
+    echo "1..0: Skipped: " "$@"
+    exit 0
+}
+
+diag_msg()
+{
+    echo "# $diag_testname: $*"
+}
+
+diag_ok()
+{
+    echo "ok $diag_testnum - $diag_testname: $*"
+    diag_testnum=$(($diag_testnum + 1))
+    [ $diag_testnum -gt $diag_maxnum ] && exit 0
+}
+
+diag_fail()
+{
+    echo "not ok $diag_testnum - $diag_testname: $*"
+    diag_testnum=$(($diag_testnum + 1))
+    [ $diag_testnum -gt $diag_maxnum ] && exit 0
+}
+
+diag_skip()
+{
+    echo "ok $diag_testnum # skip $diag_testname: $*"
+    diag_testnum=$(($diag_testnum + 1))
+    [ $diag_testnum -gt $diag_maxnum ] && exit 0
+}
+
+diag_todo()
+{
+    echo "not ok $diag_testnum # TODO $diag_testname: $*"
+    diag_testnum=$(($diag_testnum + 1))
+    [ $diag_testnum -gt $diag_maxnum ] && exit 0
+}
+
+diag_sanity()
+{
+    [ $diag_sanity -eq 1 ]
+    return $?
+}
+
+# Handle standard test arguments
+while getopts "?hdcs" opt; do
+    case ${opt} in
+        d)  printf "%-16s %s\n" "$diag_testname:" "$description"
+            exit 0
+            ;;
+        c)  echo "#"
+            if ! diagconfig 2>/dev/null; then
+                echo "# $diag_testname: no default available"
+            fi
+            exit 0
+            ;;
+        s)  diag_sanity=1
+            ;;
+        *)  echo "Usage: $diag_testname [-dcs]"
+            exit 0
+            ;;
+    esac
+done
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

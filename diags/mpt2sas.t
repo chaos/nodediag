@@ -92,3 +92,5 @@ if [ -n "$DIAG_MPT2SAS_BIOS" ]; then
 fi
 diag_ok "$num devices checked"
 
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

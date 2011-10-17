@@ -41,3 +41,6 @@ diag_check_root
 diag_check_defined "DIAG_CPUFREQ_MHZ"
 
 diag_test_dmi processor-frequency "${DIAG_CPUFREQ_MHZ}"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

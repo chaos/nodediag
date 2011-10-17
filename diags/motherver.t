@@ -41,3 +41,6 @@ diag_check_root
 diag_check_defined "DIAG_MOTHERVER_NUM"
 
 diag_test_dmi baseboard-version "${DIAG_MOTHERVER_NUM}"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

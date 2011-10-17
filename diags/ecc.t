@@ -61,3 +61,6 @@ for ecctype in `getecctype`; do
     fi
 done
 diag_fail "ECC is not enabled" 
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

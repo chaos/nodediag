@@ -59,3 +59,6 @@ if [ "$DIAG_MEMORY_TOTAL_MB" != "$totalmb" ]; then
     diag_fail "total: $totalmb MB, expected $DIAG_MEMORY_TOTAL_MB MB"
 fi
 diag_ok "total: $totalmb MB"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

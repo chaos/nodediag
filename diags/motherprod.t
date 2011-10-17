@@ -41,3 +41,6 @@ diag_check_root
 diag_check_defined "DIAG_MOTHERPROD_NAME"
 
 diag_test_dmi baseboard-product-name "${DIAG_MOTHERPROD_NAME}"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

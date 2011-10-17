@@ -91,3 +91,6 @@ if [ -n "$DIAG_MPTSAS_BIOS" ]; then
     done
 fi
 diag_ok "$num devices checked"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

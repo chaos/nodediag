@@ -59,3 +59,6 @@ for speed in `getmemspeed`; do
     fi
 done
 diag_ok "device $speed MHz"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

@@ -41,3 +41,6 @@ diag_check_root
 diag_check_defined "DIAG_BIOS_DATE"
 
 diag_test_dmi bios-release-date "${DIAG_BIOS_DATE}"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh

@@ -82,3 +82,6 @@ for dev in ${DIAG_ETHERNET_DEV[@]}; do
     i=$(($i + 1))
 done
 diag_ok "$i devices checked"
+
+# vi: expandtab sw=4 ts=4
+# vi: syntax=sh
