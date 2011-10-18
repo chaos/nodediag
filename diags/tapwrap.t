@@ -97,7 +97,11 @@ while getopts "?hdcs" opt; do
 done
 
 count=`echo $oldfiles| wc -w`
-echo "1..$count"
+if [ $count -eq 0 ]; then
+    echo "1..0 # Skipped: all tests are TAP compliant"
+else
+    echo "1..$count"
+fi
 
 num=1
 for file in $oldfiles; do

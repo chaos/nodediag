@@ -44,7 +44,7 @@ diag_plan()
 
 diag_plan_skip()
 {
-    echo "1..0: Skipped: " "$@"
+    echo "1..0 # Skipped: " "$@"
     exit 0
 }
 
