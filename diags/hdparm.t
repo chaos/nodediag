@@ -37,6 +37,7 @@ diag_handle_args "$@"
 numdev=${#DIAG_HDPARM_DEV[@]}
 [ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
 [ $numdev -gt 0 ] || diag_plan_skip "not configured"
+which hdparm >/dev/null 2>&1 || diag_plan_skip "hdparm is not installed"
 diag_sanity && diag_plan_skip "takes too long for sanity testing"
 diag_plan $numdev
 
