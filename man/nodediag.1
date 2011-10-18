@@ -69,21 +69,24 @@ A simple test utilizing these functions might look like this:
 
 declare -r description="Check crash dump count"
 
-source /etc/nodediag.d/functions
+source /etc/nodediag.d/functions-tap || exit 1
 
 diagconfig () {
   echo "DIAG_DUMPS_MAX=1"
 }
 diag_handle_args "$@"
-diag_check_defined DIAG_DUMPS_MAX
+test -n "$DIAG_DUMPS_MAX" || diag_plan_skip "not configured"
+test -d /var/dumps || diag_plan_skip "/var/dumps is missing"
+diag_plan 1
 
-[ -d /var/dumps ] || diag_skip "/var/dumps is missing"
 diag_msg "counting crash dumps"
 shopt -s nullglob; i=$(echo /var/dumps/*|wc -w); shopt -u nullglob
-if [ $i -gt $DIAG_DUMPS_MAX ]; then
+if test $i -gt $DIAG_DUMPS_MAX; then
   diag_fail "$i dumps found, max is $DIAG_DUMPS_MAX"
+else
+  diag_ok "$i dumps found"
 fi
-diag_ok "$i dumps found"
+exit 0
 .fi
 .LP
 Alternatively, tests can use the many TAP resources available to generate

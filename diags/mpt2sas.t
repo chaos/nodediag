@@ -27,9 +27,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check mpt2sas cards"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 list_adapt ()
 {
@@ -61,36 +60,37 @@ diagconfig ()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_MPT2SAS_NUM"
-diag_check_root
-
+[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ -n "$DIAG_MPT2SAS_NUM" ] || diag_plan_skip "not configured"
 hosts=`list_adapt`
 num=`nargs $hosts`
+diag_plan $((($num * 2) + 1))
+
 if [ $num -ne $DIAG_MPT2SAS_NUM ]; then
     diag_fail "$num cards, expected $DIAG_MPT2SAS_NUM"
+else
+    diag_ok "$num cards"
 fi
-diag_msg "$num cards"
-if [ -n "$DIAG_MPT2SAS_FW" ]; then
-    for host in $hosts; do
-        fw=`cat $host/version_fw`
-        if [ $fw != $DIAG_MPT2SAS_FW ]; then
-            h=`basename $host`
-            diag_fail "$h fw $fw, expected $DIAG_MPT2SAS_FW"
-        fi
-        diag_msg "$h fw $fw"
-    done
-fi
-if [ -n "$DIAG_MPT2SAS_BIOS" ]; then
-    for host in $hosts; do
-        bios=`cat $host/version_bios`
-        if [ $bios != $DIAG_MPT2SAS_BIOS ]; then
-            h=`basename $host`
-            diag_fail "$h bios $bios, expected $DIAG_MPT2SAS_BIOS"
-        fi
-        diag_msg "$h bios $bios"
-    done
-fi
-diag_ok "$num devices checked"
+for host in $hosts; do
+    fw=`cat $host/version_fw`
+    h=`basename $host`
+    if [ -z "$DIAG_MPT2SAS_FW" ]; then
+        diag_skip "$h fw '$fw', expected value not configured"
+    elif [ $fw != $DIAG_MPT2SAS_FW ]; then
+        diag_fail "$h fw '$fw', expected '$DIAG_MPT2SAS_FW'"
+    else
+        diag_ok "$h fw '$fw'"
+    fi
+    bios=`cat $host/version_bios`
+    if [ -z "$DIAG_MPT2SAS_BIOS" ]; then
+        diag_skip "$h bios '$bios', expected value not configured"
+    elif [ $bios != $DIAG_MPT2SAS_BIOS ]; then
+        diag_fail "$h bios '$bios', expected '$DIAG_MPT2SAS_BIOS'"
+    else
+        diag_ok "$h bios '$bios'"
+    fi
+done
+exit 0
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

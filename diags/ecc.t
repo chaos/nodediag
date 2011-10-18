@@ -27,40 +27,50 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check EDAC ECC type"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
-getecctype()
+nargs ()
 {
-    local file
-
+    echo $#
+}
+eccglob()
+{
     shopt -s nullglob
-    for file in /sys/devices/system/edac/mc/mc*/csrow*/edac_mode; do
-        cat $file
-    done
+    echo /sys/devices/system/edac/mc/mc*/csrow*/edac_mode
     shopt -u nullglob
 }
-
+firsttype()
+{
+    set $(eccglob)
+    cat $1
+}
 diagconfig ()
 {
-    local ecctype=`getecctype | tail -1`
-
+    local ecctype=$(firsttype)
     [ -z "$ecctype" ] && return 1
     echo "DIAG_ECC_TYPE=\"$ecctype\""
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_ECC_TYPE"
+[ -n "DIAG_ECC_TYPE" ] || diag_plan_skip "not configured"
 
-for ecctype in `getecctype`; do
-    if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
-        diag_fail "$ecctype, expected $DIAG_ECC_TYPE"
-    else
-        diag_ok "$ecctype"
-    fi
-done
-diag_fail "ECC is not enabled" 
+csrows=$(eccglob)
+num=$(nargs $csrows)
+diag_plan $(($num + 1))
+if [ $num -eq 0 ]; then
+    diag_fail "ECC is not enabled"
+else
+    diag_ok "ECC is enabled"
+    for csrow in $csrows; do
+        ecctype=$(cat $csrow);
+        if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
+            diag_fail "$csrow: $ecctype, expected $DIAG_ECC_TYPE"
+        else
+            diag_ok "$csrow: $ecctype"
+        fi
+    done
+fi
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

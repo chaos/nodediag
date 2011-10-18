@@ -27,38 +27,41 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check infiniband config"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_INFINIBAND_DEV"
-diag_check_root
 
-[ -x /usr/sbin/ibstat ] || diag_skip "ibstat is unavailable"
+numdev=${#DIAG_INFINIBAND_DEV[@]}
+[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ $numdev -gt 0 ] || diag_plan_skip "not configured"
+which ibstat 2>/dev/null 1>&2 || diag_plan_skip "ibstat is unavailable"
+diag_plan $(($numdev * 2))
 
-i=0
-for dev in "${DIAG_INFINIBAND_DEV[@]}"; do
+for i in $(seq 0 $(($numdev - 1))); do
+    dev=${DIAG_INFINIBAND_DEV[$i]}
 
     # If link comes up late, configure retries here
     retries=${DIAG_INFINIBAND_RETRIES:-"0"}
     retrysec=${DIAG_INFINIBAND_RETRY_SEC:-"10"}
     linkup=0
     while [ $retries -ge 0 ] && [ $linkup -eq 0 ]; do
-        gotlink=`/usr/sbin/ibstat $dev | awk '/Physical state:/ { print $3 }'`
+        gotlink=`ibstat $dev | awk '/Physical state:/ { print $3 }'`
         if [ "$gotlink" == "LinkUp" ]; then
-            diag_msg "$dev state $gotlink" >&2
             linkup=1
         else
             retries=$(($retries - 1))
             if [ $retries -ge 0 ]; then
                 diag_msg "$dev will retry in $retrysec seconds"
                 sleep $retrysec
-            else
-                diag_fail "$dev state $gotlink, expected LinkUp"
             fi
         fi
     done
+    if [ $linkup -eq 0 ]; then
+        diag_fail "$dev state $gotlink, expected LinkUp"
+    else
+        diag_ok "$dev state $gotlink" >&2
+    fi
 
     # now that link is up, check the speed
     speed=${DIAG_INFINIBAND_RATE[$i]}
@@ -66,12 +69,13 @@ for dev in "${DIAG_INFINIBAND_DEV[@]}"; do
         gotspeed=`/usr/sbin/ibstat $dev | awk '/Rate:/ { print $2 }'`
         if [ "$speed" != "$gotspeed" ]; then
             diag_fail "$dev rate $gotspeed, expected $speed"
+        else
+            diag_ok "$dev rate $gotspeed"
         fi
-        diag_msg "$dev rate $gotspeed"
+    else
+        diag_skip "$dev rate not configured"
     fi
-    i=$(($i + 1))
 done
-diag_ok "$i devices checked"
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

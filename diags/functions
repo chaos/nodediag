@@ -23,157 +23,73 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
-#
-# The following functions can be called from nodediag tests.
-#
-declare -r testname=`basename $0 | sed -e 's/\.t$//'`
 
-# Until tests provided by other pkgs use TAP, leave 'is_legacy' code here.
-# $prog was required before, and is no longer used so check that.
-is_legacy() { [ -n "$prog" ]; }
-EXIT_OK=0   # deprecated
-EXIT_FAIL=1 # deprecated
-EXIT_NOTRUN=2 # deprecated
-diag_init() { return 0; } # deprecated
+# Functions for deprecated non-TAP tests.
+# This file will be removed at some point.
 
-# TAP standard output - nodediag assumes one unit test per file
-diag_plan()
+declare -r EXIT_OK=0
+declare -r EXIT_FAIL=1
+declare -r EXIT_NOTRUN=2
+
+# Usage: diag_init
+# Check that global variables are set
+diag_init()
 {
-  is_legacy || echo "1..1"
-}
-diag_msg()
-{
-  echo "# $testname: $*"
-}
-diag_ok()
-{
-  if is_legacy; then
-    echo "$testname: $*"
-    exit $EXIT_OK
-  else
-    echo "ok 1 - $testname: $*"
-    exit 0
-  fi
-}
-diag_fail()
-{
-  if is_legacy; then
-    echo "$testname: $*"
-    exit $EXIT_FAIL
-  else
-    echo "not ok 1 - $testname: $*"
-    exit 0
-  fi
-}
-diag_skip()
-{
-  if is_legacy; then
-    echo "$testname: $*"
+  if [ -z "$prog" ]; then
+    echo "script did not set \$prog" >&2
     exit $EXIT_NOTRUN
-  else
-    echo "ok 1 # skip $testname: $*"
-    exit 0
   fi
-}
-diag_todo()
-{
-  echo "not ok 1 # TODO $testname: $*"
-  exit 0
+  if [ -z "$description" ]; then
+    echo "$prog: script did not set \$description" >&2
+    exit $EXIT_NOTRUN
+  fi
 }
 
 # Usage: diag_handle_args "$@"
-# Handle standard test arguments
+# Handle standard test arguments.
 diag_handle_args()
 {
-  local skipit=0
+  local sopt=0
 
   while getopts "?hdcs" opt; do
     case ${opt} in
-      d) printf "%-16s %s\n" "$testname:" "$description"
-         exit 0
+      d) printf "%-16s %s\n" "$prog:" "$description"
+         exit $EXIT_NOTRUN
          ;;
       c) echo "#"
          if ! diagconfig 2>/dev/null; then
-           echo "# $testname: no default available"
+           echo "# $prog: no default available"
          fi
-         exit 0
+         exit $EXIT_NOTRUN
          ;;
-      s) [ "$sanity" = "1" ] || skipit=1
+      s) if [ "$sanity" != "1" ]; then
+           echo "$prog: not a --sanity test" >&2
+           exit $EXIT_NOTRUN
+         fi
          ;;
-      *) echo "Usage: $testname [-dcs]"
-         exit 0
+      *) echo "Usage: $prog [-dc]"
+         exit $EXIT_NOTRUN
          ;;
     esac
   done
-  diag_plan
-  [ $skipit -eq 0 ] || diag_skip "not a sanity test";
-  source /etc/sysconfig/nodediag
-  if [ -r /etc/sysconfig/nodediag.d/$testname ]; then
-    source /etc/sysconfig/nodediag.d/$testname
-  fi
 }
 
 # Usage: diag_check_defined VARIABLE
-# If VARIABLE is not defined, exit with skip message
+# If VARIABLE is not defined, exit with NOTRUN.
 diag_check_defined()
 {
   if ! eval 'test -n "$'$1'"'; then
-    diag_skip "$1 is not set" 
+    echo "$prog: $1 is not set" 
+    exit $EXIT_NOTRUN
   fi
 }
 
 # Usage: diag_check_root
-# If user is not root, exit with skip message.
+# If user is not root, exit with NOTRUN.
 diag_check_root()
 {
   if [ $(id -u) -ne 0 ]; then
-    diag_skip "test requires root"
+    echo "$prog: skipping this test as you are not root" >&2
+    exit $EXIT_NOTRUN
   fi
 }
-
-# Usage: ...|diag_normalize_whitespace
-# Remove any hash delimited comments and convert any amount of whitespace
-# into one space.  Remove trailing spaces.
-diag_normalize_whitespace()
-{
-  sed -e 's/#.*//' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g'
-}
-
-# Usage: diag_test_dmi keyword wantval
-# Check if all values of keyword in dmitable match wantval.
-# Exit with OK or FAIL.
-diag_test_dmi()
-{
-  local keyword=$1
-  shift
-  local wantval=$(echo $* |diag_normalize_whitespace)
-  local val
-
-  val=`/usr/sbin/dmidecode -s $keyword|tail -1|diag_normalize_whitespace`
-  if [ "$val" != "$wantval" ]; then
-    diag_fail "DMI $keyword is $val, expected $wantval"
-  else
-    diag_ok "DMI $keyword is $val"
-  fi
-}
-
-# Usage: diag_dmi_stanza "<stanza title>"
-# Filters dmidecode output by stanza title.
-diag_dmi_stanza()
-{
-  /usr/sbin/dmidecode | awk '/'"$1"'$/,/^$/'
-}
-
-# Usage: diag_config_dmi keyword variable
-diag_config_dmi()
-{
-  local val
-  local rc=1
-
-  if [ $(id -u) -eq 0 ]; then
-    val=`/usr/sbin/dmidecode -s $1|tail -1|diag_normalize_whitespace`
-    echo "$2=\"$val\""
-    rc=0
-  fi
-  return $rc
-} 

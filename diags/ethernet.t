@@ -24,12 +24,26 @@
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
 
+# FIXME: is this test redundant with network.t?  Should it go away/
+
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check ethernet config"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
+
+getlink()
+{
+    ethtool $dev 2>/dev/null| awk '/Link detected:/ { print $3 }'
+}
+getspeed()
+{
+    ethtool $dev | awk '/Speed:/ { print $2 }'
+}
+getduplex()
+{
+    ethtool $dev | awk '/Duplex:/ { print $2 }'
+}
 
 diagconfig ()
 {
@@ -39,10 +53,10 @@ diagconfig ()
     shopt -s nullglob
     for file in /sys/class/net/eth*; do
         dev=`basename $file`
-        link=`ethtool $dev 2>/dev/null| awk '/Link detected:/ { print $3 }'`
+        link=`getlink $dev`
         [ "$link" == "yes" ] || continue
-        speed=`ethtool $dev | awk '/Speed:/ { print $2 }'`
-        duplex=`ethtool $dev | awk '/Duplex:/ { print $2 }'`
+        speed=`getspeed $dev`
+        duplex=`getduplex $dev`
         echo "DIAG_ETHERNET_DEV[$i]=\"$dev\""
         echo "DIAG_ETHERNET_SPEED[$i]=\"$speed\""
         echo "DIAG_ETHERNET_DUPLEX[$i]=\"$duplex\""
@@ -51,37 +65,45 @@ diagconfig ()
     shopt -u nullglob
 }
 
-
 diag_handle_args "$@"
-diag_check_defined "DIAG_ETHERNET_DEV"
-diag_check_root
+numdev=${#DIAG_ETHERNET_DEV[@]}
+[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ $numdev -gt 0 ] || diag_plan_skip "not configured"
+diag_plan $(($numdev * 3))
 
-i=0
-for dev in ${DIAG_ETHERNET_DEV[@]}; do
-    gotlink=`ethtool $dev | awk '/Link detected:/ { print $3 }'`
+for i in $(seq 0 $(($numdev - 1))); do
+    dev=${DIAG_ETHERNET_DEV[$i]}
+    speed=${DIAG_ETHERNET_SPEED[$i]}
+    duplex=${DIAG_ETHERNET_DUPLEX[$i]}
+    gotlink=`getlink $dev`
     if [ "$gotlink" != "yes" ]; then
         diag_fail "$dev link $gotlink"
+    else
+        diag_ok "$dev link $gotlink"
     fi
-    diag_msg "$dev link $gotlink"
-    speed=${DIAG_ETHERNET_SPEED[$i]}
     if [ -n "$speed" ]; then
-        gotspeed=`ethtool $dev | awk '/Speed:/ { print $2 }'`
+        gotspeed=`getspeed $dev`
         if [ "$speed" != "$gotspeed" ]; then
             diag_fail "$dev speed $gotspeed, expected $speed"
+        else
+            diag_ok "$dev speed $gotspeed"
         fi
-        diag_msg "$dev speed $gotspeed"
+    else
+        diag_skip "$dev speed not configured"
     fi
-    duplex=${DIAG_ETHERNET_DUPLEX[$i]}
+
     if [ -n "$duplex" ]; then
-        gotduplex=`ethtool $dev | awk '/Duplex:/ { print $2 }'`
+        gotduplex=`getduplex $dev`
         if [ "$duplex" != "$gotduplex" ]; then
             diag_fail "$dev duplex $gotduplex, expected $duplex"
+        else
+            diag_ok "$dev duplex $gotduplex"
         fi
-        diag_msg "$dev duplex $gotduplex"
+    else
+        diag_skip "$dev duplex not configured"
     fi
-    i=$(($i + 1))
 done
-diag_ok "$i devices checked"
+exit 0
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

@@ -27,9 +27,18 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check network config"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
+
+getmode()
+{
+    cat /sys/class/net/$1/mode 2>/dev/null
+}
+getmtu()
+{
+    cat /sys/class/net/$1/mtu 2>/dev/null
+}
+
 
 diagconfig ()
 {
@@ -42,13 +51,13 @@ diagconfig ()
         case $dev in
             eth*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"`cat $file/mtu`\""
+                echo "DIAG_NETWORK_MTU[$i]=\"`getmtu`\""
                 i=$(($i+1))
                 ;;
             ib*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"`cat $file/mtu`\""
-                echo "DIAG_NETWORK_MODE[$i]=\"`cat $file/mode`\""
+                echo "DIAG_NETWORK_MTU[$i]=\"`getmtu`\""
+                echo "DIAG_NETWORK_MODE[$i]=\"`getmode`\""
                 i=$(($i+1))
                 ;;
         esac
@@ -57,33 +66,42 @@ diagconfig ()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_NETWORK_DEV"
+numdev=${#DIAG_NETWORK_DEV[@]}
+[ $numdev -gt 0 ] || diag_plan_skip "not configured"
 
-i=0
-for dev in ${DIAG_NETWORK_DEV[@]}; do
-    if [ ! -d /sys/class/net/$dev ]; then
+numtests=$numdev
+for i in $(seq 0 $(($numdev - 1))); do
+    [ -n "${DIAG_NETWORK_MTU[$i]}" ] && numtests=$(($numtests + 1))
+    [ -n "${DIAG_NETWORK_MODE[$i]}" ] && numtests=$(($numtests + 1))
+done
+diag_plan $(($numtests))
+
+for i in $(seq 0 $(($numdev - 1))); do
+    dev=${DIAG_NETWORK_DEV[$i]}
+    mtu=${DIAG_NETWORK_MTU[$i]}
+    mode=${DIAG_NETWORK_MODE[$i]}
+    if [ -d /sys/class/net/$dev ]; then
+        diag_ok "$dev exists"
+    else
         diag_fail "$dev does not exst"
     fi
-    diag_msg "$dev exists"
-    mtu=${DIAG_NETWORK_MTU[$i]}
     if [ -n "$mtu" ]; then
-        gotmtu=`cat /sys/class/net/$dev/mtu`
+        gotmtu=`getmtu $dev`
         if [ "$mtu" != "$gotmtu" ]; then
-            diag_fail "$dev mtu $gotmtu, expected $mtu"
+            diag_fail "$dev mtu '$gotmtu', expected '$mtu'"
+        else
+            diag_ok "$dev mtu '$gotmtu'"
         fi
-        diag_msg "$dev mtu $gotmtu"
     fi
-    mode=${DIAG_NETWORK_MODE[$i]}
     if [ -n "$mode" ]; then
-        gotmode=`cat /sys/class/net/$dev/mode`
+        gotmode=`getmode $dev`
         if [ "$mode" != "$gotmode" ]; then
-            diag_fail "$dev mode $gotmode, expected $mode"
+            diag_fail "$dev mtu '$gotmode', expected '$mode'"
+        else
+            diag_ok "$dev mode '$gotmode'"
         fi
-        diag_msg "$dev mode $gotmode"
     fi
-    i=$(($i + 1))
 done
-diag_ok "$i devices checked"
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

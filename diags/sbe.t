@@ -27,9 +27,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check Single Bit Memory Error Count" 
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 diagconfig ()
 {
@@ -41,12 +40,19 @@ diagconfig ()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_SBE_COUNT"
 
-# CE count of each reported FRU is compared against the threshold
+which edac-util 2>/dev/null 1>&2 || diag_plan_skip "edac-util is not installed"
+[ -n "$DIAG_SBE_COUNT" ] || diag_plan_skip "not configured"
+diag_plan 1
+
+# per Trent: CE count of each reported FRU is compared against the threshold
+# FIXME: divide into multiple tests to get more specific data in output?
+fail=0
 for count in $(edac-util|awk '/Corrected Errors$/ {print $4}'); do
+    diag_msg "single bit errors: $count"
     if [ $count -gt ${DIAG_SBE_COUNT} ]; then
         diag_fail "$count SBEs exceeds threshold \(${DIAG_SBE_COUNT}\)"
+        # exits
     fi
 done
 diag_ok "all counts under threshold"

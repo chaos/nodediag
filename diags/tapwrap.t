@@ -60,7 +60,7 @@ listold()
     shopt -s nullglob
     for file in *; do
         case $file in
-            *.t|functions|tap-functions)
+            *.t|functions*)
                 ;;
             *)
                 echo -n "$file "

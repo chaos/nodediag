@@ -27,9 +27,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check 3ware cards"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 list_adapt ()
 {
@@ -59,27 +58,29 @@ diagconfig ()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_TW_NUM"
-diag_check_root
-which tw_cli >/dev/null 2>&1 || diag_skip "tw_cli is not installed"
-
+[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ -n "$DIAG_TW_NUM" ] || diag_plan_skip "not configured"
+which tw_cli >/dev/null 2>&1 || diag_plan_skip "tw_cli is not installed"
 hosts=`list_adapt`
 num=`nargs $hosts`
-if [ $num -ne $DIAG_TW_NUM ]; then
+diag_plan $(($num + 1))
+
+if [ $num -eq $DIAG_TW_NUM ]; then
+    diag_ok "$num cards"
+else
     diag_fail "$num cards, expected $DIAG_TW_NUM"
 fi
-diag_msg "$num cards"
-if [ -n "$DIAG_TW_FW" ]; then
-    for host in $hosts; do
-        fw=`get_fw $host`
-        if [ $fw != $DIAG_TW_FW ]; then
-            h=`basename $host`
-            diag_fail "$h fw $fw, expected $DIAG_TW_FW"
-        fi
-        diag_msg "$h fw $fw"
-    done
-fi
-diag_ok "$num devices checked"
+for host in $hosts; do
+    fw=`get_fw $host`
+    h=`basename $host`
+    if [ -z "$DIAG_TW_FW" ]; then
+        diag_skip "$h fw '$fw', expected value not configured"
+    elif [ $fw != $DIAG_TW_FW ]; then
+        diag_fail "$h fw '$fw', expected '$DIAG_TW_FW'"
+    else
+        diag_ok "$h fw '$fw'"
+    fi
+done
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

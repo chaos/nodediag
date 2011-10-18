@@ -87,25 +87,28 @@ diag_sanity()
     return $?
 }
 
-# Handle standard test arguments
-while getopts "?hdcs" opt; do
-    case ${opt} in
-        d)  printf "%-16s %s\n" "$diag_testname:" "$description"
-            exit 0
-            ;;
-        c)  echo "#"
-            if ! diagconfig 2>/dev/null; then
-                echo "# $diag_testname: no default available"
-            fi
-            exit 0
-            ;;
-        s)  diag_sanity=1
-            ;;
-        *)  echo "Usage: $diag_testname [-dcs]"
-            exit 0
-            ;;
-    esac
-done
+diag_handle_args()
+{
+    # Handle standard test arguments
+    while getopts "?hdcs" opt; do
+        case ${opt} in
+            d)  printf "%-16s %s\n" "$diag_testname:" "$description"
+                exit 0
+                ;;
+            c)  echo "#"
+                if ! diagconfig 2>/dev/null; then
+                    echo "# $diag_testname: no default available"
+                fi
+                exit 0
+                ;;
+            s)  diag_sanity=1
+                ;;
+            *)  echo "Usage: $diag_testname [-dcs]"
+                exit 0
+                ;;
+        esac
+    done
+}
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

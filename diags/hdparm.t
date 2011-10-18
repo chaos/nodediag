@@ -27,31 +27,36 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check hard drive read performance"
-declare -r sanity=0
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+# no diagconfig() == no reasonable default config
+
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_HDPARM_DEV"
-diag_check_root
 
-i=0
-for dev in ${DIAG_HDPARM_DEV[@]}; do
+numdev=${#DIAG_HDPARM_DEV[@]}
+[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ $numdev -gt 0 ] || diag_plan_skip "not configured"
+diag_sanity && diag_plan_skip "takes too long for sanity testing"
+diag_plan $numdev
+
+for i in $(seq 0 $(($numdev - 1))); do
+    dev=${DIAG_HDPARM_DEV[$i]}
     if [ ! -b $dev ]; then
-        diag_fail "$dev is not a block device"
-    fi
-    diag_msg "$dev is a block device"
-    if [ -n "${DIAG_HDPARM_MIN_MBSEC[$i]}" ]; then
+        diag_fail "$dev: is not a block device"
+    elif ! [ -n "${DIAG_HDPARM_MIN_MBSEC[$i]}" ]; then
+        diag_skip "$dev: performance test not configured"
+    else
         speed=${DIAG_HDPARM_MIN_MBSEC[$i]}
-        gotspeed=`/sbin/hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
+        gotspeed=`hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
         if [ $gotspeed -lt $speed ]; then
             diag_fail "$dev speed $gotspeed MB/s, expected $speed $MB/s"
+        else
+            diag_ok "$dev speed $gotspeed MB/s"
         fi
-        diag_msg "$dev speed $gotspeed MB/s"
     fi
-    i=$(($i + 1))
 done
-diag_ok "$i devices checked"
+exit 0
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

@@ -27,9 +27,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check for expected amount of swap"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 swaptot()
 {
@@ -42,13 +41,15 @@ diagconfig()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_SWAP_KB"
+[ -n "$DIAG_SWAP_KB" ] || diag_plan_skip "not configured"
+diag_plan 1
 
 swapkb=`swaptot`
 if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
     diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
+else
+    diag_ok "swaptotal $swapkb Kb"
 fi
-diag_ok "swaptotal $swapkb Kb"
 
 # vi: expandtab sw=4 ts=4
 # vi: syntax=sh

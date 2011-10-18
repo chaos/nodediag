@@ -27,9 +27,8 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check number of CPU cores"
-declare -r sanity=1
 
-source ${NODEDIAGDIR:-/etc/nodediag.d}/functions
+source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 cpucount()
 {
@@ -42,7 +41,8 @@ diagconfig()
 }
 
 diag_handle_args "$@"
-diag_check_defined "DIAG_CPUCOUNT"
+[ -n "$DIAG_CPUCOUNT" ] || diag_plan_skip "not configured"
+diag_plan 1
 
 count=`cpucount`
 if [ "$count" != "$DIAG_CPUCOUNT" ]; then
