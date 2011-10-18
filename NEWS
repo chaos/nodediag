@@ -1,4 +1,24 @@
 =========================================================================
+Release Notes for nodediag version 1.2.1                      18 Oct 2011
+=========================================================================
+
+* Rewrite nodediag script in Perl using TAP::Harness framework (issue 5)
+
+* Add functions-tap, and rewrite shipped diags to use functions-tap.
+  Now the tests use the TAP standard, and can be run by other frameworks
+  such as "prove /etc/nodediag.d".
+
+* Add 'tapwrap.t' test to wrap non-TAP tests provided by other packages.
+  'tapwrap.t' and 'functions' can be removed after other packages update.
+
+* Consolidate dmidecode-scanning tests into 'dmi.t'.
+
+* Allow regex in 'dmi.t' test configuration (issue 6)
+  e.g. DIAG_MOTHERVER_NUM="1\.[1-2]"
+  Both direct matches (no regex) and regex matches will be successful,
+  to allow regex characters to appear as expected values without quoting.
+
+=========================================================================
 Release Notes for nodediag version 1.1-1                      10 Oct 2011
 =========================================================================
 
