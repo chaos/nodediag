@@ -1,4 +1,15 @@
 =========================================================================
+Release Notes for nodediag version 1.2.2                      19 Oct 2011
+=========================================================================
+
+Fix the following issues:
+. /etc/nodediag.d/tw.t: line 78: [: too many arguments (issue 10)
+. tapwrap diag fails unconditionally (issue 9)
+. -v option negates effect of -x (issue 8)
+
+Misc. cleanup of manpage and scripts.
+
+=========================================================================
 Release Notes for nodediag version 1.2.1                      18 Oct 2011
 =========================================================================
 
