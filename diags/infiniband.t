@@ -46,7 +46,7 @@ for i in $(seq 0 $(($numdev - 1))); do
     retrysec=${DIAG_INFINIBAND_RETRY_SEC:-"10"}
     linkup=0
     while [ $retries -ge 0 ] && [ $linkup -eq 0 ]; do
-        gotlink=`ibstat $dev | awk '/Physical state:/ { print $3 }'`
+        gotlink=$(ibstat $dev | awk '/Physical state:/ { print $3 }')
         if [ "$gotlink" == "LinkUp" ]; then
             linkup=1
         else
@@ -66,7 +66,7 @@ for i in $(seq 0 $(($numdev - 1))); do
     # now that link is up, check the speed
     speed=${DIAG_INFINIBAND_RATE[$i]}
     if [ -n "$speed" ]; then
-        gotspeed=`/usr/sbin/ibstat $dev | awk '/Rate:/ { print $2 }'`
+        gotspeed=$(/usr/sbin/ibstat $dev | awk '/Rate:/ { print $2 }')
         if [ "$speed" != "$gotspeed" ]; then
             diag_fail "$dev rate $gotspeed, expected $speed"
         else

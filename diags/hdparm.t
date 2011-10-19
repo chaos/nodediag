@@ -49,7 +49,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         diag_skip "$dev: performance test not configured"
     else
         speed=${DIAG_HDPARM_MIN_MBSEC[$i]}
-        gotspeed=`hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }'`
+        gotspeed=$(hdparm -t $dev | awk '/.*reads:/ { printf "%d", $11 }')
         if [ $gotspeed -lt $speed ]; then
             diag_fail "$dev speed $gotspeed MB/s, expected $speed $MB/s"
         else

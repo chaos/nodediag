@@ -23,90 +23,51 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r diagdir=${NODEDIAGDIR:-/etc/nodediag.d}
-declare -r description="Run any non-TAP tests in $diagdir"
-testopts=""
-
-source $diagdir/functions
-
-testold()
-{
-    local num=$1
-    local t=$2
-    local line
-
-    $diagdir/$t $testopts 2>&1 | while read line; do
-         echo "# $line"
-    done
-    case ${PIPESTATUS[0]} in
-        $EXIT_SKIP)
-            echo "ok $num # skip" "non-TAP test $t returned EXIT_SKIP"
-            ;;
-        $EXIT_FAIL)
-            echo "not ok $num" "- non-TAP test $t returned EXIT_FAIL"
-            ;;
-        $EXIT_PASS)
-            echo "ok $num" "- non-TAP test $t returned EXIT_PASS"
-            ;;
-    esac
-}
 
 listold()
 {
-    local file
-
     pushd $diagdir >/dev/null
-    shopt -s nullglob
-    for file in *; do
-        case $file in
-            *.t|functions*)
-                ;;
-            *)
-                echo -n "$file "
-                ;;
-        esac
-    done
+    shopt -s nullglob 
+    GLOBIGNORE="*.t:functions:functions-*"; echo *; unset GLOBIGNORE
     shopt -u nullglob
     popd >/dev/null
 }
 
-#
-# MAIN
-#
+declare -r testnames=$(listold)
+declare -r description="Run non-TAP tests: ${testnames:-(none)}"
 
-oldfiles=`listold`
+source $diagdir/functions-tap || exit 1
 
-opt=""
-while getopts "?hdcs" opt; do
-    case ${opt} in
-        d)  printf "%-16s %s\n" "tapwrap:" "Run non-TAP tests: ${oldfiles:-(none)}"
-            exit 0
-            ;;
-        c)  for file in $oldfiles; do
-                $diagdir/$file -c
-            done
-            exit 0
-            ;;
-        s)  testopts="$testopts -s"
-            ;;
-        *)  echo "Usage: tapwrap.t [-dcs]"
-            exit 0
-         ;;
+diagconfig()
+{
+    local name
+    for name in $testnames; do $diagdir/$name -c; done
+}
+nargs()
+{
+    echo $#
+}
+
+diag_handle_args "$@"
+numtests=$(nargs $testnames)
+[ $numtests -gt 0 ] || diag_plan_skip "all tests are TAP compliant"
+diag_plan $numtests
+
+diag_sanity && testopts="-s"
+
+for name in $testnames; do
+    $diagdir/$name $testopts 2>&1 | while read line; do
+        diag_msg "$line"
+    done
+    msg="non-TAP test $name exited with status ${PIPESTATUS[0]}"
+    case ${PIPESTATUS[0]} in
+        0)  diag_ok $msg ;;
+        2)  diag_skip $msg ;;
+        *)  diag_fail $msg ;;
     esac
-done
-
-count=`echo $oldfiles| wc -w`
-if [ $count -eq 0 ]; then
-    echo "1..0 # Skipped: all tests are TAP compliant"
-else
-    echo "1..$count"
-fi
-
-num=1
-for file in $oldfiles; do
-    testold $num $file
-    num=$(($num + 1))
 done
 exit 0
 

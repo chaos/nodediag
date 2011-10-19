@@ -47,13 +47,13 @@ nargs ()
 
 diagconfig ()
 {
-    local hosts=`list_adapt`
-    local host=`list_adapt | tail -1`
-    local num=`nargs $hosts`
+    local hosts=$(list_adapt)
+    local host=$(list_adapt | tail -1)
+    local num=$(nargs $hosts)
 
     echo "DIAG_TW_NUM=\"$num\""
     if [ $num -gt 0 ]; then
-        echo "DIAG_TW_FW=\"`get_fw $host`\""
+        echo "DIAG_TW_FW=\"$(get_fw $host)\""
     fi
 }
 
@@ -61,8 +61,8 @@ diag_handle_args "$@"
 [ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
 [ -n "$DIAG_TW_NUM" ] || diag_plan_skip "not configured"
 which tw_cli >/dev/null 2>&1 || diag_plan_skip "tw_cli is not installed"
-hosts=`list_adapt`
-num=`nargs $hosts`
+hosts=$(list_adapt)
+num=$(nargs $hosts)
 diag_plan $(($num + 1))
 
 if [ $num -eq $DIAG_TW_NUM ]; then
@@ -71,8 +71,8 @@ else
     diag_fail "$num cards, expected $DIAG_TW_NUM"
 fi
 for host in $hosts; do
-    fw=`get_fw $host`
-    h=`basename $host`
+    fw=$(get_fw $host)
+    h=${host##*/}
     if [ -z "$DIAG_TW_FW" ]; then
         diag_skip "$h fw '$fw', expected value not configured"
     elif [ $fw != $DIAG_TW_FW ]; then

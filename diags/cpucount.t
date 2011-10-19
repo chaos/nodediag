@@ -37,14 +37,14 @@ cpucount()
 
 diagconfig()
 {
-    echo "DIAG_CPUCOUNT=\"`cpucount`\""
+    echo "DIAG_CPUCOUNT=\"$(cpucount)\""
 }
 
 diag_handle_args "$@"
 [ -n "$DIAG_CPUCOUNT" ] || diag_plan_skip "not configured"
 diag_plan 1
 
-count=`cpucount`
+count=$(cpucount)
 if [ "$count" != "$DIAG_CPUCOUNT" ]; then
     diag_fail "cpucount $count, expected $DIAG_CPUCOUNT"
 else

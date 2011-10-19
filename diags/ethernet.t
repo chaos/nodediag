@@ -52,11 +52,11 @@ diagconfig ()
 
     shopt -s nullglob
     for file in /sys/class/net/eth*; do
-        dev=`basename $file`
-        link=`getlink $dev`
+        dev=${file##*/}
+        link=$(getlink $dev)
         [ "$link" == "yes" ] || continue
-        speed=`getspeed $dev`
-        duplex=`getduplex $dev`
+        speed=$(getspeed $dev)
+        duplex=$(getduplex $dev)
         echo "DIAG_ETHERNET_DEV[$i]=\"$dev\""
         echo "DIAG_ETHERNET_SPEED[$i]=\"$speed\""
         echo "DIAG_ETHERNET_DUPLEX[$i]=\"$duplex\""
@@ -75,14 +75,14 @@ for i in $(seq 0 $(($numdev - 1))); do
     dev=${DIAG_ETHERNET_DEV[$i]}
     speed=${DIAG_ETHERNET_SPEED[$i]}
     duplex=${DIAG_ETHERNET_DUPLEX[$i]}
-    gotlink=`getlink $dev`
+    gotlink=$(getlink $dev)
     if [ "$gotlink" != "yes" ]; then
         diag_fail "$dev link $gotlink"
     else
         diag_ok "$dev link $gotlink"
     fi
     if [ -n "$speed" ]; then
-        gotspeed=`getspeed $dev`
+        gotspeed=$(getspeed $dev)
         if [ "$speed" != "$gotspeed" ]; then
             diag_fail "$dev speed $gotspeed, expected $speed"
         else
@@ -93,7 +93,7 @@ for i in $(seq 0 $(($numdev - 1))); do
     fi
 
     if [ -n "$duplex" ]; then
-        gotduplex=`getduplex $dev`
+        gotduplex=$(getduplex $dev)
         if [ "$duplex" != "$gotduplex" ]; then
             diag_fail "$dev duplex $gotduplex, expected $duplex"
         else

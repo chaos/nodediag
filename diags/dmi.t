@@ -76,7 +76,7 @@ getmemtype()
 {
     local n
 
-    for n in `dmi_stanza "Memory Device" | awk '/Type:/ { print $2 }'`; do
+    for n in $(dmi_stanza "Memory Device" | awk '/Type:/ { print $2 }'); do
         [ "$n" != "Unknown" ] && [ "$n" != "Flash" ] && echo "$n"
     done
 }
@@ -86,7 +86,7 @@ getmemspeed()
 {
     local n
 
-    for n in `dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'`; do
+    for n in $(dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'); do
         [ "$n" != "Unknown" ] && [ $n -gt 100 ] && echo "$n"
     done
 }
@@ -101,7 +101,7 @@ dmi_check_memtype()
         diag_skip "memtype not configured"
         return
     fi
-    for name in `getmemtype`; do
+    for name in $(getmemtype); do
         i=$(($i + 1))
         if [ "$name" != "$wantval" ] && ! [[ "$name" =~ $wantval ]]; then
             diag_fail "memtype($i) is '$name', expected '$wantval'"
@@ -121,7 +121,7 @@ dmi_check_memspeed()
         diag_skip "memspeed not configured"
         return
     fi
-    for speed in `getmemspeed`; do
+    for speed in $(getmemspeed); do
         i=$(($i + 1))
         if [ "$speed" != "$wantval" ] && ! [[ "$speed" =~ $wantval ]]; then
             diag_fail "memspeed($i) '$speed' MHz, expected '$wantval' MHz"
@@ -153,12 +153,12 @@ diagconfig ()
     dmi_config baseboard-product-name   "DIAG_MOTHERPROD_NAME"
     dmi_config baseboard-version        "DIAG_MOTHERVER_NUM"
 
-    local memtype=`getmemtype|tail -1`
+    local memtype=$(getmemtype|tail -1)
     if [ -n "$memtype" ]; then
         echo "DIAG_MEMTYPE_NAME=\"$memtype\""
     fi
 
-    local memspeed=`getmemspeed | tail -1`
+    local memspeed=$(getmemspeed | tail -1)
     if [ -n "$memspeed" ]; then
         echo "DIAG_MEMSPEED_MHZ=\"$memspeed\""
     fi

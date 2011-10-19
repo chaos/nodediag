@@ -26,7 +26,8 @@
 #
 # The following functions can be called from nodediag tests.
 #
-declare -r diag_testname=`basename $0 | sed -e 's/\.t$//'`
+diag_testname=${0##*/}
+declare -r diag_testname=${diag_testname%%.t}
 source /etc/sysconfig/nodediag
 if [ -r /etc/sysconfig/nodediag.d/$diag_testname ]; then
     source /etc/sysconfig/nodediag.d/$diag_testname

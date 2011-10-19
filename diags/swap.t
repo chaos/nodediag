@@ -37,14 +37,14 @@ swaptot()
 
 diagconfig()
 {
-    echo "DIAG_SWAP_KB=\"`swaptot`\""
+    echo "DIAG_SWAP_KB=\"$(swaptot)\""
 }
 
 diag_handle_args "$@"
 [ -n "$DIAG_SWAP_KB" ] || diag_plan_skip "not configured"
 diag_plan 1
 
-swapkb=`swaptot`
+swapkb=$(swaptot)
 if [ "$swapkb" != "$DIAG_SWAP_KB" ]; then
     diag_fail "swaptotal $swapkb Kb, expected $DIAG_SWAP_KB Kb"
 else

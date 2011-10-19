@@ -48,22 +48,22 @@ nargs ()
 
 diagconfig ()
 {
-    local hosts=`list_adapt`
-    local host=`list_adapt | tail -1`
-    local num=`nargs $hosts`
+    local hosts=$(list_adapt)
+    local host=$(list_adapt | tail -1)
+    local num=$(nargs $hosts)
 
     echo "DIAG_MPT2SAS_NUM=\"$num\""
     if [ $num -gt 0 ]; then
-        echo "DIAG_MPT2SAS_FW=\"`cat $host/version_fw`\""
-        echo "DIAG_MPT2SAS_BIOS=\"`cat $host/version_bios`\""
+        echo "DIAG_MPT2SAS_FW=\"$(cat $host/version_fw$)\""
+        echo "DIAG_MPT2SAS_BIOS=\"$(cat $host/version_bios)\""
     fi
 }
 
 diag_handle_args "$@"
 [ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
 [ -n "$DIAG_MPT2SAS_NUM" ] || diag_plan_skip "not configured"
-hosts=`list_adapt`
-num=`nargs $hosts`
+hosts=$(list_adapt)
+num=$(nargs $hosts)
 diag_plan $((($num * 2) + 1))
 
 if [ $num -ne $DIAG_MPT2SAS_NUM ]; then
@@ -72,8 +72,8 @@ else
     diag_ok "$num cards"
 fi
 for host in $hosts; do
-    fw=`cat $host/version_fw`
-    h=`basename $host`
+    fw=$(cat $host/version_fw)
+    h=${host##*/}
     if [ -z "$DIAG_MPT2SAS_FW" ]; then
         diag_skip "$h fw '$fw', expected value not configured"
     elif [ $fw != $DIAG_MPT2SAS_FW ]; then
@@ -81,7 +81,7 @@ for host in $hosts; do
     else
         diag_ok "$h fw '$fw'"
     fi
-    bios=`cat $host/version_bios`
+    bios=$(cat $host/version_bios)
     if [ -z "$DIAG_MPT2SAS_BIOS" ]; then
         diag_skip "$h bios '$bios', expected value not configured"
     elif [ $bios != $DIAG_MPT2SAS_BIOS ]; then

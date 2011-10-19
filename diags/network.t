@@ -47,17 +47,17 @@ diagconfig ()
 
     shopt -s nullglob 
     for file in /sys/class/net/*; do
-        dev=`basename $file` 
+        dev=${file##*/}
         case $dev in
             eth*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"`getmtu`\""
+                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu)\""
                 i=$(($i+1))
                 ;;
             ib*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"`getmtu`\""
-                echo "DIAG_NETWORK_MODE[$i]=\"`getmode`\""
+                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu)\""
+                echo "DIAG_NETWORK_MODE[$i]=\"$(getmode)\""
                 i=$(($i+1))
                 ;;
         esac
@@ -86,7 +86,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         diag_fail "$dev does not exst"
     fi
     if [ -n "$mtu" ]; then
-        gotmtu=`getmtu $dev`
+        gotmtu=$(getmtu $dev)
         if [ "$mtu" != "$gotmtu" ]; then
             diag_fail "$dev mtu '$gotmtu', expected '$mtu'"
         else
@@ -94,7 +94,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         fi
     fi
     if [ -n "$mode" ]; then
-        gotmode=`getmode $dev`
+        gotmode=$(getmode $dev)
         if [ "$mode" != "$gotmode" ]; then
             diag_fail "$dev mtu '$gotmode', expected '$mode'"
         else
