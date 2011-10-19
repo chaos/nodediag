@@ -64,36 +64,16 @@ Produce default output for the /etc/sysconfig/nodediag file for this test.
 \fI-s\fR
 Run only a sanity (quick) version of the test.
 .LP
-Convenience functions in /etc/nodediag.d/functions can be used if desired.
-A simple test utilizing these functions might look like this:
+Bash convenience functions in /etc/nodediag.d/functions-tap can be used
+if desired.  For more information and examples that use these functions,
+refer to the \fBnodediag\fR test writing primer at
 .IP
-.nf
-#!/bin/bash
-
-declare -r description="Check crash dump count"
-
-source /etc/nodediag.d/functions-tap || exit 1
-
-diagconfig () {
-  echo "DIAG_DUMPS_MAX=1"
-}
-diag_handle_args "$@"
-test -n "$DIAG_DUMPS_MAX" || diag_plan_skip "not configured"
-test -d /var/dumps || diag_plan_skip "/var/dumps is missing"
-diag_plan 1
-
-diag_msg "counting crash dumps"
-shopt -s nullglob; i=$(echo /var/dumps/*|wc -w); shopt -u nullglob
-if test $i -gt $DIAG_DUMPS_MAX; then
-  diag_fail "$i dumps found, max is $DIAG_DUMPS_MAX"
-else
-  diag_ok "$i dumps found"
-fi
-exit 0
-.fi
+http://code.google.com/p/nodediag/wiki/Writing_Tests
 .LP
-Alternatively, tests can use the many TAP resources available to generate
-TAP output.  See http://testanything.org/wiki/index.php/TAP_Producers.
+Alternatively, tests be written in any language as standalone programs
+or utilizing TAP libraries available from
+.IP
+http://testanything.org/wiki/index.php/TAP_Producers
 .LP
 Because the tests follow the TAP standard, they can be run under
 the perl \fBprove\fR command, e.g.
