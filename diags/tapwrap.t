@@ -62,8 +62,9 @@ for name in $testnames; do
     $diagdir/$name $testopts 2>&1 | while read line; do
         diag_msg "$line"
     done
-    msg="non-TAP test $name exited with status ${PIPESTATUS[0]}"
-    case ${PIPESTATUS[0]} in
+    rc=${PIPESTATUS[0]}
+    msg="non-TAP test $name exited with status $rc"
+    case $rc in
         0)  diag_ok $msg ;;
         2)  diag_skip $msg ;;
         *)  diag_fail $msg ;;
