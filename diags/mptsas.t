@@ -73,18 +73,18 @@ else
 fi
 
 for host in $hosts; do
-    fw=$(cat $host/version_fw)
+    fw="$(cat $host/version_fw)"
     if [ -z "$DIAG_MPTSAS_FW" ]; then
         diag_skip "$h fw '$fw', expected value not configured"
-    elif [ $fw != $DIAG_MPTSAS_FW ]; then
+    elif [ $fw != "$DIAG_MPTSAS_FW" ]; then
         diag_fail "$h fw '$fw', expected '$DIAG_MPTSAS_FW'"
     else
         diag_ok "$h fw '$fw'"
     fi
-    bios=$(cat $host/version_bios)
+    bios="$(cat $host/version_bios)"
     if [ -z "$DIAG_MPTSAS_BIOS" ]; then
         diag_skip "$h bios '$bios', expected value not configured"
-    elif [ $bios != $DIAG_MPTSAS_BIOS ]; then
+    elif [ "$bios" != "$DIAG_MPTSAS_BIOS" ]; then
         diag_fail "$h bios '$bios', expected '$DIAG_MPTSAS_BIOS'"
     else
         diag_ok "$h bios '$bios'"

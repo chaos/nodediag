@@ -75,7 +75,7 @@ for host in $hosts; do
     h=${host##*/}
     if [ -z "$DIAG_TW_FW" ]; then
         diag_skip "$h fw '$fw', expected value not configured"
-    elif [ $fw != $DIAG_TW_FW ]; then
+    elif [ "$fw" != "$DIAG_TW_FW" ]; then
         diag_fail "$h fw '$fw', expected '$DIAG_TW_FW'"
     else
         diag_ok "$h fw '$fw'"

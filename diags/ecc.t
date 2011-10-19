@@ -63,8 +63,8 @@ if [ $num -eq 0 ]; then
 else
     diag_ok "ECC is enabled"
     for csrow in $csrows; do
-        ecctype=$(cat $csrow);
-        if [ "$ecctype" != $DIAG_ECC_TYPE ]; then
+        ecctype="$(cat $csrow)";
+        if [ "$ecctype" != "$DIAG_ECC_TYPE" ]; then
             diag_fail "$csrow: $ecctype, expected $DIAG_ECC_TYPE"
         else
             diag_ok "$csrow: $ecctype"

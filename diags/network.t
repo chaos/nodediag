@@ -86,7 +86,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         diag_fail "$dev does not exst"
     fi
     if [ -n "$mtu" ]; then
-        gotmtu=$(getmtu $dev)
+        gotmtu="$(getmtu $dev)"
         if [ "$mtu" != "$gotmtu" ]; then
             diag_fail "$dev mtu '$gotmtu', expected '$mtu'"
         else
@@ -94,7 +94,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         fi
     fi
     if [ -n "$mode" ]; then
-        gotmode=$(getmode $dev)
+        gotmode="$(getmode $dev)"
         if [ "$mode" != "$gotmode" ]; then
             diag_fail "$dev mtu '$gotmode', expected '$mode'"
         else
