@@ -51,7 +51,7 @@ Usage: $prog [OPTIONS] [test [test]...]
    -h, --help           Display usage message
 EOF
 
-our %conf = ();
+my %conf = ();
 
 parse_cmdline ();
 
@@ -99,16 +99,20 @@ sub run_tests
     my $formatter = TAP::Formatter::Nodediag->new (
         { color => (($conf{plain} || ! -t STDOUT) ? 0 : 1) },
     );
+    my $verbosity;
+    my $flags = 0;
 
-    if ($conf{verbose}) {         # show result of each test and raw test output
-        $formatter->verbosity(1);
-    } elsif ($conf{failonly}) {   # show result of failures only
-        $formatter->verbosity(-1);
-    } elsif ($conf{quiet}) {      # show nothing
-        $formatter->verbosity(-2);
+    if ($conf{failonly}) {
+        $verbosity = -1;    # show failed results only
+    } elsif ($conf{quiet}) {
+        $verbosity = -2;    # suppress everything
     } else {
-        $formatter->verbosity(0); # show result of each test
+        $verbosity = 0;     # show indiv. test results
     }
+    # N.B. see comment in TAP::Formatter::Nodediag
+    $verbosity += 0x10 if $conf{verbose};
+    $verbosity += 0x20 if $conf{firstfail};
+    $formatter->verbosity($verbosity);
         
     my $harness = TAP::Harness->new(
         { formatter => $formatter },
