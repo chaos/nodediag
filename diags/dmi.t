@@ -147,6 +147,9 @@ dmi_config()
 
 diagconfig ()
 {
+    [ "$(id -u)" -eq 0 ] || return 1
+    which dmidecode >/dev/null 2>&1 || return 1
+
     dmi_config bios-release-date        "DIAG_BIOS_DATE"
     dmi_config processor-frequency      "DIAG_CPUFREQ_MHZ"
     dmi_config processor-version        "DIAG_CPU_VERSION"
@@ -170,6 +173,8 @@ diagconfig ()
 
 diag_handle_args "$@"
 [ "$(id -u)" -eq 0 ] || diag_plan_skip "test requires root"
+which dmidecode >/dev/null 2>&1 || diag_plan_skip "dmidecode not installed"
+
 diag_plan 7
 
 dmi_check bios-release-date         "${DIAG_BIOS_DATE}"

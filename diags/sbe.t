@@ -32,6 +32,8 @@ source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 diagconfig ()
 {
+    which edac-util 2>/dev/null 1>&2 || return 1
+    
     if edac-util -s >/dev/null; then
         echo "DIAG_SBE_COUNT=\"500\""
     else

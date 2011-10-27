@@ -47,6 +47,9 @@ nargs ()
 
 diagconfig ()
 {
+    [ $(id -u) -eq 0 ] || return 1
+    which tw_cli >/dev/null 2>&1 || return 1
+
     local hosts=$(list_adapt)
     local host=$(list_adapt | tail -1)
     local num=$(nargs $hosts)

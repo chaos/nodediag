@@ -48,6 +48,8 @@ nargs ()
 
 diagconfig ()
 {
+    [ $(id -u) -eq 0 ] || return 1
+
     local hosts=$(list_adapt)
     local host=$(list_adapt | tail -1)
     local num=$(nargs $hosts)

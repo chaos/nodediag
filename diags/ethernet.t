@@ -47,6 +47,10 @@ getduplex()
 
 diagconfig ()
 {
+
+    [ $(id -u) -eq 0 ] || return 1
+    which ethtool >/dev/null 2>&1 || return 1
+
     local file dev link speed duplex
     local i=0
 
@@ -68,6 +72,7 @@ diagconfig ()
 diag_handle_args "$@"
 numdev=${#DIAG_ETHERNET_DEV[@]}
 [ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+which ethtool >/dev/null 2>&1 || diag_plan_skip "ethtool is not installed"
 [ $numdev -gt 0 ] || diag_plan_skip "not configured"
 diag_plan $(($numdev * 3))
 
