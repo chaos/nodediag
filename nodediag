@@ -149,7 +149,7 @@ sub parse_cmdline
     $conf{sanity} = 0;
     $conf{forever} = 0;
     $conf{testdir} = "/etc/nodediag.d";
-    $conf{jobs} = 4;
+    $conf{jobs} = 0;
 
     my $rc = GetOptions (
         "help|h!"         => \$help,
@@ -165,6 +165,15 @@ sub parse_cmdline
         "testdir|d=s"     => \$conf{testdir},
         "jobs|j=i"        => \$conf{jobs},
     );
+
+    # set default -j if non specified on command line
+    if ($conf{jobs} == 0) {
+        if ($conf{config}) {
+            $conf{jobs} = 1;  # see issue 11
+        } else {
+            $conf{jobs} = 4;
+        }
+    }
 
     log_fatal ("use only one of -v or -q\n") if $conf{quiet} && $conf{verbose};
     usage() if $help || !$rc;
