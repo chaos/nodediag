@@ -72,6 +72,17 @@ dmi_stanza()
     dmidecode | awk '/'"$1"'$/,/^$/'
 }
 
+getmemtot()
+{
+    local n
+    local total=0
+
+    for n in `dmi_stanza "Memory Device" | awk '/Size:.*MB/ { print $2 }'`; do
+        [ "$n" != "No" ] && total=$(($total + $n))
+    done
+    echo $total
+}
+
 getmemtype()
 {
     local n
@@ -89,6 +100,22 @@ getmemspeed()
     for n in $(dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'); do
         [ "$n" != "Unknown" ] && [ $n -gt 100 ] && echo "$n"
     done
+}
+
+dmi_check_memtot()
+{
+    local wantval="$1"
+
+    if [ -z "$wantval" ]; then
+        diag_skip "memtot not configured"
+        return
+    fi
+    local memtot=$(getmemtot)
+    if [ "$memtot" != "$wantval" ]; then
+        diag_fail "memtot is '$memtot' MB, expected '$wantval' MB"
+        return
+    fi
+    diag_ok "memtot is '$memtot' MB"
 }
 
 dmi_check_memtype()
@@ -134,15 +161,8 @@ dmi_check_memspeed()
 # Usage: diag_config_dmi keyword variable
 dmi_config()
 {
-    local val
-    local rc=1
-
-    if [ $(id -u) -eq 0 ]; then
-        val=$(dmidecode -s $1|tail -1|dmi_normalize_whitespace)
-        echo "$2=\"$val\""
-        rc=0
-    fi
-    return $rc
+    local val=$(dmidecode -s $1|tail -1|dmi_normalize_whitespace)
+    echo "$2=\"$val\""
 } 
 
 diagconfig ()
@@ -165,6 +185,11 @@ diagconfig ()
     if [ -n "$memspeed" ]; then
         echo "DIAG_MEMSPEED_MHZ=\"$memspeed\""
     fi
+
+    local memtot=$(getmemtot)
+    if [ -n "$memtot" ]; then
+        echo "DIAG_MEMORY_TOTAL_MB=\"$memtot\""
+    fi 
 }
 
 ##
@@ -175,13 +200,14 @@ diag_handle_args "$@"
 [ "$(id -u)" -eq 0 ] || diag_plan_skip "test requires root"
 which dmidecode >/dev/null 2>&1 || diag_plan_skip "dmidecode not installed"
 
-diag_plan 7
+diag_plan 8
 
 dmi_check bios-release-date         "${DIAG_BIOS_DATE}"
 dmi_check processor-frequency       "${DIAG_CPUFREQ_MHZ}"
 dmi_check processor-version         "${DIAG_CPU_VERSION}"
 dmi_check baseboard-product-name    "${DIAG_MOTHERPROD_NAME}"
 dmi_check baseboard-version         "${DIAG_MOTHERVER_NUM}"
+dmi_check_memtot                    "${DIAG_MEMORY_TOTAL_MB}"
 dmi_check_memtype                   "${DIAG_MEMTYPE_NAME}"
 dmi_check_memspeed                  "${DIAG_MEMSPEED_MHZ}"
 
