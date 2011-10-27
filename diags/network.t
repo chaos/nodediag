@@ -51,13 +51,13 @@ diagconfig ()
         case $dev in
             eth*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu)\""
+                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu $dev)\""
                 i=$(($i+1))
                 ;;
             ib*)
                 echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu)\""
-                echo "DIAG_NETWORK_MODE[$i]=\"$(getmode)\""
+                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu $dev)\""
+                echo "DIAG_NETWORK_MODE[$i]=\"$(getmode $dev)\""
                 i=$(($i+1))
                 ;;
         esac
