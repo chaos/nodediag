@@ -1,4 +1,14 @@
 =========================================================================
+Release Notes for nodediag version 1.2.3                      27 Oct 2011
+=========================================================================
+
+Fix the following issues:
+. Re-add missing DIAG_MEMORY_TOTAL_MB test (issue 12)
+. Handle missing prereqs in nodediag -c (issue 14)
+. network diag: include MTU in config (issue 13)
+. Run nodediag -c serially (issue 11)
+
+=========================================================================
 Release Notes for nodediag version 1.2.2                      19 Oct 2011
 =========================================================================
 
