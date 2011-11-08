@@ -1,39 +1,91 @@
-Other packages that want to make use of nodediag can add a test to
-/etc/nodediag.d.  Configs should go into /etc/sysconfig/nodediag.d/
+Extracted from http://code.google.com/p/nodediag/wiki/Writing_Tests:
 
-Use one of the tests in /etc/nodediag.d as a template.
+Tests that are installed in /etc/nodediag.d will be executed by the
+nodediag script.  A test could be provided by another package, added by
+cfengine, or provided by the nodediag package. This document explains how
+to write a test.
 
-The test should define the following shell variables:
-  $prog         name of the test
-  $description  one-line description of the test
-  $sanity       (optional) define only if test is quick
+Test Protocol
 
-Tests normally include the following preamble:
-  # Source nodediag config and function library
-  . /etc/nodediag.d/functions || exit 2
-  . /etc/sysconfig/nodediag
-  diag_init
-  diag_handle_args "$@"
+nodediag tests use the Test Anything Protocol (TAP). This is a quasi-standard
+that emerged from the perl community. The testanything.org wiki provides
+background and details on TAP.  The TAP specification page describes TAP
+output format.
 
-These utility functions are available to tests:
-  diag_init
-      Ensures that prog and description are set.  Exits on error.
+In addition to TAP formatted output, nodediag tests must handle three
+arguments:
 
-  diag_handle_args
-      Process arguments common to all tests.  Exits on error or if
-      an option is provided that is handled immediately.
+-d Produce a one-line description of the test’s purpose.
+-c Produce default output for the /etc/sysconfig/nodediag file for this test.
+-s Run only a sanity (quick) version of the test.
 
-  diag_check_defined "VARIABLE"
-      Tests if $VARIABLE is defined.  By convention, variables defined in
-      /etc/sysconfig/nodediag.d/test or /etc/sysconfig/nodediag should be
-      named DIAG_TESTNAME_whatever.  Exits if variable is not defined.
+Tests normally exit with a return code of zero, regardless of whether tests
+failed.  If they exit with a nonzero return code, the test framework may
+flag them as suspect.
 
-  diag_check_root
-      Call this if the test requires root privileges.  Exits if not root.
+TAP tests should be named with a .t suffix.
 
-See /etc/nodediag.d/functions for the implementation.
+You can run a test script directly and observe the output that is produced.
+The same output is shown when you invoke nodediag -v.
 
-The test script should exit one of these ways:
-  exit $EXIT_OK      # test succeeded
-  exit $EXIT_FAIL    # test failed
-  exit $EXIT_NOTRUN  # test could not be run 
+Convenience Functions
+
+Tests written in bash may source a set of convenience functions in
+/etc/nodediag.d/functions-tap. This causes the config files
+/etc/sysconfig/nodediag and /etc/sysconfig/nodediag.d/testname, if any,
+to be sourced so that those variables can be referenced in the test.
+
+Users should define $description as a one-line prose description of the
+test, then source /etc/nodediag.d/functions-tap.
+
+To handle the required arguments, call diag_handle_args "$@".
+
+    -d: $description is printed on stdout.
+        The -d output of all the tests is folded together when
+        you run nodediag -l.
+
+    -s: the accessor function diag_sanity() will return true should your
+        script call it later on. The sanity option indicates that long
+        running tests should be skipped
+
+    -c: a shell function diagconfig() will be called, if defined.
+        This function emits default settings for this test's configuration.
+        The -c output of all the tests is folded together when you run
+        nodediag -c, which becomes a template for /etc/sysconfig/nodediag.
+
+If the test must be aborted call
+
+    diag_plan_skip reason
+
+otherwise call
+
+    diag_plan n
+
+where n is the number of subtests that will be run.  This number must match
+the number of calls to diag_ok, diag_fail, diag_skip, and diag_todo.
+
+For each subtest, call one of the above result reporting functions, e.g.
+
+    diag_ok successfully tested thingie
+
+The diag_msg function can be used to print debugging info which is visible
+in the raw test output (nodediag -v).
+
+When the subtests are comlete, call exit 0.
+
+For a simple example with only one subtest, see diags/cpucount.t.
+Its output looks like this:
+
+    1..1
+    ok 1 - cpucount: cpucount 4
+
+For a more complicated example, see diags/hdparm.t.  This test uses a
+bash array for configuring multiple devices to test. It is skipped if
+not run as root or if the -s,--sanity option was passed to nodediag.
+The number of subtests depends on the number of devices configured.
+
+Its output looks like this:
+
+    1..2
+    ok 1 - hdparm: /dev/mapper/sil_bhafebacddbh speed 258 MB/s
+    ok 2 - hdparm: /dev/mapper/vg_mrhankey-lv_root speed 124 MB/s
