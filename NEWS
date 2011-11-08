@@ -1,11 +1,13 @@
 =========================================================================
-Release Notes for nodediag version 1.2.4                      02 Nov 2011
+Release Notes for nodediag version 1.2.4                      08 Nov 2011
 =========================================================================
 
 * Drop tw.t (3ware) test as it's included (with different name)
   in tw_cli-10.2-2.
 
 * Update README for TAP.
+
+* Add DIAG_CPUCOUNT_ONLINE subtest [Mark Grondona]
 
 =========================================================================
 Release Notes for nodediag version 1.2.3                      27 Oct 2011

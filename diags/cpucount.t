@@ -30,25 +30,56 @@ declare -r description="Check number of CPU cores"
 
 source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
-cpucount()
+cpucount_online()
 {
     grep 'processor[[:space:]]:' /proc/cpuinfo|wc -l
+}
+
+cpucount_present()
+{
+    ls -d1 /sys/devices/system/cpu/cpu* | grep 'cpu[0-9][0-9]*'|wc -l
+}
+
+cpucount_test()
+{
+    local name=$1
+    local expected=$2
+    local actual=$3
+    if [ "$expected" != "$actual" ]; then
+        diag_fail "cpucount $name $actual, expected $expected"
+    else
+        diag_ok "cpucount $name $actual"
+    fi
 }
 
 diagconfig()
 {
     echo "DIAG_CPUCOUNT=\"$(cpucount)\""
+    echo "DIAG_CPUCOUNT=\"$(cpucount_present)\""
+    echo "DIAG_CPUCOUNT_ONLINE=\"$(cpucount_online)\""
 }
 
 diag_handle_args "$@"
-[ -n "$DIAG_CPUCOUNT" ] || diag_plan_skip "not configured"
-diag_plan 1
+#  If DIAG_CPUCOUNT_ONLINE is not set, use DIAG_CPUCOUNT as the
+#   number of cpus online (i.e. online cpucount == present cpucount)
+#
+DIAG_CPUCOUNT_ONLINE=${DIAG_CPUCOUNT_ONLINE:-${DIAG_CPUCOUNT}}
 
-count=$(cpucount)
-if [ "$count" != "$DIAG_CPUCOUNT" ]; then
-    diag_fail "cpucount $count, expected $DIAG_CPUCOUNT"
-else
-    diag_ok "cpucount $count"
+declare -i n=0
+[ -n "$DIAG_CPUCOUNT" ] && let n++
+[ -n "$DIAG_CPUCOUNT_ONLINE" ] && let n++
+[ $n -eq 0 ] && diag_plan_skip "not configured"
+
+diag_plan $n
+
+cpus_present=$(cpucount_present)
+cpus_online=$(cpucount_online)
+
+if [ -n "$DIAG_CPUCOUNT" ]; then
+    cpucount_test "present" $DIAG_CPUCOUNT $cpus_present
+fi
+if [ -n "$DIAG_CPUCOUNT_ONLINE" ]; then
+    cpucount_test "online " $DIAG_CPUCOUNT_ONLINE $cpus_online
 fi
 
 # vi: expandtab sw=4 ts=4
