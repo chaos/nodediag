@@ -54,7 +54,6 @@ cpucount_test()
 
 diagconfig()
 {
-    echo "DIAG_CPUCOUNT=\"$(cpucount)\""
     echo "DIAG_CPUCOUNT=\"$(cpucount_present)\""
     echo "DIAG_CPUCOUNT_ONLINE=\"$(cpucount_online)\""
 }
