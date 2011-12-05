@@ -30,6 +30,29 @@ declare -r description="Check infiniband config"
 
 source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
+diagconfig ()
+{
+    which ibstat >/dev/null 2>&1 || return 1
+
+    local port rate ca
+    local i=0
+
+    echo "DIAG_INFINIBAND_RETRIES=0"
+    echo "DIAG_INFINIBAND_RETRY_SEC=10"
+    for ca in $(ibstat -l); do
+        for port in $(seq 1 2); do
+            dev="$ca $port"
+            rate=$(ibstat $dev 2>/dev/null | grep Rate:|sed -e 's/Rate: //')
+            if [ -n "$rate" ]; then
+                echo "DIAG_INFINIBAND_DEV[$i]=\"$dev\""
+                echo "DIAG_INFINIBAND_RATE[$i]=\"$rate\""
+            fi
+        done
+        i=$(($i+1))
+    done
+}
+
+
 diag_handle_args "$@"
 
 numdev=${#DIAG_INFINIBAND_DEV[@]}
