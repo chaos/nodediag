@@ -7,6 +7,14 @@ Release Notes for nodediag version 1.2.6                      02 Mar 2012
   speed and width.
 
 =========================================================================
+Release Notes for nodediag version 1.2.5                      05 Dec 2011
+=========================================================================
+
+* Fix empty infiniband -c output (chaos bz 1311)
+
+* Fix DIAG_CPUCOUNT listed twice with -c (chaos bz 1330)
+
+=========================================================================
 Release Notes for nodediag version 1.2.4                      08 Nov 2011
 =========================================================================
 
