@@ -53,7 +53,7 @@ diagconfig ()
 }
 
 diag_handle_args "$@"
-[ -n "DIAG_ECC_TYPE" ] || diag_plan_skip "not configured"
+[ -n "$DIAG_ECC_TYPE" ] || diag_plan_skip "not configured"
 
 csrows=$(eccglob)
 num=$(nargs $csrows)
