@@ -1,9 +1,15 @@
 =========================================================================
+Release Notes for nodediag version 1.2.8                      19 Mar 2012
+=========================================================================
+
+* Added clocksource.t test (chaos bz 1492) [Trent D'Hooge]
+
+=========================================================================
 Release Notes for nodediag version 1.2.7                      08 Mar 2012
 =========================================================================
 
-* Fix typo in ecc.t that prevented it from being disabled [Marc Stearman]
-  (chaos bz 1477)
+* Fix typo in ecc.t that prevented it from being disabled (chaos bz 1477)
+  [Marc Stearman]
 
 =========================================================================
 Release Notes for nodediag version 1.2.6                      02 Mar 2012
