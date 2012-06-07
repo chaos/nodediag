@@ -46,9 +46,9 @@ diagconfig ()
             if [ -n "$rate" ]; then
                 echo "DIAG_INFINIBAND_DEV[$i]=\"$dev\""
                 echo "DIAG_INFINIBAND_RATE[$i]=\"$rate\""
+                i=$(($i+1))
             fi
         done
-        i=$(($i+1))
     done
 }
 
