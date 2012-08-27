@@ -111,7 +111,7 @@ dmi_check_memtot()
         return
     fi
     local memtot=$(getmemtot)
-    if [ "$memtot" != "$wantval" ]; then
+    if [ "$memtot" != "$wantval" ] && ! [[ "$memtot" =~ $wantval ]]; then
         diag_fail "memtot is '$memtot' MB, expected '$wantval' MB"
         return
     fi
