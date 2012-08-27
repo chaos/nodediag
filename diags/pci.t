@@ -107,7 +107,7 @@ for i in $(seq 0 $(($numdev - 1))); do
 
     if [ -n "$name" ] && [ -n "$location" ] ; then
         gotname=$(getname $location)
-        if [ "$name" != "$gotname" ]; then
+        if [ "$name" != "$gotname" ] && ! [[ "$gotname" =~ $name ]]; then
             diag_fail "$location name $gotname, expected $name"
         else
             diag_ok "$location name $gotname"
