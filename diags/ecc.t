@@ -42,8 +42,12 @@ eccglob()
 }
 firsttype()
 {
-    set $(eccglob)
-    cat $1
+    local csrows=$(eccglob)
+
+    if [ -n "$csrows" ]; then
+        set $csrows
+        cat $1
+    fi
 }
 diagconfig ()
 {
