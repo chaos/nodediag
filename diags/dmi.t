@@ -42,10 +42,11 @@ source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
 # Usage: ...|diag_normalize_whitespace
 # Remove any hash delimited comments and convert any amount of whitespace
-# into one space.  Remove trailing spaces.
+# into one space.  Remove leading and trailing spaces.
 dmi_normalize_whitespace()
 {
-    sed -e 's/#.*//' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g'
+    sed -e 's/#.*//' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g' \
+                                               -e 's/^[[:space:]]\+//g'
 }
 
 # Usage: diag_test_dmi keyword wantval
@@ -97,7 +98,7 @@ getmemspeed()
 {
     local n
 
-    for n in $(dmi_stanza "Memory Device" | awk '/Speed:/ { print $2 }'); do
+    for n in $(dmi_stanza "Memory Device" | awk '/\tSpeed:/ { print $2 }'); do
         [ "$n" != "Unknown" ] && [ $n -gt 100 ] && echo "$n"
     done
 }
