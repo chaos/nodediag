@@ -55,19 +55,16 @@ getwidth()
 # List pci slots, filtering out bridges and common built-in devices
 lspci_filtered()
 {
-  local line
-
-  lspci -m | while read line; do
-  eval set $line
-  case "$2" in
-    "PCI bridge"|"Host bridge"|"ISA bridge"|"SMBus"|"RAM memory"|"USB Controller"|"IDE interface")
-      ;;
-    *)
-      echo $1
-      ;;
-  esac
-done
+  lspci -m 2>/dev/null | awk -F\" '$2 != "PCI bridge" \
+                                && $2 != "Host bridge" \
+                                && $2 != "ISA bridge" \
+                                && $2 != "SMBus" \
+                                && $2 != "RAM memory" \
+                                && $2 != "USB controller" \
+                                && $2 != "IDE interface" \
+                                {print $1}'
 }
+
 diagconfig()
 {
     [ $(id -u) -eq 0 ] || return 1
@@ -76,7 +73,6 @@ diagconfig()
     local location name speed width
     local i=0
 
-    shopt -s nullglob
     for dev in $(lspci_filtered); do
         speed=$(getspeed $dev)
         [ "$speed" != "unknown" ] && [ ! -z "$speed" ] || continue
@@ -89,7 +85,6 @@ diagconfig()
         echo '#'
         i=$(($i+1))
     done
-    shopt -u nullglob
 }
 
 diag_handle_args "$@"
