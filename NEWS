@@ -1,4 +1,14 @@
 =========================================================================
+Release Notes for nodediag version 1.2.13                     08 Oct 2012
+=========================================================================
+
+* Fix missing pci devices in nodediag -c [issue 20]
+
+* Handle Dell R720 dmi.t parsing problems (chaos bz 1837)
+
+* Fix ecc test hang if now csrows defined in /sys
+
+=========================================================================
 Release Notes for nodediag version 1.2.12                     27 Aug 2012
 =========================================================================
 
