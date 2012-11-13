@@ -34,11 +34,14 @@
 # some ambiguity but it allows the direct match to contain regex chars
 # e.g. "Opteron(tm)" in cputype.
 #
+# NOTE: test mode: set DMIDECODE_DUMP_FILE to point to dmidecode --dump-bin file
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 declare -r description="Check dmi table values"
 
 source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
+
+DMIDECODE="dmidecode ${DMIDECODE_DUMP_FILE:+--from-dump=$DMIDECODE_DUMP_FILE}"
 
 # Usage: ...|diag_normalize_whitespace
 # Remove any hash delimited comments and convert any amount of whitespace
@@ -56,7 +59,7 @@ dmi_check()
     local keyword="$1"
     shift
     local wantval=$(echo $* |dmi_normalize_whitespace)
-    local val=$(dmidecode -s $keyword|tail -1|dmi_normalize_whitespace)
+    local val=$($DMIDECODE -s $keyword|tail -1|dmi_normalize_whitespace)
     if [ -z "$wantval" ]; then
         diag_skip "$keyword not configured"
     elif [ "$val" != "$wantval" ] && ! [[ "$val" =~ $wantval ]]; then
@@ -70,7 +73,7 @@ dmi_check()
 # Filters dmidecode output by stanza title.
 dmi_stanza()
 {
-    dmidecode | awk '/'"$1"'$/,/^$/'
+    $DMIDECODE | awk '/'"$1"'$/,/^$/'
 }
 
 getmemtot()
@@ -162,13 +165,13 @@ dmi_check_memspeed()
 # Usage: diag_config_dmi keyword variable
 dmi_config()
 {
-    local val=$(dmidecode -s $1|tail -1|dmi_normalize_whitespace)
+    local val=$($DMIDECODE -s $1|tail -1|dmi_normalize_whitespace)
     echo "$2=\"$val\""
 } 
 
 diagconfig ()
 {
-    [ "$(id -u)" -eq 0 ] || return 1
+    [ "$(id -u)" -eq 0 ] || test $DMIDECODE_DUMP_FILE || return 1
     which dmidecode >/dev/null 2>&1 || return 1
 
     dmi_config bios-release-date        "DIAG_BIOS_DATE"
@@ -198,7 +201,7 @@ diagconfig ()
 ##
 
 diag_handle_args "$@"
-[ "$(id -u)" -eq 0 ] || diag_plan_skip "test requires root"
+[ "$(id -u)" -eq 0 ] || test $DMIDECODE_DUMP_FILE || diag_plan_skip "test requires root"
 which dmidecode >/dev/null 2>&1 || diag_plan_skip "dmidecode not installed"
 
 diag_plan 8

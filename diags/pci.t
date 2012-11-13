@@ -24,11 +24,15 @@
 # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
 
+# NOTE: test mode: set LSPCI_DUMP_FILE to point to lspci -xxxx dump file
+
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
 declare -r description="Check PCI cards"
 
 source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
+
+LSPCI="lspci ${LSPCI_DUMP_FILE:+-F$LSPCI_DUMP_FILE}"
 
 normalize_whitespace()
 {
@@ -37,25 +41,25 @@ normalize_whitespace()
 }
 getname()
 {
-  lspci -s $1 2>/dev/null| awk -F':' '{print $3}'|normalize_whitespace
+  $LSPCI -s $1 2>/dev/null| awk -F':' '{print $3}'|normalize_whitespace
 }
 
 # Get bus width for specified slot
 getspeed()
 {
-  lspci -s $1 -vv 2>/dev/null| awk '{gsub(",","")} /LnkSta:/ {print $3}'
+  $LSPCI -s $1 -vv 2>/dev/null| awk '{gsub(",","")} /LnkSta:/ {print $3}'
 }
 
 # Get bus width for specified slot
 getwidth()
 {
-  lspci -s $1 -vv 2>/dev/null| awk '{gsub(",","")} /LnkSta:/ {print $5}'
+  $LSPCI -s $1 -vv 2>/dev/null| awk '{gsub(",","")} /LnkSta:/ {print $5}'
 }
 
 # List pci slots, filtering out bridges and common built-in devices
 lspci_filtered()
 {
-  lspci -m 2>/dev/null | awk -F\" '$2 != "PCI bridge" \
+  $LSPCI -m 2>/dev/null | awk -F\" '$2 != "PCI bridge" \
                                 && $2 != "Host bridge" \
                                 && $2 != "ISA bridge" \
                                 && $2 != "SMBus" \
@@ -67,7 +71,7 @@ lspci_filtered()
 
 diagconfig()
 {
-    [ $(id -u) -eq 0 ] || return 1
+    [ $(id -u) -eq 0 ] || test $LSPCI_DUMP_FILE || return 1
     which lspci >/dev/null 2>&1 || return 1
 
     local location name speed width
@@ -89,7 +93,7 @@ diagconfig()
 
 diag_handle_args "$@"
 numdev=${#DIAG_PCI_SLOT[@]}
-[ $(id -u) -eq 0 ] || diag_plan_skip "test requires root"
+[ $(id -u) -eq 0 ] || test $LSPCI_DUMP_FILE || diag_plan_skip "test requires root"
 which lspci >/dev/null 2>&1 || diag_plan_skip "lspci is not installed"
 [ $numdev -gt 0 ] || diag_plan_skip "not configured"
 diag_plan $(($numdev * 3))

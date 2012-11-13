@@ -1,0 +1,37 @@
+#!/bin/bash
+
+export NODEDIAGDIR=../diags
+
+for file in */dmidecode; do
+	export DMIDECODE_DUMP_FILE=$file
+	for cfg in $(dirname $file)/dmi*.conf; do
+		export NODEDIAGCONF=$cfg
+		$NODEDIAGDIR/dmi.t
+	done
+	unset NODEDIAGCONF
+	tmpfile=$(mktemp) || exit 1
+	$NODEDIAGDIR/dmi.t -c >$tmpfile
+	if diff -q $(dirname $file)/dmi.conf $tmpfile; then
+		echo $(dirname $file): config file OK
+	else
+		echo $(dirname $file): config file FAIL
+	fi
+	rm -f $tmpfile
+done
+
+for file in */lspci; do
+	export LSPCI_DUMP_FILE=$file
+	for cfg in $(dirname $file)/pci*.conf; do
+		export NODEDIAGCONF=$cfg
+		$NODEDIAGDIR/pci.t
+	done
+	unset NODEDIAGCONF
+	tmpfile=$(mktemp) || exit 1
+	$NODEDIAGDIR/pci.t -c >$tmpfile
+	if diff -q $(dirname $file)/pci.conf $tmpfile; then
+		echo $(dirname $file): config file OK
+	else
+		echo $(dirname $file): config file FAIL
+	fi
+	rm -f $tmpfile
+done

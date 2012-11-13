@@ -28,9 +28,13 @@
 #
 diag_testname=${0##*/}
 declare -r diag_testname=${diag_testname%%.t}
-source /etc/sysconfig/nodediag
-if [ -r /etc/sysconfig/nodediag.d/$diag_testname ]; then
-    source /etc/sysconfig/nodediag.d/$diag_testname
+if test $NODEDIAGCONF; then
+    source $NODEDIAGCONF
+else
+    source /etc/sysconfig/nodediag
+    if [ -r /etc/sysconfig/nodediag.d/$diag_testname ]; then
+        source /etc/sysconfig/nodediag.d/$diag_testname
+    fi
 fi
 
 diag_testnum=1

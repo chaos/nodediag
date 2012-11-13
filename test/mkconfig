@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export NODEDIAGDIR=../diags
+
+for file in */dmidecode; do
+	export DMIDECODE_DUMP_FILE=$file
+	$NODEDIAGDIR/dmi.t -c >$(dirname $file)/dmi.conf
+done
+
+for file in */lspci; do
+	export LSPCI_DUMP_FILE=$file
+	$NODEDIAGDIR/pci.t -c >$(dirname $file)/pci.conf
+done
