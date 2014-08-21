@@ -1,3 +1,8 @@
+To create dumps for a new platform:
+
+  lspci -x >${platform}/lspci
+  dmidecode --dump-bin >${platform}/dmidecode
+
 H8DA3-2  - supermicro opteron board, Jim's old desktop
 T5500 - Dell 5500, Jim's new desktop
 gb812x-cn - Appro Greenblade compute node (TLCC2)
