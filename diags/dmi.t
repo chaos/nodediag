@@ -77,12 +77,14 @@ dmi_stanza()
     $DMIDECODE | awk '/'"$1"'$/,/^$/'
 }
 
+# total memory size in MB
 getmemtot()
 {
     local n
     local total=0
 
-    for n in `dmi_stanza "Memory Device" | awk '/Size:.*MB/ { print $2 }'`; do
+    for n in `dmi_stanza "Memory Device" | awk '/Size:.*MB/ { print $2 }'` \
+         `dmi_stanza "Memory Device" | awk '/Size:.*GB/ { print $2*1024 }'`; do
         [ "$n" != "No" ] && total=$(($total + $n))
     done
     echo $total

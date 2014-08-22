@@ -45,7 +45,7 @@ getname()
   $LSPCI -s $1 2>/dev/null| awk -F':' '{print $3}'|normalize_whitespace
 }
 
-# Get bus width for specified slot
+# Get bus speed for specified slot
 getspeed()
 {
   $LSPCI -s $1 -vv 2>/dev/null| awk '{gsub(",","")} /LnkSta:/ {print $3}'
