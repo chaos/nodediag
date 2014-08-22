@@ -1,0 +1,2004 @@
+00:00.0 Host bridge: Intel Corporation Xeon E5 v2/Core i7 DMI2 (rev 07)
+00: 86 80 00 0e 00 00 10 00 07 00 00 06 10 00 00 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 90 00 00 00 00 00 00 00 00 01 00 00
+
+00:02.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 2a (rev 07)
+00: 86 80 04 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 01 01 00 10 10 00 00
+20: 80 df 90 df 01 dc 01 dc 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:02.2 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 2c (rev 07)
+00: 86 80 06 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 0b 0b 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:03.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 3a (rev 07)
+00: 86 80 08 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 0a 0a 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:03.2 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 3c (rev 07)
+00: 86 80 0a 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 03 03 00 20 20 00 00
+20: a0 df c0 df f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:05.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 VTd/Memory Map/Misc (rev 07)
+00: 86 80 28 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+00:05.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 IIO RAS (rev 07)
+00: 86 80 2a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+00:11.0 PCI bridge: Intel Corporation C600/X79 series chipset PCI Express Virtual Root Port (rev 06)
+00: 86 80 3e 1d 07 04 10 00 06 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 00 04 04 00 f0 00 00 20
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:16.0 Communication controller: Intel Corporation C600/X79 series chipset MEI Controller #1 (rev 05)
+00: 86 80 3a 1d 06 00 18 00 05 00 80 07 00 00 80 00
+10: 04 b0 ff df 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 50 00 00 00 00 00 00 00 00 00 00 00
+
+00:16.1 Communication controller: Intel Corporation C600/X79 series chipset MEI Controller #2 (rev 05)
+00: 86 80 3b 1d 06 00 10 00 05 00 80 07 00 00 80 00
+10: 04 c0 ff df 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 50 00 00 00 00 00 00 00 00 00 00 00
+
+00:1a.0 USB controller: Intel Corporation C600/X79 series chipset USB2 Enhanced Host Controller #2 (rev 06)
+00: 86 80 2d 1d 42 01 90 02 06 20 03 0c 00 00 00 00
+10: 00 d0 ff df 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 50 00 00 00 00 00 00 00 0e 01 00 00
+
+00:1c.0 PCI bridge: Intel Corporation C600/X79 series chipset PCI Express Root Port 1 (rev b6)
+00: 86 80 10 1d 47 05 10 00 b6 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 02 02 00 f0 00 00 20
+20: d0 df e0 df 11 dc 11 dc 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+00:1c.6 PCI bridge: Intel Corporation C600/X79 series chipset PCI Express Root Port 7 (rev b6)
+00: 86 80 1c 1d 47 05 10 00 b6 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 00 05 09 00 f0 00 00 20
+20: 00 de 70 df 01 dd f1 dd 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0b 03 0b 00
+
+00:1d.0 USB controller: Intel Corporation C600/X79 series chipset USB2 Enhanced Host Controller #1 (rev 06)
+00: 86 80 26 1d 42 01 90 02 06 20 03 0c 00 00 00 00
+10: 00 e0 ff df 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 50 00 00 00 00 00 00 00 06 01 00 00
+
+00:1e.0 PCI bridge: Intel Corporation 82801 PCI Bridge (rev a6)
+00: 86 80 4e 24 47 01 10 00 a6 01 04 06 00 00 01 00
+10: 00 00 00 00 00 00 00 00 00 0c 0c 20 f0 00 80 22
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 50 00 00 00 00 00 00 00 ff 00 03 00
+
+00:1f.0 ISA bridge: Intel Corporation C600/X79 series chipset LPC Controller (rev 06)
+00: 86 80 41 1d 47 01 10 02 06 00 01 06 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 e0 00 00 00 00 00 00 00 00 00 00 00
+
+00:1f.2 SATA controller: Intel Corporation C600/X79 series chipset 6-Port SATA AHCI Controller (rev 06)
+00: 86 80 02 1d 47 04 b0 02 06 01 06 01 00 00 00 00
+10: 11 30 00 00 05 30 00 00 09 30 00 00 01 30 00 00
+20: 21 30 00 00 00 f0 ff df 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 80 00 00 00 00 00 00 00 05 01 00 00
+
+01:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit SFI/SFP+ Network Connection (rev 01)
+00: 86 80 fb 10 03 00 10 00 01 00 00 02 10 00 80 00
+10: 04 00 80 df 00 00 00 00 21 10 00 00 00 00 00 00
+20: 04 80 9f df 00 00 00 00 00 00 00 00 28 10 72 1f
+30: 00 00 90 df 40 00 00 00 00 00 00 00 0e 02 00 00
+
+01:00.1 Ethernet controller: Intel Corporation 82599ES 10-Gigabit SFI/SFP+ Network Connection (rev 01)
+00: 86 80 fb 10 03 00 10 00 01 00 00 02 10 00 80 00
+10: 04 00 88 df 00 00 00 00 01 10 00 00 00 00 00 00
+20: 04 c0 9f df 00 00 00 00 00 00 00 00 28 10 72 1f
+30: 00 00 90 df 40 00 00 00 00 00 00 00 0f 01 00 00
+
+02:00.0 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
+00: 86 80 21 15 06 04 10 00 01 00 00 02 10 00 80 00
+10: 00 00 d0 df 00 00 00 00 00 00 00 00 00 80 ef df
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 73 1f
+30: 00 00 e0 df 40 00 00 00 00 00 00 00 0b 04 00 00
+
+02:00.1 Ethernet controller: Intel Corporation I350 Gigabit Network Connection (rev 01)
+00: 86 80 21 15 06 04 10 00 01 00 00 02 10 00 80 00
+10: 00 00 d8 df 00 00 00 00 00 00 00 00 00 c0 ef df
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 73 1f
+30: 00 00 e0 df 40 00 00 00 00 00 00 00 0b 03 00 00
+
+03:00.0 RAID bus controller: LSI Logic / Symbios Logic MegaRAID SAS-3 3108 [Invader] (rev 02)
+00: 00 10 5d 00 07 04 10 00 02 00 04 01 10 00 00 00
+10: 01 20 00 00 04 00 cf df 00 00 00 00 04 00 a0 df
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 42 1f
+30: 00 00 b0 df 50 00 00 00 00 00 00 00 0f 01 00 00
+
+05:00.0 PCI bridge: Renesas Technology Corp. SH7757 PCIe Switch [PS]
+00: 12 19 13 00 07 00 10 00 00 00 04 06 10 00 01 80
+10: 00 00 00 00 00 00 00 00 05 06 09 00 f1 01 00 00
+20: 00 de 70 df 01 dd f1 dd 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 0b 00
+
+06:00.0 PCI bridge: Renesas Technology Corp. SH7757 PCIe Switch [PS]
+00: 12 19 13 00 07 00 10 00 00 00 04 06 10 00 01 80
+10: 00 00 00 00 00 00 00 00 06 07 08 00 f1 01 00 00
+20: 00 de f0 de 01 dd f1 dd 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 0b 00
+
+06:01.0 PCI bridge: Renesas Technology Corp. SH7757 PCIe Switch [PS]
+00: 12 19 13 00 07 00 10 00 00 00 04 06 10 00 01 80
+10: 00 00 00 00 00 00 00 00 06 09 09 00 f1 01 00 00
+20: 70 df 70 df f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 03 00
+
+07:00.0 PCI bridge: Renesas Technology Corp. SH7757 PCIe-PCI Bridge [PPB]
+00: 12 19 12 00 07 00 10 00 00 00 04 06 10 00 01 80
+10: 00 00 00 00 00 00 00 00 07 08 08 00 f1 01 00 20
+20: 00 de f0 de 01 dd f1 dd 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 0b 00
+
+08:00.0 VGA compatible controller: Matrox Electronics Systems Ltd. G200eR2
+00: 2b 10 34 05 07 00 90 02 00 00 00 03 10 40 00 00
+10: 08 00 00 dd 00 c0 ff de 00 00 00 de 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 dc 00 00 00 00 00 00 00 0b 01 10 20
+
+1f:08.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 0 (rev 07)
+00: 86 80 80 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:09.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 1 (rev 07)
+00: 86 80 90 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0a.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 0 (rev 07)
+00: 86 80 c0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0a.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 1 (rev 07)
+00: 86 80 c1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0a.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 2 (rev 07)
+00: 86 80 c2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0a.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 3 (rev 07)
+00: 86 80 c3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 80 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0b.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1e 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0b.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1f 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e4 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e6 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ea 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ec 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0c.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ee 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e5 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e7 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 eb 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0d.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ed 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 a0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0e.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 30 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Target Address/Thermal Registers (rev 07)
+00: 86 80 a8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 RAS Registers (rev 07)
+00: 86 80 71 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 aa 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ab 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ac 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:0f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ad 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 b0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 b1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 b2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 b3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 b4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 b5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 b6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:10.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 b7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:11.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 f8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:13.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 1d 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:13.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 34 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:13.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Registers (rev 07)
+00: 86 80 81 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:13.5 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 36 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:13.6 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 37 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:16.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 System Address Decoder (rev 07)
+00: 86 80 c8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:16.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 c9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:16.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 ca 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:18.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 2 (rev 07)
+00: 86 80 40 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 60 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1c.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 38 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Target Address/Thermal Registers (rev 07)
+00: 86 80 68 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 RAS Registers (rev 07)
+00: 86 80 79 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6b 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6c 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6d 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 f0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 f1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 f2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 f3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 f4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 f5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 f6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1e.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 f7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d9 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dc 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dd 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 de 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+1f:1f.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 df 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+20:02.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 2a (rev 07)
+00: 86 80 04 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 20 27 27 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+20:03.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 3a (rev 07)
+00: 86 80 08 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 20 21 26 00 f0 00 00 20
+20: 40 db d0 db 11 db 31 db 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+20:05.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 VTd/Memory Map/Misc (rev 07)
+00: 86 80 28 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+20:05.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 IIO RAS (rev 07)
+00: 86 80 2a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+21:00.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 dc db 00 00 00 00 21 22 26 00 f1 01 00 00
+20: 40 db b0 db 11 db 31 db 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+22:04.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 22 23 23 00 f1 01 00 00
+20: b0 db b0 db f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+22:05.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 22 24 24 00 f1 01 00 00
+20: 40 db 50 db 11 db 11 db 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0e 01 03 00
+
+22:06.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 22 25 25 00 f1 01 00 00
+20: 60 db 70 db 21 db 21 db 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0b 01 03 00
+
+22:07.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 22 26 26 00 f1 01 00 00
+20: 80 db 90 db 31 db 31 db 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0b 01 03 00
+
+23:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller 171X (rev 03)
+00: 4d 14 20 a8 07 00 10 00 03 02 08 01 10 00 00 00
+10: 04 c0 bf db 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 95 1f
+30: 00 00 00 00 c0 00 00 00 00 00 00 00 0f 01 00 00
+
+3f:08.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 0 (rev 07)
+00: 86 80 80 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:09.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 1 (rev 07)
+00: 86 80 90 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0a.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 0 (rev 07)
+00: 86 80 c0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0a.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 1 (rev 07)
+00: 86 80 c1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0a.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 2 (rev 07)
+00: 86 80 c2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0a.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 3 (rev 07)
+00: 86 80 c3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 80 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0b.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1e 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0b.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1f 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e4 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e6 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ea 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ec 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0c.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ee 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e5 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e7 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 eb 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0d.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ed 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 a0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0e.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 30 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Target Address/Thermal Registers (rev 07)
+00: 86 80 a8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 RAS Registers (rev 07)
+00: 86 80 71 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 aa 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ab 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ac 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:0f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ad 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 b0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 b1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 b2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 b3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 b4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 b5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 b6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:10.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 b7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:11.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 f8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:13.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 1d 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:13.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 34 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:13.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Registers (rev 07)
+00: 86 80 81 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:13.5 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 36 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:13.6 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 37 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:16.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 System Address Decoder (rev 07)
+00: 86 80 c8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:16.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 c9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:16.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 ca 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:18.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 2 (rev 07)
+00: 86 80 40 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 60 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1c.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 38 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Target Address/Thermal Registers (rev 07)
+00: 86 80 68 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 RAS Registers (rev 07)
+00: 86 80 79 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6b 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6c 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6d 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 f0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 f1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 f2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 f3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 f4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 f5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 f6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1e.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 f7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d9 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dc 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dd 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 de 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+3f:1f.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 df 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+40:02.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 2a (rev 07)
+00: 86 80 04 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 40 42 47 00 f0 00 00 20
+20: 40 d7 d0 d7 01 d7 31 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+40:03.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 3a (rev 07)
+00: 86 80 08 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 40 41 41 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+40:05.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 VTd/Memory Map/Misc (rev 07)
+00: 86 80 28 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+40:05.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 IIO RAS (rev 07)
+00: 86 80 2a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+42:00.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 dc d7 00 00 00 00 42 43 47 00 f1 01 00 00
+20: 40 d7 b0 d7 01 d7 31 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+43:04.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 43 44 44 00 f1 01 00 00
+20: 40 d7 50 d7 01 d7 01 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+43:05.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 43 45 45 00 f1 01 00 00
+20: 60 d7 70 d7 11 d7 11 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0e 01 03 00
+
+43:06.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 43 46 46 00 f1 01 00 00
+20: 80 d7 90 d7 21 d7 21 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0b 01 03 00
+
+43:07.0 PCI bridge: PLX Technology, Inc. PEX 8734 32-lane, 8-Port PCI Express Gen 3 (8.0GT/s) Switch (rev ab)
+00: b5 10 34 87 07 04 10 00 ab 00 04 06 10 00 01 00
+10: 00 00 00 00 00 00 00 00 43 47 47 00 f1 01 00 00
+20: a0 d7 b0 d7 31 d7 31 d7 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0b 01 03 00
+
+5f:08.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 0 (rev 07)
+00: 86 80 80 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:09.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 1 (rev 07)
+00: 86 80 90 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0a.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 0 (rev 07)
+00: 86 80 c0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0a.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 1 (rev 07)
+00: 86 80 c1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0a.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 2 (rev 07)
+00: 86 80 c2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0a.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 3 (rev 07)
+00: 86 80 c3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 80 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0b.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1e 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0b.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1f 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e4 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e6 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ea 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ec 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0c.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ee 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e5 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e7 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 eb 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0d.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ed 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 a0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0e.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 30 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Target Address/Thermal Registers (rev 07)
+00: 86 80 a8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 RAS Registers (rev 07)
+00: 86 80 71 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 aa 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ab 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ac 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:0f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ad 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 b0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 b1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 b2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 b3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 b4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 b5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 b6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:10.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 b7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:11.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 f8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:13.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 1d 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:13.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 34 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:13.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Registers (rev 07)
+00: 86 80 81 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:13.5 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 36 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:13.6 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 37 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:16.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 System Address Decoder (rev 07)
+00: 86 80 c8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:16.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 c9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:16.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 ca 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:18.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 2 (rev 07)
+00: 86 80 40 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 60 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1c.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 38 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Target Address/Thermal Registers (rev 07)
+00: 86 80 68 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 RAS Registers (rev 07)
+00: 86 80 79 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6b 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6c 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6d 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 f0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 f1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 f2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 f3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 f4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 f5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 f6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1e.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 f7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d9 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dc 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dd 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 de 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+5f:1f.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 df 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+60:02.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 2a (rev 07)
+00: 86 80 04 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 60 62 62 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+60:03.0 PCI bridge: Intel Corporation Xeon E5 v2/Core i7 PCI Express Root Port 3a (rev 07)
+00: 86 80 08 0e 47 05 10 00 07 00 04 06 10 00 81 00
+10: 00 00 00 00 00 00 00 00 60 61 61 00 f0 00 00 00
+20: f0 ff 00 00 f1 ff 01 00 00 00 00 00 00 00 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 0f 01 03 00
+
+60:05.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 VTd/Memory Map/Misc (rev 07)
+00: 86 80 28 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+60:05.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 IIO RAS (rev 07)
+00: 86 80 2a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:08.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 0 (rev 07)
+00: 86 80 80 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:09.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 1 (rev 07)
+00: 86 80 90 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0a.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 0 (rev 07)
+00: 86 80 c0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0a.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 1 (rev 07)
+00: 86 80 c1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0a.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 2 (rev 07)
+00: 86 80 c2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0a.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Power Control Unit 3 (rev 07)
+00: 86 80 c3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 80 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0b.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1e 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0b.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 UBOX Registers (rev 07)
+00: 86 80 1f 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e2 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e4 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e6 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ea 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ec 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0c.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ee 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e1 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e3 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e5 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e7 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 e9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 eb 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0d.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Unicast Registers (rev 07)
+00: 86 80 ed 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 a0 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0e.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 0 (rev 07)
+00: 86 80 30 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Target Address/Thermal Registers (rev 07)
+00: 86 80 a8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 RAS Registers (rev 07)
+00: 86 80 71 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 aa 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ab 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ac 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:0f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 ad 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 b0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 b1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 b2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 b3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 b4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 b5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 b6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:10.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 b7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:11.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 f8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:13.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 1d 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:13.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 R2PCIe (rev 07)
+00: 86 80 34 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:13.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Registers (rev 07)
+00: 86 80 81 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:13.5 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 36 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:13.6 Performance counters: Intel Corporation Xeon E5 v2/Core i7 QPI Ring Performance Ring Monitoring (rev 07)
+00: 86 80 37 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:16.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 System Address Decoder (rev 07)
+00: 86 80 c8 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:16.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 c9 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:16.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Broadcast Registers (rev 07)
+00: 86 80 ca 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:18.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 QPI Link 2 (rev 07)
+00: 86 80 40 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1c.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 60 0e 00 00 00 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1c.1 Performance counters: Intel Corporation Xeon E5 v2/Core i7 Home Agent 1 (rev 07)
+00: 86 80 38 0e 00 00 00 00 07 00 01 11 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Target Address/Thermal Registers (rev 07)
+00: 86 80 68 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 RAS Registers (rev 07)
+00: 86 80 79 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6a 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6b 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6c 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1d.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 1 Channel Target Address Decoder Registers (rev 07)
+00: 86 80 6d 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 0 (rev 07)
+00: 86 80 f0 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 1 (rev 07)
+00: 86 80 f1 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.2 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 0 (rev 07)
+00: 86 80 f2 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.3 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 1 (rev 07)
+00: 86 80 f3 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 2 (rev 07)
+00: 86 80 f4 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 Thermal Control 3 (rev 07)
+00: 86 80 f5 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 2 (rev 07)
+00: 86 80 f6 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1e.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 Integrated Memory Controller 0 Channel 0-3 ERROR Registers 3 (rev 07)
+00: 86 80 f7 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.0 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d8 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.1 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 d9 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.4 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dc 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.5 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 dd 0e 00 00 10 00 07 00 80 08 10 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 28 10 8e 05
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.6 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 de 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
+7f:1f.7 System peripheral: Intel Corporation Xeon E5 v2/Core i7 DDRIO (rev 07)
+00: 86 80 df 0e 00 00 10 00 07 00 80 08 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+20: 00 00 00 00 00 00 00 00 00 00 00 00 86 80 00 00
+30: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+
