@@ -1,4 +1,12 @@
 =========================================================================
+Release Notes for nodediag version 1.2.15                     25 Aug 2014
+=========================================================================
+
+* Handle memory reported in GB (Tim Randles, TOSS-2659)
+
+* Project repo moved to github, change license headers to GPLv2+
+
+=========================================================================
 Release Notes for nodediag version 1.2.14                     07 Jul 2013
 =========================================================================
 
