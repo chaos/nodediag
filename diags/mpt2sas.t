@@ -57,7 +57,7 @@ diagconfig ()
 
     echo "DIAG_MPT2SAS_NUM=\"$num\""
     if [ $num -gt 0 ]; then
-        echo "DIAG_MPT2SAS_FW=\"$(cat $host/version_fw$)\""
+        echo "DIAG_MPT2SAS_FW=\"$(cat $host/version_fw)\""
         echo "DIAG_MPT2SAS_BIOS=\"$(cat $host/version_bios)\""
     fi
 }
