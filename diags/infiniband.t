@@ -65,6 +65,12 @@ diag_plan $(($numdev * 2))
 for i in $(seq 0 $(($numdev - 1))); do
     dev=${DIAG_INFINIBAND_DEV[$i]}
 
+    # check the port guid to make sure it is not 0x0000000000000000
+    portguid=$(/usr/sbin/ibstat $dev | awk '/Port GUID:/ { print $3 }')
+    if [ "$portguid" = "0x0000000000000000" ]; then
+        diag_fail "$dev port guid is 0x0000000000000000"
+    fi
+
     # If link comes up late, configure retries here
     retries=${DIAG_INFINIBAND_RETRIES:-"0"}
     retrysec=${DIAG_INFINIBAND_RETRY_SEC:-"10"}
