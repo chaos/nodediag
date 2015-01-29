@@ -1,4 +1,13 @@
 =========================================================================
+Release Notes for nodediag version 1.2.16                     29 Jan 2015
+=========================================================================
+
+* infiniband: flag a zero guid that indicates EEPROM corruption
+  (Jeff Ogden, TOSS-2786)
+
+* mpt2sas: remove stray $ (Rich Fischer, TOSS-2282)
+
+=========================================================================
 Release Notes for nodediag version 1.2.15                     25 Aug 2014
 =========================================================================
 
