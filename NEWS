@@ -1,4 +1,18 @@
 =========================================================================
+Release Notes for nodediag version 1.2.18                     04 Nov 2015
+=========================================================================
+
+* Drop ethernet.t and update network.t to handle RHEL 7 arbitrary
+  network device names.
+
+=========================================================================
+Release Notes for nodediag version 1.2.17                     10 Jul 2015
+=========================================================================
+
+* Add really simple systemd.service file.
+  Output goes to the systemd journal.
+
+=========================================================================
 Release Notes for nodediag version 1.2.16                     29 Jan 2015
 =========================================================================
 

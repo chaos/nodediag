@@ -1,0 +1,9 @@
+[Unit]
+Description=Nodediag
+After=syslog.target network.target
+
+[Service]
+ExecStart=/usr/bin/nodediag -s -v
+
+[Install]
+WantedBy=multi-user.target

@@ -31,15 +31,18 @@ declare -r description="Check network config"
 
 source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 
-getmode()
-{
+getmode() {
     cat /sys/class/net/$1/mode 2>/dev/null
 }
-getmtu()
-{
+getmtu() {
     cat /sys/class/net/$1/mtu 2>/dev/null
 }
-
+getduplex() {
+    cat /sys/class/net/$1/duplex 2>/dev/null
+}
+getspeed() {
+    cat /sys/class/net/$1/speed 2>/dev/null
+}
 
 diagconfig ()
 {
@@ -48,20 +51,19 @@ diagconfig ()
 
     shopt -s nullglob 
     for file in /sys/class/net/*; do
-        dev=${file##*/}
-        case $dev in
-            eth*)
-                echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu $dev)\""
-                i=$(($i+1))
-                ;;
-            ib*)
-                echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
-                echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu $dev)\""
-                echo "DIAG_NETWORK_MODE[$i]=\"$(getmode $dev)\""
-                i=$(($i+1))
-                ;;
-        esac
+        if test -h $file/device; then
+            dev=${file##*/}
+            echo "DIAG_NETWORK_DEV[$i]=\"$dev\""
+            test -n "$(getmtu $dev)" \
+                && echo "DIAG_NETWORK_MTU[$i]=\"$(getmtu $dev)\""
+            test -n "$(getmode $dev)" \
+                && echo "DIAG_NETWORK_MODE[$i]=\"$(getmode $dev)\""
+            test -n "$(getduplex $dev)" \
+                && echo "DIAG_NETWORK_DUPLEX[$i]=\"$(getduplex $dev)\""
+            test -n "$(getspeed $dev)" \
+                && echo "DIAG_NETWORK_SPEED[$i]=\"$(getspeed $dev)\""
+            i=$(($i+1))
+        fi
     done        
     shopt -u nullglob 
 }
@@ -81,6 +83,8 @@ for i in $(seq 0 $(($numdev - 1))); do
     dev=${DIAG_NETWORK_DEV[$i]}
     mtu=${DIAG_NETWORK_MTU[$i]}
     mode=${DIAG_NETWORK_MODE[$i]}
+    duplex=${DIAG_NETWORK_DUPLEX[$i]}
+    speed=${DIAG_NETWORK_SPEED[$i]}
     if [ -d /sys/class/net/$dev ]; then
         diag_ok "$dev exists"
     else
@@ -100,6 +104,22 @@ for i in $(seq 0 $(($numdev - 1))); do
             diag_fail "$dev mtu '$gotmode', expected '$mode'"
         else
             diag_ok "$dev mode '$gotmode'"
+        fi
+    fi
+    if [ -n "$duplex" ]; then
+        gotduplex="$(getmode $dev)"
+        if [ "$duplex" != "$gotduplex" ]; then
+            diag_fail "$dev duplex '$gotduplex', expected '$duplex'"
+        else
+            diag_ok "$dev duplex '$gotduplex'"
+        fi
+    fi
+    if [ -n "$speed" ]; then
+        gotspeed="$(getmode $dev)"
+        if [ "$speed" != "$gotspeed" ]; then
+            diag_fail "$dev speed '$gotspeed', expected '$speed'"
+        else
+            diag_ok "$dev speed '$gotspeed'"
         fi
     fi
 done
