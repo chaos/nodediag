@@ -107,7 +107,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         fi
     fi
     if [ -n "$duplex" ]; then
-        gotduplex="$(getmode $dev)"
+        gotduplex="$(getduplex $dev)"
         if [ "$duplex" != "$gotduplex" ]; then
             diag_fail "$dev duplex '$gotduplex', expected '$duplex'"
         else
@@ -115,7 +115,7 @@ for i in $(seq 0 $(($numdev - 1))); do
         fi
     fi
     if [ -n "$speed" ]; then
-        gotspeed="$(getmode $dev)"
+        gotspeed="$(getspeed $dev)"
         if [ "$speed" != "$gotspeed" ]; then
             diag_fail "$dev speed '$gotspeed', expected '$speed'"
         else
