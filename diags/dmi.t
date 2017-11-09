@@ -60,7 +60,7 @@ dmi_check()
     local keyword="$1"
     shift
     local wantval=$(echo $* |dmi_normalize_whitespace)
-    local val=$($DMIDECODE -s $keyword|tail -1|dmi_normalize_whitespace)
+    local val=$($DMIDECODE -s $keyword|head -1|dmi_normalize_whitespace)
     if [ -z "$wantval" ]; then
         diag_skip "$keyword not configured"
     elif [ "$val" != "$wantval" ] && ! [[ "$val" =~ $wantval ]]; then
@@ -168,7 +168,7 @@ dmi_check_memspeed()
 # Usage: diag_config_dmi keyword variable
 dmi_config()
 {
-    local val=$($DMIDECODE -s $1|tail -1|dmi_normalize_whitespace)
+    local val=$($DMIDECODE -s $1|head -1|dmi_normalize_whitespace)
     echo "$2=\"$val\""
 } 
 
