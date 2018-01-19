@@ -49,8 +49,8 @@ DMIDECODE="dmidecode ${DMIDECODE_DUMP_FILE:+--from-dump=$DMIDECODE_DUMP_FILE}"
 # into one space.  Remove leading and trailing spaces.
 dmi_normalize_whitespace()
 {
-    sed -e 's/#.*//' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g' \
-                                               -e 's/^[[:space:]]\+//g'
+    sed -e 's/#.*//g' -e 's/[[:space:]]\+/\ /g' -e 's/[[:space:]]\+$//g' \
+                      -e 's/^[[:space:]]\+//g'  -e '/^\s*$/d'
 }
 
 # Usage: diag_test_dmi keyword wantval
@@ -60,7 +60,7 @@ dmi_check()
     local keyword="$1"
     shift
     local wantval=$(echo $* |dmi_normalize_whitespace)
-    local val=$($DMIDECODE -s $keyword|head -1|dmi_normalize_whitespace)
+    local val=$($DMIDECODE -s $keyword|dmi_normalize_whitespace|head -1)
     if [ -z "$wantval" ]; then
         diag_skip "$keyword not configured"
     elif [ "$val" != "$wantval" ] && ! [[ "$val" =~ $wantval ]]; then
