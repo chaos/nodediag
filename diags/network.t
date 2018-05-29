@@ -76,6 +76,7 @@ numtests=$numdev
 for i in $(seq 0 $(($numdev - 1))); do
     [ -n "${DIAG_NETWORK_MTU[$i]}" ] && numtests=$(($numtests + 1))
     [ -n "${DIAG_NETWORK_MODE[$i]}" ] && numtests=$(($numtests + 1))
+    [ -n "${DIAG_NETWORK_SPEED[$i]}" ] && numtests=$(($numtests + 1))
 done
 diag_plan $(($numtests))
 
