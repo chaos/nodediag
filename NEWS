@@ -1,4 +1,11 @@
 =========================================================================
+Release Notes for nodediag version 1.2.22                     30 May 2018
+=========================================================================
+
+* Fix logic error in network test that caused tests to be skipped
+  if SPEED test was enabled (Jim Silva).
+
+=========================================================================
 Release Notes for nodediag version 1.2.21                     22 Jan 2018
 =========================================================================
 
