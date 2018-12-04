@@ -82,6 +82,7 @@ diag_plan $(($numtests))
 
 for i in $(seq 0 $(($numdev - 1))); do
     dev=${DIAG_NETWORK_DEV[$i]}
+    altname=${DIAG_NETWORK_ALTNAME[$i]}
     mtu=${DIAG_NETWORK_MTU[$i]}
     mode=${DIAG_NETWORK_MODE[$i]}
     duplex=${DIAG_NETWORK_DUPLEX[$i]}
@@ -89,7 +90,12 @@ for i in $(seq 0 $(($numdev - 1))); do
     if [ -d /sys/class/net/$dev ]; then
         diag_ok "$dev exists"
     else
-        diag_fail "$dev does not exst"
+        if [ -n "$altname" -a -d /sys/class/net/$altname ]; then
+            diag_ok "$altname found in place of $dev, proceeding"
+            dev=$altname
+        else
+            diag_fail "$dev does not exist"
+        fi
     fi
     if [ -n "$mtu" ]; then
         gotmtu="$(getmtu $dev)"
