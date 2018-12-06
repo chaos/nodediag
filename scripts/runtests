@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! test -d ../diags; then
+	echo Must be run within test directory >&2
+	exit 1
+fi
+
 export NODEDIAGDIR=../diags
 
 for file in */dmidecode; do
