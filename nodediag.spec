@@ -1,7 +1,7 @@
 Name: nodediag
-Version:
-Release:
-Source:
+Version: 1.2.23
+Release: 1
+Source: %{name}-%{version}.tar.gz
 License: GPL
 Summary: Tests to verify hardware
 Group: Applications/Devel
