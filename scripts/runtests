@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if ! test -d ../diags; then
+	echo Must be run within test directory >&2
+	exit 1
+fi
+
+export NODEDIAGDIR=../diags
+
+fail_count=0
+
+for file in */dmidecode; do
+	platform=$(basename $(dirname $file))
+	echo $platform: running dmi.t on cached config and dmidecode dump file
+	export DMIDECODE_DUMP_FILE=$file
+	export NODEDIAGCONF=$(dirname $file)/dmi.conf
+	if $NODEDIAGDIR/dmi.t | grep 'not ok'; then
+		fail_count=$(($fail_count+1))
+	fi
+	unset NODEDIAGCONF
+done
+
+for file in */lspci; do
+	platform=$(basename $(dirname $file))
+	echo $platform: running pci.t on cached config and lspci dump file
+	export LSPCI_DUMP_FILE=$file
+	export NODEDIAGCONF=$(dirname $file)/pci*.conf
+	if $NODEDIAGDIR/pci.t | grep 'not ok'; then
+		fail_count=$(($fail_count+1))
+	fi
+	unset NODEDIAGCONF
+done
+
+echo Failed $fail_count tests >&2
+test $fail_count -eq 0 || exit 1

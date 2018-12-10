@@ -1,5 +1,5 @@
 Nodediag provides an extensible
-[TAP](http://testanything.org/wiki/index.php/Main_Page TAP)
+[TAP](http://testanything.org/wiki/index.php/Main_Page)
 framework for executing node diagnostic checks at system startup.
 
 Tests installed in `/etc/nodediag.d/` are run in parallel by the `nodediag`

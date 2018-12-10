@@ -1,4 +1,17 @@
 =========================================================================
+Release Notes for nodediag version 1.2.23                     06 Dec 2018
+=========================================================================
+
+* Allow alternate interface dev name to be specified for network.t test
+  (Phil Regier)
+
+* Add 'make dist' and 'make check' targets.
+
+* Ensure failing tests result in nonzero exit code.
+
+* Update Dell T5500 PCI vendor name for Broadcom.
+
+=========================================================================
 Release Notes for nodediag version 1.2.22                     30 May 2018
 =========================================================================
 

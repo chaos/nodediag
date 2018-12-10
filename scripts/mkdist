@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if test $# -gt 1; then
+    echo "Usage: mkdist [git-tag]" >&2
+    exit 1
+fi
+VERSION=$1
+if test -z "$VERSION"; then
+    VERSION=$(git describe --always | awk '/.*/ {printf "%s",$1; exit}')
+fi
+
+echo "Creating ${VERSION}.tar.gz"
+
+git archive --format=tar --prefix=nodediag-${VERSION}/ ${VERSION} \
+		| gzip >nodediag-${VERSION}.tar.gz
