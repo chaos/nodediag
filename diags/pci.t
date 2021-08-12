@@ -100,14 +100,14 @@ which lspci >/dev/null 2>&1 || diag_plan_skip "lspci is not installed"
 diag_plan $(($numdev * 3))
 
 for i in $(seq 0 $(($numdev - 1))); do
-    location=${DIAG_PCI_SLOT[$i]}
-    name=$(echo ${DIAG_PCI_NAME[$i]}|normalize_whitespace)
-    speed=${DIAG_PCI_SPEED[$i]}
-    width=${DIAG_PCI_WIDTH[$i]}
+    location="${DIAG_PCI_SLOT[$i]}"
+    name=$(echo "${DIAG_PCI_NAME[$i]}"|normalize_whitespace)
+    speed="${DIAG_PCI_SPEED[$i]}"
+    width="${DIAG_PCI_WIDTH[$i]}"
 
     if [ -n "$name" ] && [ -n "$location" ] ; then
         gotname=$(getname $location)
-        if [ "$name" != "$gotname" ] && ! [[ "$gotname" =~ $name ]]; then
+        if [ "$name" != "$gotname" ] && ! [[ "$gotname" =~ "$name" ]]; then
             diag_fail "$location name $gotname, expected $name"
         else
             diag_ok "$location name $gotname"
