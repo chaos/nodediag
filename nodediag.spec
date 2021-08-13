@@ -1,5 +1,5 @@
 Name: nodediag
-Version: 1.2.23
+Version: 1.2.25
 Release: 1
 Source: %{name}-%{version}.tar.gz
 License: GPL
