@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 ##############################################################################
 # Copyright (c) 2010, Lawrence Livermore National Security, LLC.
 # Produced at the Lawrence Livermore National Laboratory.
@@ -63,18 +63,20 @@ for i in $(seq 0 $(($num - 1))); do
     dev=${MPT3SAS_DEV[$i]}
     fw="$(cat $dev/version_fw)"
     h=${dev##*/}
-    if [ -z "$DIAG_MPT3SAS_FW[$i]" ]; then
+    if [ -z "${DIAG_MPT3SAS_FW[$i]}" ]; then
         diag_skip "$h fw '$fw', expected value not configured"
     elif [ "$fw" != "${DIAG_MPT3SAS_FW[$i]}" ]; then
-        diag_fail "$h fw '$fw', expected '$DIAG_MPT3SAS_FW[$i]'"
+        diag_fail "$h fw '$fw', expected '${DIAG_MPT3SAS_FW[$i]}'"
     else
         diag_ok "$h fw '$fw'"
     fi
+    # Note: /sys/class/scsi_host/*/version_bios does not always show correct
+    # version. Using 'storcli /cX show | grep BIOS' is more accurate.
     bios="$(cat $dev/version_bios)"
-    if [ -z "$DIAG_MPT3SAS_BIOS[$i]" ]; then
+    if [ -z "${DIAG_MPT3SAS_BIOS[$i]}" ]; then
         diag_skip "$h bios '$bios', expected value not configured"
     elif [ "$bios" != "${DIAG_MPT3SAS_BIOS[$i]}" ]; then
-        diag_fail "$h bios '$bios', expected '$DIAG_MPT3SAS_BIOS[$i]'"
+        diag_fail "$h bios '$bios', expected '${DIAG_MPT3SAS_BIOS[$i]}'"
     else
         diag_ok "$h bios '$bios'"
     fi
