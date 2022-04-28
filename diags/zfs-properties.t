@@ -11,6 +11,11 @@ source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 function diagconfig {
 	local idx=0
 
+	if ! which zfs >/dev/null 2>&1; then
+		echo "# zfs command not found"
+		return 1
+	fi
+
 	for dataset in $(list_datasets); do
 		echo "DIAG_ZFS_DATASET_NAME[$idx]=^${dataset}$"
 		echo "DIAG_ZFS_RECORDSIZE[$idx]=$(getprop ${dataset} recordsize)"
@@ -121,11 +126,10 @@ function list_datasets {
 	zfs list -H | awk '{print $1}'
 }
 
-which zfs >/dev/null 2>&1 || diag_plan_skip "zfs not installed"
-
-[ -z "$(list_datasets)" ] &&  diag_plan_skip "no ZFS datasets" >&2
-
 diag_handle_args "$@"
+
+which zfs >/dev/null 2>&1 || diag_plan_skip "zfs command not found"
+[ -z "$(list_datasets)" ] &&  diag_plan_skip "no ZFS datasets" >&2
 
 #
 # Count tests and declare them

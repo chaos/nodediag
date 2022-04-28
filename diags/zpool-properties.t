@@ -11,6 +11,11 @@ source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 function diagconfig {
 	local idx=0
 
+	if ! which zpool >/dev/null 2>&1; then
+		echo "# zpool command not found"
+		return 1
+	fi
+
 	for pool in $(list_pools); do
 		echo "DIAG_ZPOOL_NAME[$idx]=^${pool}$"
 		echo "DIAG_ZPOOL_AUTOREPLACE[$idx]=$(getprop ${pool} autoreplace)"
@@ -114,11 +119,10 @@ function list_pools {
 	zpool list -H | awk '{print $1}'
 }
 
-which zfs >/dev/null 2>&1 || diag_plan_skip "zfs not installed"
-
-[ -z "$(list_pools)" ] &&  diag_plan_skip "no ZFS pools" >&2
-
 diag_handle_args "$@"
+
+which zpool >/dev/null 2>&1 || diag_plan_skip "zpool command not found"
+[ -z "$(list_pools)" ] &&  diag_plan_skip "no ZFS pools" >&2
 
 #
 # Count tests and declare them
