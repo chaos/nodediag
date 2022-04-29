@@ -70,11 +70,11 @@ function verify_property {
 	propval=$(getprop ${dataset} ${propname})
 
 	if [ -z "${propval}" ] ; then
-		diag_fail "dataset ${dataset} property ${propname} does not exist" >&2
+		diag_fail "dataset ${dataset} property ${propname} does not exist"
 	elif [ "${propval}" != ${expectedval} ] ; then
-		diag_fail "dataset ${dataset} property ${propname} is ${propval}, expected ${expectedval}" >&2
+		diag_fail "dataset ${dataset} property ${propname} is ${propval}, expected ${expectedval}"
 	else
-		diag_ok "dataset ${dataset} property ${propname} is ${propval}" >&2
+		diag_ok "dataset ${dataset} property ${propname} is ${propval}"
 	fi
 }
 
@@ -129,14 +129,14 @@ function list_datasets {
 diag_handle_args "$@"
 
 which zfs >/dev/null 2>&1 || diag_plan_skip "zfs command not found"
-[ -z "$(list_datasets)" ] &&  diag_plan_skip "no ZFS datasets" >&2
+[ -z "$(list_datasets)" ] &&  diag_plan_skip "no ZFS datasets"
 
 #
 # Count tests and declare them
 #
 num_tests=0
 foreach_dataset_and_property count_tests
-[ $num_tests -eq 0 ] &&  diag_plan_skip "no ZFS dataset checks" >&2
+[ $num_tests -eq 0 ] &&  diag_plan_skip "no ZFS dataset checks"
 diag_plan $num_tests
 
 #
