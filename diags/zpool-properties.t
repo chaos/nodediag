@@ -11,6 +11,11 @@ source ${NODEDIAGDIR:-/etc/nodediag.d}/functions-tap || exit 1
 function diagconfig {
 	local idx=0
 
+	if ! which zpool >/dev/null 2>&1; then
+		echo "# zpool command not found"
+		return 1
+	fi
+
 	for pool in $(list_pools); do
 		echo "DIAG_ZPOOL_NAME[$idx]=^${pool}$"
 		echo "DIAG_ZPOOL_AUTOREPLACE[$idx]=$(getprop ${pool} autoreplace)"
@@ -62,11 +67,11 @@ function verify_property {
 	propval=$(getprop ${pool} ${propname})
 
 	if [ -z "${propval}" ] ; then
-		diag_fail "pool ${pool} property ${propname} does not exist" >&2
+		diag_fail "pool ${pool} property ${propname} does not exist"
 	elif [ "${propval}" != ${expectedval} ] ; then
-		diag_fail "pool ${pool} property ${propname} is ${propval}, expected ${expectedval}" >&2
+		diag_fail "pool ${pool} property ${propname} is ${propval}, expected ${expectedval}"
 	else
-		diag_ok "pool ${pool} property ${propname} is ${propval}" >&2
+		diag_ok "pool ${pool} property ${propname} is ${propval}"
 	fi
 }
 
@@ -114,18 +119,17 @@ function list_pools {
 	zpool list -H | awk '{print $1}'
 }
 
-which zfs >/dev/null 2>&1 || diag_plan_skip "zfs not installed"
-
-[ -z "$(list_pools)" ] &&  diag_plan_skip "no ZFS pools" >&2
-
 diag_handle_args "$@"
+
+which zpool >/dev/null 2>&1 || diag_plan_skip "zpool command not found"
+[ -z "$(list_pools)" ] &&  diag_plan_skip "no ZFS pools"
 
 #
 # Count tests and declare them
 #
 num_tests=0
 foreach_pool_and_property count_tests
-[ $num_tests -eq 0 ] &&  diag_plan_skip "no ZFS pool checks" >&2
+[ $num_tests -eq 0 ] &&  diag_plan_skip "no ZFS pool checks"
 diag_plan $num_tests
 
 #
