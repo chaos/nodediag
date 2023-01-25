@@ -108,7 +108,7 @@ for i in $(seq 0 $(($numdev - 1))); do
     if [ -n "$mode" ]; then
         gotmode="$(getmode $dev)"
         if [ "$mode" != "$gotmode" ]; then
-            diag_fail "$dev mtu '$gotmode', expected '$mode'"
+            diag_fail "$dev mode '$gotmode', expected '$mode'"
         else
             diag_ok "$dev mode '$gotmode'"
         fi
