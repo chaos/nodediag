@@ -1,4 +1,14 @@
 =========================================================================
+Release Notes for nodediag version 1.2.26                     23 Aug 2023
+=========================================================================
+
+* Add check for ZFS Redundant Metadata property
+* Fix typo in network.t
+* zfs and zpool: do not redirect diag_fail and diag_ok output
+* zpool and zfs: call diag_handle_args before diag_plan_skip
+* Add support for multiple MPT3SAS SAS adapters
+
+=========================================================================
 Release Notes for nodediag version 1.2.25                     12 Aug 2021
 =========================================================================
 
