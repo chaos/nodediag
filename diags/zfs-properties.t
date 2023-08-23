@@ -20,6 +20,7 @@ function diagconfig {
 		echo "DIAG_ZFS_DATASET_NAME[$idx]=^${dataset}$"
 		echo "DIAG_ZFS_RECORDSIZE[$idx]=$(getprop ${dataset} recordsize)"
 		echo "DIAG_ZFS_DNODESIZE[$idx]=$(getprop ${dataset} dnodesize)"
+		echo "DIAG_ZFS_RDNT_MD[$idx]=$(getprop ${dataset} redundant_metadata)"
 		echo "DIAG_ZFS_XATTR[$idx]=$(getprop ${dataset} xattr)"
 		echo "DIAG_ZFS_CANMOUNT[$idx]=$(getprop ${dataset} canmount)"
 		echo "DIAG_ZFS_COMPRESSION[$idx]=$(getprop ${dataset} compression)"
@@ -117,6 +118,7 @@ function foreach_dataset_and_property {
 			handle_test $action ${dataset} xattr       ${DIAG_ZFS_XATTR[$idx]}
 			handle_test $action ${dataset} canmount    ${DIAG_ZFS_CANMOUNT[$idx]}
 			handle_test $action ${dataset} compression ${DIAG_ZFS_COMPRESSION[$idx]}
+			handle_test $action ${dataset} redundant_metadata ${DIAG_ZFS_RDNT_MD[$idx]}
 
 		done
 	done
