@@ -1,4 +1,11 @@
 =========================================================================
+Release Notes for nodediag version 1.2.27                     07 Apr 2026
+=========================================================================
+
+* Add check for Lustre autodegrade property
+* Properly quote variables in mpt3sas.t and document issue
+
+=========================================================================
 Release Notes for nodediag version 1.2.26                     23 Aug 2023
 =========================================================================
 
