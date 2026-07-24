@@ -40,8 +40,11 @@ tapwrap:         Run non-TAP tests: nvidia
 tw:              Check 3ware cards
 ```
 
-An init script is provided so diagnostics can be run at startup, with
-the (verbose) results redirected to `/var/log/nodediag`.
+An init script (SysVinit) or systemd unit file is provided so diagnostics
+can be run at startup. Packages built for RHEL >= 10 or Fedora >= 40 include
+the systemd unit and log to journald (view with `journalctl -u nodediag.service`).
+Packages built for older releases include the init script and log to `/var/log/nodediag`.
+
 Alternatively `nodediag` can be run as part of a cluster bringup
 procedure, determining whether a node is fit to start cluster services;
 or as part of a resource manager epilog between batch jobs to detect
